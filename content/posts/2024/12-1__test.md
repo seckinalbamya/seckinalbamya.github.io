@@ -32,7 +32,7 @@ Long-term Keyword: The Birth of the Universe
 
 The idea of cosmic expansion is closely linked to the Big Bang theory. According to this theory, the universe originated from an incredibly dense and hot state nearly 13.8 billion years ago. As the universe expanded, it cooled, leading to the formation of galaxies, stars, and all the structures we see today.
 
-## Measuring the Universe's Growth
+## Measuring the Universe's Growth2
 
 Keyword: Measuring the Universe's Growth
 
