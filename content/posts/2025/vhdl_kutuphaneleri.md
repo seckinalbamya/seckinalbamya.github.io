@@ -1,14 +1,19 @@
 ---
-title: "VHDL'de kütüphaneler ve içerdikleri fonksiyonlar"
-date: 2025-01-01T01:15:05+03:00
+title: "VHDL'de Kütüphaneler ve İçerdikleri Fonksiyonlar"
+date: 12/03/2025
 slug: /kutuphane/
-description: VHDL'de kütüphaneler ve içerdikleri fonksiyonlar hakkında
+description: VHDL'de Kütüphaneler ve İçerdikleri Fonksiyonlar
 image: images/brent-cox-ydGRmobx5jA-unsplash.jpg
 caption: Photo by Brentcox on Unsplash
 categories:
   - vhdl
 tags:
   - vhdl
+  - ieee
+  - synopsys
+  - std_logic
+  - numeric_std
+  - std_logic_arith
   - library
   - package
 draft: false
