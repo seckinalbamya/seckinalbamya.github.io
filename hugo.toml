@@ -1,6 +1,6 @@
 baseURL = 'https://vhdlverilog.com/'
 languageCode = 'tr-tr'
-title = 'VHDLVerilog / VerilogVHDL'
+title = 'VHDLVerilog'
 theme = 'pehtheme-hugo'
 
 paginate = '6' # <- Set the desired number of posts per page 
