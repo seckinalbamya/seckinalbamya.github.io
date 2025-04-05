@@ -1,6 +1,7 @@
 ---
 title: "Hakkında"
 date: 2025
+image: images/logo.png
 draft: false
 ---
 
