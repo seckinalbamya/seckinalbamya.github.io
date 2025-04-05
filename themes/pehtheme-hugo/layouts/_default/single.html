@@ -51,10 +51,7 @@
 
         {{- if ( strings.HasPrefix .Params.image "http" ) }}
 
-          {{- with $image := resources.Get .Params.image }}
-            {{- $image := $image.Resize "750x" }}
-            <center><img class="rounded-lg" src="{{ $image.Permalink }}" alt="{{ .Params.title }}" width="{{ $image.Width }}" height="{{ $image.Height }}"></center>
-          {{- end }}
+          <center><img class="rounded-lg" src="{{ .Params.image }}" alt="{{ .Params.title }}"></center>
 
         {{- else }}
 
