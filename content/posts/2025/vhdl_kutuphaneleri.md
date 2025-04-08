@@ -34,7 +34,7 @@ character	<= Karakterleri temsil etmek için kullanılan type'tır.
 string		<= Karakter dizilerini temsil etmek için kullanılan type'tır.
 ```
 
-Yukarıda bahsedilen type'lar hakkında daha detaylı bilgiye ulaşmak için **["standard.vhd"](https://github.com/antlr/grammars-v4/blob/master/vhdl/examples/standard.vhd)** incelenebilir.
+Yukarıda bahsedilen type'lar hakkında daha detaylı bilgiye ulaşmak için **["standard.vhd"](https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/vhdl_libraries/standard.vhd)** incelenebilir.
 
 ## std_logic_1164 package
 
@@ -132,7 +132,7 @@ if rising_edge(clk) then--clk sinyalinin yükselen kenarı doğruysa "end if" sa
 	--clk sinyalinin ilk tetiklendiği anda gerçekleşmesi istenen işlemlerin yazılacağı alan.
 end if;
 ```
-Yukarıda bahsedilen type'lar, fonksiyonlar ve operatörler hakkında daha detaylı bilgiye ulaşmak için **["std_logic_1164.vhd"](https://github.com/antlr/grammars-v4/blob/master/vhdl/examples/std_logic_1164.vhd)** incelenebilir.
+Yukarıda bahsedilen type'lar, fonksiyonlar ve operatörler hakkında daha detaylı bilgiye ulaşmak için **["std_logic_1164.vhd"](https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/vhdl_libraries/std_logic_1164.vhd)** incelenebilir.
 
 ## numeric_std package
 
@@ -257,7 +257,7 @@ c <= a xnor b;	-- a ve b sinyallerine mantıksal xnor işlemi uygular.
 c <= not a;		-- a değerine not uygulayarak c sinyalina yazar.
 ```
 
-Yukarıda bahsedilen fonksiyonlar ve operatörler hakkında daha detaylı bilgiye ulaşmak için **["numeric_std.vhd"](https://github.com/antlr/grammars-v4/blob/master/vhdl/examples/numeric_std.vhd)** incelenebilir.
+Yukarıda bahsedilen fonksiyonlar ve operatörler hakkında daha detaylı bilgiye ulaşmak için **["numeric_std.vhd"](https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/vhdl_libraries/numeric_std.vhd)** incelenebilir.
 
 ## std_logic_arith package
 
@@ -328,6 +328,8 @@ b <= SXT(a,length);-- Boyut değiştirmek için kullanılır. lenght sinyali ile
 fazla bitler için işaretli (sext, sign extended) genişletme uygulanır.
 ```
 
+Yukarıda bahsedilen fonksiyonlar ve operatörler hakkında daha detaylı bilgiye ulaşmak için **["std_logic_arith.vhd"](https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/vhdl_libraries/std_logic_arith.vhd)** incelenebilir.
+
 ## std_logic_signed ve std_logic_unsigned packageleri
 
 std_logic_vector'ler üzerinde aritmetik işlem yapmak için kullanılan, Synopsys firması tarafından geliştirilen "std_logic_signed" ve "std_logic_unsigned" package'ları ve içerdikleri fonksiyonlar aşağıda verilmiştir.
@@ -388,7 +390,9 @@ Dönüştürme fonksiyonu:
 CONV_INTEGER  			=> STD_LOGIC_VECTOR türünde girdiler için tanımlıdır, INTEGER türünde çıkış verir.
 ```
 
-Yukarıdaki fonksiyonların yaptığı işlemler ve kullanım örnekleri aşağıda verilmiştir.
+Yukarıdaki fonksiyonun yaptığı işlem ve kullanım örneği aşağıda verilmiştir.
 ```
 b <= CONV_INTEGER(a);-- STD_LOGIC_VECTOR type tanımlanan a sinyali integer type'a çevrilerek bit type olarak tanımlanan b siyanline yazılır.
 ```
+
+Yukarıda bahsedilen fonksiyonlar ve operatörler hakkında daha detaylı bilgiye ulaşmak için **["std_logic_signed.vhd"](https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/vhdl_libraries/std_logic_signed.vhd)** ve **["std_logic_unsigned.vhd"](https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/vhdl_libraries/std_logic_unsigned.vhd)**incelenebilir.
