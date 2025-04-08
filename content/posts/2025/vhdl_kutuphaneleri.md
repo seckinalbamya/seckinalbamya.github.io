@@ -395,4 +395,4 @@ Yukarıdaki fonksiyonun yaptığı işlem ve kullanım örneği aşağıda veril
 b <= CONV_INTEGER(a);-- STD_LOGIC_VECTOR type tanımlanan a sinyali integer type'a çevrilerek bit type olarak tanımlanan b siyanline yazılır.
 ```
 
-Yukarıda bahsedilen fonksiyonlar ve operatörler hakkında daha detaylı bilgiye ulaşmak için **["std_logic_signed.vhd"](https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/vhdl_libraries/std_logic_signed.vhd)** ve **["std_logic_unsigned.vhd"](https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/vhdl_libraries/std_logic_unsigned.vhd)**incelenebilir.
+Yukarıda bahsedilen fonksiyonlar ve operatörler hakkında daha detaylı bilgiye ulaşmak için **["std_logic_signed.vhd"](https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/vhdl_libraries/std_logic_signed.vhd)** ve **["std_logic_unsigned.vhd"](https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/vhdl_libraries/std_logic_unsigned.vhd)** incelenebilir.
