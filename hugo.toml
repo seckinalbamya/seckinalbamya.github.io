@@ -2,6 +2,7 @@ baseURL = 'https://vhdlverilog.com/'
 languageCode = 'tr-tr'
 title = 'VHDLVerilog'
 theme = 'pehtheme-hugo'
+buildFuture = true
 
 paginate = '6' # <- Set the desired number of posts per page 
 summaryLength = '20' # <- 20 words are approximately 160 characters
