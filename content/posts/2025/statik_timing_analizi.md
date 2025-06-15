@@ -1,7 +1,7 @@
 ---
 title: "FPGA'de Statik Timing Analizi"
 date: 2025-06-16
-slug: /fpgade_statik_timing_analizi/
+slug: /vhdl_kutuphaneleri/
 description: FPGA'de Statik Timing Analizi
 image: images/vhdl_kutuphaneleri.png
 categories:
