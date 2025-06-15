@@ -1,3 +1,23 @@
+---
+title: "FPGA'de Statik Timing Analizi"
+date: 2025-03-12
+slug: /vhdl_kutuphaneleri/
+description: FPGA'de Statik Timing Analizi
+image: images/vhdl_kutuphaneleri.png
+categories:
+  - vhdl
+tags:
+  - vhdl
+  - ieee
+  - synopsys
+  - std_logic
+  - numeric_std
+  - std_logic_arith
+  - library
+  - package
+draft: false
+---
+
 **FPGA'de Statik Timing Analizi:** 
 
 &nbsp;&nbsp;&nbsp;&nbsp;Bir FPGA tasarımının güvenli ve hatasız çalışması için bazı tasarım gereksinimlerine uyulmalıdır. Bu tasarım gerekliliklerinin en önemlilerinden bir tanesi timing (zaman) analizidir.
