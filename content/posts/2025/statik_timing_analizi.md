@@ -3,14 +3,14 @@ title: "FPGA'de Statik Timing Analizi"
 date: 2025-03-12
 slug: /fpgade_statik_timing_analizi/
 description: FPGA'de Statik Timing Analizi
-image: images/vhdl_kutuphaneleri.png
+image: images/statik_timing_analiz_pp.png
 categories:
   - fpga
 tags:
   - fpga
-  - timing_analizi
-  - setup_time
-  - hold_time
+  - timing analizi
+  - setup time
+  - hold time
   - slack
 draft: false
 ---
