@@ -1,3 +1,19 @@
+---
+title: "FPGA'de Statik Timing Analizi"
+date: 2025-06-16
+slug: /fpgade_statik_timing_analizi/
+description: FPGA'de Statik Timing Analizi
+image: images/statik_timing_analiz_pp.png
+categories:
+  - vhdl
+tags:
+  - statik timing analizi
+  - static timing analyses
+  - setup time
+  - hold time
+draft: false
+---
+
 **FPGA'de Statik Timing Analizi:** 
 
 &nbsp;&nbsp;&nbsp;&nbsp;Bir FPGA tasarımının güvenli ve hatasız çalışması için bazı tasarım gereksinimlerine uyulmalıdır. Bu tasarım gerekliliklerinin en önemlilerinden bir tanesi timing (zaman) analizidir.
@@ -101,3 +117,5 @@
 &nbsp;&nbsp;&nbsp;&nbsp;Setup ve hold slack değerleri pozitif olduğunda tasarım timing gereksinimlerini karşılamakta, aksi halde tasarımda timing ihlali bulunmaktadır.
 
 &nbsp;&nbsp;&nbsp;&nbsp;Pozitif setup ve hold slack değerlerinde tasarımın kararlı çalışması garanti altına alınırken negatif slack değerlerinde sistemde metastability ve kararsız durumlar gözlenebilir. Bu durum flip flop'ların çıktılarının kararsız olmasına, kararsız flip flop'lardan örnekleme yapan başka flip flop'ların yanlış değerleri örneklemesine ve sistemin çökmesine kadar ilerleyen bir hataya yol açabilir. İyi bir tasarımda bu hatalara karşı analizleri dikkate almak önem arz eder.
+
+Bu yazıdaki içerik ve görseller için YouTube'da paylaşım yapan Altera kanalının [Understanding Timing Analysis in FPGAs](https://www.youtube.com/watch?v=6D-w8mOttnE) videosundan faydalanılmıştır.
