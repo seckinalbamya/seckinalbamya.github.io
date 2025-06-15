@@ -1,20 +1,17 @@
 ---
 title: "FPGA'de Statik Timing Analizi"
-date: 2025-03-12
-slug: /vhdl_kutuphaneleri/
+date: 2025-06-16
+slug: /fpgade_statik_timing_analizi/
 description: FPGA'de Statik Timing Analizi
 image: images/vhdl_kutuphaneleri.png
 categories:
-  - vhdl
+  - fpga
 tags:
-  - vhdl
-  - ieee
-  - synopsys
-  - std_logic
-  - numeric_std
-  - std_logic_arith
-  - library
-  - package
+  - fpga
+  - timing analizi
+  - setup time
+  - hold time
+  - slack
 draft: false
 ---
 
