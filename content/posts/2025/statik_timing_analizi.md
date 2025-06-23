@@ -67,45 +67,53 @@ Diğer bir ifadeyle, verinin kaynak flip-flop’tan oluşturulup hedef flip-flop
 	
 Burada dikkat edilmesi gereken nokta, clock frekansının **T<sub>required\_hold</sub>**'a herhangi bir etkisinin olmadığıdır çünkü aynı clock kenarında yapılan örnekleme ile ilgili bir parametredir.
 
+Yani setup ve hold time clock örneklemesi esnasında stabil kalınması gereken zaman kurallarının kontrolüdür. Aşağıda flip flop'un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı gösterilmiştir.
+
+<p align="center">
+  <img src="https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/timing_analyses_images/Setup_and_hold_gosterim.jpg?raw=true" alt="Flip flop'un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı(1)" width="767"/>
+</p>
+
+<p align="center"><em>Şekil 2: Flip flop'un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı(1)</em></p>
+
 Setup ve hold time analizi hesaplamasının nasıl yapıldığı konusundan önce setup ve hold time gereksinimlerini karşılayıp karşılamadığı bakımından çeşitli örnekler aşağıda incelenmiştir.
 
-Setup time bakımından incelenen ve hatasız çalışan bir örnek aşağıdaki görsel üzerinde gösterilmiştir.
+Setup time bakımından incelenen ve hatasız çalışan bir örnek aşağıda verilen Şekil 3 üzerinde gösterilmiştir.
 
 <p align="center">
   <img src="https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/timing_analyses_images/setup_basarili.PNG?raw=true" alt="Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi" width="710"/>
 </p>
 
-<p align="center"><em>Şekil 2: Setup time bakımından hatasız çalışan bir örnek</em></p>
+<p align="center"><em>Şekil 3: Setup time bakımından hatasız çalışan bir örnek</em></p>
 
 Görseldeki zaman çizelgesindeki sinyaller incelendiğinde Register 1'den çıkan REG1.Q sinyali REG2.D girişine geldiğinde bir sonraki örneklemeye **T<sub>setup</sub>**'tan daha uzun zaman kalmaktadır. Dolayısıyla setup time bakımından herhangi bir ihlal bulunmamaktadır.
 
-Setup time bakımından incelenen ve setup time ihlalı olan bir örnek aşağıdaki görsel üzerinde gösterilmiştir.
+Setup time bakımından incelenen ve setup time ihlalı olan bir örnek aşağıda verilen Şekil 4 üzerinde gösterilmiştir.
 
 <p align="center">
   <img src="https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/timing_analyses_images/setup_basarisiz.PNG?raw=true" alt="Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi" width="727"/>
 </p>
 
-<p align="center"><em>Şekil 3: Setup time ihlali olan bir örnek</em></p>
+<p align="center"><em>Şekil 4: Setup time ihlali olan bir örnek</em></p>
 
 Görseldeki zaman çizelgesindeki sinyaller incelendiğinde Register 1'den çıkan REG1.Q sinyali REG2.D girişine geldiğinde bir sonraki örneklemeye **T<sub>setup</sub>**'tan daha kısa zaman kalmaktadır. Dolayısıyla örnekleme öncesinde gereken sinyal stabilliği sağlanamamış, setup time bakımından ihlal gerçekleşmiştir.
 
-Hold time bakımından incelenen ve hatasız çalışan bir örnek aşağıdaki görsel üzerinde gösterilmiştir.
+Hold time bakımından incelenen ve hatasız çalışan bir örnek aşağıda verilen Şekil 5 üzerinde gösterilmiştir.
 
 <p align="center">
   <img src="https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/timing_analyses_images/hold_basarili.PNG?raw=true" alt="Hold time bakımından hatasız çalışan bir örnek" width="710"/>
 </p>
 
-<p align="center"><em>Şekil 4: Hold time bakımından hatasız çalışan bir örnek</em></p>
+<p align="center"><em>Şekil 5: Hold time bakımından hatasız çalışan bir örnek</em></p>
 
 Görseldeki zaman çizelgesindeki sinyaller incelendiğinde Register 1'den çıkan REG1.Q sinyali REG2.D girişine gelip bir sonraki clock yükselen kenarıyla birlikte örneklendiğinde, **t<sub>hold</sub>**'tan daha uzun bir süre boyunca sabit kalmaktadır. Dolayısıyla hold time bakımından herhangi bir ihlal bulunmamaktadır.
 
-Hold time bakımından incelenen ve hold time ihlali olan bir örnek aşağıdaki görsel üzerinde gösterilmiştir.
+Hold time bakımından incelenen ve hold time ihlali olan bir örnek aşağıda verilen Şekil 6 üzerinde gösterilmiştir.
 
 <p align="center">
   <img src="https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/timing_analyses_images/hold_basarisiz.PNG?raw=true" alt="Hold time ihlali olan bir örnek" width="710"/>
 </p>
 
-<p align="center"><em>Şekil 5: Hold time ihlali olan bir örnek</em></p>
+<p align="center"><em>Şekil 6: Hold time ihlali olan bir örnek</em></p>
 
 Görseldeki zaman çizelgesindeki sinyaller incelendiğinde Register 1'den çıkan REG1.Q sinyali REG2.D girişine gelip bir sonraki clock yükselen kenarıyla birlikte örneklendiğinde, **t<sub>hold</sub>**'tan daha kısa bir süre boyunca sabit kalmaktadır. Dolayısıyla örnekleme sonrasında gereken sinyal stabilliği sağlanamamış, hold time bakımından ihlal gerçekleşmiştir.
 
@@ -119,3 +127,4 @@ Setup ve hold slack değerleri pozitif olduğunda tasarım timing gereksinimleri
 Pozitif setup ve hold slack değerlerinde tasarımın kararlı çalışması garanti altına alınırken negatif slack değerlerinde sistemde metastability ve kararsız durumlar gözlenebilir. Bu durum flip flop'ların çıktılarının kararsız olmasına, kararsız flip flop'lardan örnekleme yapan başka flip flop'ların yanlış değerleri örneklemesine ve sistemin çökmesine kadar ilerleyen bir hataya yol açabilir. İyi bir tasarımda bu hatalara karşı analizleri dikkate almak önem arz eder.
 
 Bu yazıdaki içerik ve görseller için YouTube'da paylaşım yapan Altera kanalının [Understanding Timing Analysis in FPGAs](https://www.youtube.com/watch?v=6D-w8mOttnE) videosundan faydalanılmıştır.
+(1): Görsel [vlsi-expert](https://www.vlsi-expert.com/2011/04/static-timing-analysis-sta-basic-part3a.html) adresinden alınmıştır.
