@@ -70,7 +70,7 @@ Burada dikkat edilmesi gereken nokta, clock frekansının **T<sub>required\_hold
 Yani setup ve hold time clock örneklemesi esnasında stabil kalınması gereken zaman kurallarının kontrolüdür. Aşağıda flip flop'un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı gösterilmiştir.
 
 <p align="center">
-  <img src="https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/timing_analyses_images/setup_and_hold_gosterim.png?raw=true" alt="Flip flop'un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı(1)" width="767"/>
+  <img src="https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/timing_analyses_images/setup_and_hold_gosterim.png?raw=true" alt="Flip flop'un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı(1)" width="600"/>
 </p>
 
 <p align="center"><em>Şekil 2: Flip flop'un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı(1)</em></p>
