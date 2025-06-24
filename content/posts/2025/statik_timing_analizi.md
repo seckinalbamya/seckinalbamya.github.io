@@ -32,7 +32,7 @@ Bu yazının içeriğine başlamadan önce görseller ve metinlerde kullanılan 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Skew**: İletimden kaynaklı oluşan zaman gecikmesidir.
 
 <p align="center">
-  <img src="https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/timing_analyses_images/kisaltmalar.png?raw=true" alt="Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi" width="500"/>
+  <img src="/content/timing_analyses_images/kisaltmalar.png" alt="Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi" width="500"/>
 </p>
 
 <p align="center"><em>Şekil 1: Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi</em></p>
