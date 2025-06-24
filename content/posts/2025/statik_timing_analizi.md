@@ -32,7 +32,7 @@ Bu yazının içeriğine başlamadan önce görseller ve metinlerde kullanılan 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Skew**: İletimden kaynaklı oluşan zaman gecikmesidir.
 
 <p align="center">
-  <img src="/content/timing_analyses_images/kisaltmalar.png" alt="Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi" width="500"/>
+  <img src="https://vhdlverilog.com/images/timing_analyses/kisaltmalar.png" alt="Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi" width="500"/>
 </p>
 
 <p align="center"><em>Şekil 1: Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi</em></p>
@@ -70,7 +70,7 @@ Burada dikkat edilmesi gereken nokta, clock frekansının **T<sub>required\_hold
 Yani setup ve hold time clock örneklemesi esnasında stabil kalınması gereken zaman kurallarının kontrolüdür. Aşağıda flip flop'un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı gösterilmiştir.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/seckinalbamya/seckinalbamya.github.io/refs/heads/main/content/timing_analyses_images/setup_and_hold_gosterim.png" alt="Flip flop'un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı(1)" width="600"/>
+  <img src="https://vhdlverilog.com/images/timing_analyses/setup_and_hold_gosterim.png" alt="Flip flop'un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı(1)" width="600"/>
 </p>
 
 <p align="center"><em>Şekil 2: Flip flop'un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı(1)</em></p>
@@ -80,7 +80,7 @@ Setup ve hold time analizi hesaplamasının nasıl yapıldığı konusundan önc
 Setup time bakımından incelenen ve hatasız çalışan bir örnek aşağıda verilen Şekil 3 üzerinde gösterilmiştir.
 
 <p align="center">
-  <img src="https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/timing_analyses_images/setup_basarili.PNG?raw=true" alt="Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi" width="710"/>
+  <img src="https://vhdlverilog.com/images/timing_analyses/setup_basarili.png" alt="Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi" width="710"/>
 </p>
 
 <p align="center"><em>Şekil 3: Setup time bakımından hatasız çalışan bir örnek</em></p>
@@ -90,7 +90,7 @@ Görseldeki zaman çizelgesindeki sinyaller incelendiğinde Register 1'den çık
 Setup time bakımından incelenen ve setup time ihlalı olan bir örnek aşağıda verilen Şekil 4 üzerinde gösterilmiştir.
 
 <p align="center">
-  <img src="https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/timing_analyses_images/setup_basarisiz.PNG?raw=true" alt="Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi" width="727"/>
+  <img src="https://vhdlverilog.com/images/timing_analyses/setup_basarisiz.png" alt="Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi" width="727"/>
 </p>
 
 <p align="center"><em>Şekil 4: Setup time ihlali olan bir örnek</em></p>
@@ -100,7 +100,7 @@ Görseldeki zaman çizelgesindeki sinyaller incelendiğinde Register 1'den çık
 Hold time bakımından incelenen ve hatasız çalışan bir örnek aşağıda verilen Şekil 5 üzerinde gösterilmiştir.
 
 <p align="center">
-  <img src="https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/timing_analyses_images/hold_basarili.PNG?raw=true" alt="Hold time bakımından hatasız çalışan bir örnek" width="710"/>
+  <img src="https://vhdlverilog.com/images/timing_analyses/hold_basarili.png" alt="Hold time bakımından hatasız çalışan bir örnek" width="710"/>
 </p>
 
 <p align="center"><em>Şekil 5: Hold time bakımından hatasız çalışan bir örnek</em></p>
@@ -110,7 +110,7 @@ Görseldeki zaman çizelgesindeki sinyaller incelendiğinde Register 1'den çık
 Hold time bakımından incelenen ve hold time ihlali olan bir örnek aşağıda verilen Şekil 6 üzerinde gösterilmiştir.
 
 <p align="center">
-  <img src="https://github.com/seckinalbamya/seckinalbamya.github.io/blob/main/content/timing_analyses_images/hold_basarisiz.PNG?raw=true" alt="Hold time ihlali olan bir örnek" width="710"/>
+  <img src="https://vhdlverilog.com/images/timing_analyses/hold_basarisiz.png" alt="Hold time ihlali olan bir örnek" width="710"/>
 </p>
 
 <p align="center"><em>Şekil 6: Hold time ihlali olan bir örnek</em></p>
