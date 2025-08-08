@@ -4,7 +4,7 @@ title = 'VHDLVerilog'
 theme = 'pehtheme-hugo'
 buildFuture = true
 
-paginate = '6' # <- Set the desired number of posts per page 
+paginate = '6' # <- Set the desired number of posts per page .
 summaryLength = '20' # <- 20 words are approximately 160 characters
 googleAnalytics = '' # <- Your GA-4
 disqusShortname = '' # <- Get form here : https://disqus.com
