@@ -39,6 +39,6 @@ disqusShortname = '' # <- Get form here : https://disqus.com
   [module.hugoVersion]
     extended = false
     min = "0.116.0"
-  [module.mounts] # Directing the static folder to assets.
+  [module.mounts] # Directing the static folder to assets
   	source = 'assets'
   	target = 'static'
