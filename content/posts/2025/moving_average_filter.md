@@ -465,33 +465,32 @@ end architecture;
 Sıralı girişlere karşılık filtrenin çıktılarının incelendiği senaryo Şekil 6'da verilmiştir.
 
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_6.png" alt="Sıralı girişlere karşılık filtrenin çıktıları" width="710"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_6.PNG" alt="Sıralı girişlere karşılık filtrenin çıktıları" width="1704"/>
 </p>
 
 DATA_VALID_i = '0' olduğu durumda girdilere karşılık filtrenin çıktılarının incelendiği senaryo Şekil 7'de verilmiştir.
 	
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_7.png" alt="DATA_VALID_i = '0' olduğu durumda girdilere karşılık filtrenin çıktıları" width="710"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_7.PNG" alt="DATA_VALID_i = '0' olduğu durumda girdilere karşılık filtrenin çıktıları" width="1679"/>
 </p>
 
 DATA_VALID_i = '0' değerinden sonra tekrar '1' olduğu durumda girdilere karşılık filtrenin çıktılarının incelendiği senaryo Şekil 8'de verilmiştir. Burada pipeline'daki eski değerlerin korunduğu görülmektedir.
 	
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_8.png" alt="DATA_VALID_i = '0' değerinden sonra tekrar '1' olduğu durumda girdilere karşılık filtrenin çıktıları" width="710"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_8.PNG" alt="DATA_VALID_i = '0' değerinden sonra tekrar '1' olduğu durumda girdilere karşılık filtrenin çıktıları" width="1109"/>
 </p>
 
 Girdi olarak girdinin alabileceği en büyük sınıra yakın değerler verilerek overflow durumunun incelendiği senaryo Şekil 9'da verilmiştir.
 	
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_9.png" alt="Overflow durumunun incelenmesi" width="710"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_9.PNG" alt="Overflow durumunun incelenmesi" width="1594"/>
 </p>
 
 ROUND_TYPE_c parametresi FLOOR ve CEIL yapılarak çıktıların incelendiği senaryo Şekil 10'da verilmiştir. Görselin sol tarafında floor, sağ tarafında ise ceil yuvarlama yapısı kullanılmıştır.
 
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_10.png" alt="ROUND_TYPE_c parametresinin çıktıya etkisinin incelenmesi" width="710"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_10.png" alt="ROUND_TYPE_c parametresinin çıktıya etkisinin incelenmesi" width="2222"/>
 </p>
 
 	
 Bu yazı hazırlanırken [Wikipedia - Moving Average](https://en.wikipedia.org/wiki/Moving_average), [Analog Devices DSP Book](https://www.analog.com/media/en/technical-documentation/dsp-book/dsp_book_ch15.pdf) ve [Surf-VHDL - How to Implement Moving Average in VHDL](https://surf-vhdl.com/how-to-implement-moving-average-in-vhdl/)   kaynaklarından faydalanılmıştır.
-
