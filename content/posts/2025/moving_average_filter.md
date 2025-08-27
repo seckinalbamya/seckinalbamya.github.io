@@ -24,14 +24,18 @@ Elektronik alanında analog dijital dönüştürücülerde (ADC) ve gürültül�
 En önemli parametresi pencere genişliğidir (window length). Pencere genişliği kaç tane girdinin ortalamasının alınacağını belirleyen parametredir. Matematiksel olarak ifadesi Şekil 1'de verilmiştir.
 	
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_1.svg" alt="Hareketli ortalama filtrenin matematiksel ifadesi" width="710"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_1.svg" width="710"/>
+  <br>
+  <em>Şekil 1 - Hareketli ortalama filtrenin matematiksel ifadesi</em>
 </p>
 
 
 Şekil 2'de verilen GIF görselinde hareket eden pencerenin girdileri ve oluşturduğu çıktılar incelendiğinde algoritma daha iyi bir şekilde anlaşılabilir.
 
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_2.gif" alt="Pencere genişliğine göre ortalama alma işlemi" width="710"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_2.gif" width="710"/>
+  <br>
+  <em>Şekil 2 - Hareketli ortalama filtrenin matematiksel ifadesi</em>
 </p>
 
 
@@ -40,19 +44,26 @@ Yukarıdaki işlemde kırmızı renkli çıktı ve mavi renkli girdi indeksleri 
 Filtrenin özellikle gürültülü girdilere karşılık gösterdiği performans başarılıdır. Şekil 3'te görsel incelendiğinde soldaki ham veriye uygulanmış pencere genişliği 11 ve 51 örnek olan filtrelerin performansları görülebilir.
 
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_3.png" alt="Hareketli ortalama filtrenin çeşitli pencere genişliklerine göre çıktı örneği" width="710"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_3.png" width="710"/>
+  <br>
+  <em>Şekil 3 - Hareketli ortalama filtrenin çeşitli pencere genişliklerine göre çıktı örneği</em>
 </p>
 
 Mikrodenetleyici veya FPGA gibi aygıtlar üzerinde çalıştırılacak olan hareketli ortalama filtrede aynı çıktı sonuçlarını verecek sürekli hareketli ortalama filtre (continuous moving average filter) algoritması kullanılır. Bu algoritmanın yalnızca bir aşamasında toplama ve çıkarma, bir tane de bölme işlemi yapılarak yazılım ve donanımda yalınlık amaçlanır. Bahsedilen algoritma Şekil 4'te verilmiştir.
 	
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_4.png" alt="İmplemente edilen algoritma" width="710"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_4.png" width="710"/>
+  <br>
+  <em>Şekil 4 - İmplemente edilen algoritma</em>
 </p>
+
 
 &nbsp;&nbsp;&nbsp;&nbsp;Giriş verisi pencere uzunluğu kadar aşamadan oluşan bir pipeline yapısına sokulur. Sum adındaki bir sinyal ile ardışık girdiler sürekli olarak toplanırken pipeline yapısının son elemanı bu toplamdan sürekli olarak çıkarılır. Bu yapı sayesinde pencere uzunluğu kadar olan verilerin toplamı elde edilebilir. Girdinin sürekli gelmesi durumunda dahi toplama ve çıkarma işlemleri sayesinde yalnızca son gelen pencere genişliği tane verinin toplamı saklanır. Pencere genişliği parametresine göre verilerin toplamları elde edildikten sonra toplam pencere uzunluğu parametresine bölünerek ortalama değeri elde edilir.
 
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_5.gif" alt="İmplemente edilen algoritmanın işleyişi" width="710"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_5.gif" width="710"/>
+  <br>
+  <em>Şekil 5 - İmplemente edilen algoritmanın işleyişi</em>
 </p>
 	
 Şekil 5'te pencere genişliği 5 olan; sırasıyla 1,2,3,4,5,6,7,8 ve 9 değerindeki veri girişine karşılık algoritmanın işleyişi gösterilmiştir.
@@ -195,14 +206,14 @@ Sum adlı sinyal WINDOW_LENGTH_c tane girdinin toplamından oluşur. Her bir gir
 	Bu ifadede WINDOW_LENGTH_c tane toplamın BITDEPTH_c'yi kaç bit büyüteceği hesaplanıp BITDEPTH_c değeri ile toplanmaktadır.
 
 ceil_log2 fonksiyonu girdi değerinin 2 tabanında logaritmasını alır ve küsüratlı olması halinde üste yuvarlar. Bu da girdinin kaç bit ile ifade edilebileceğini hesaplar. Pencere genişliği girdi olarak verildiğinde toplama işleminin değer aralığını kaç bit büyütmesi gerektiğini hesaplar.Örnek olarak:
-&nbsp;&nbsp;&nbsp;WINDOW_LENGTH_c = 5 ve BITDEPTH_c = 8 olsun.
-&nbsp;&nbsp;&nbsp;Girdinin alabileceği değer aralığı 0-255 olur.
-&nbsp;&nbsp;&nbsp;5 tane girdinin toplamı ise en az 5*0 = 0, en fazla 5*255 = 1275 olur.
-&nbsp;&nbsp;&nbsp;1275 değerini ifade etmek için ceil_log2(1275) = 11 bite (unsigned) ihtiyaç duyulur.
+- WINDOW_LENGTH_c = 5 ve BITDEPTH_c = 8 olsun.
+- Girdinin alabileceği değer aralığı 0-255 olur.
+- 5 tane girdinin toplamı ise en az 5*0 = 0, en fazla 5*255 = 1275 olur.
+- 1275 değerini ifade etmek için ceil_log2(1275) = 11 bite (unsigned) ihtiyaç duyulur.
 		
 Bu işlem yukarıda ifade edilen fonksiyon ile yapılmak istenirse:
-bit derinliği + ceil_log2(toplamdaki eleman sayısı)
-BITDEPTH_c + ceil_log2(WINDOW_LENGTH_c) = 8 + ceil_log2(5) = 11 elde edilir.
+- bit derinliği + ceil_log2(toplamdaki eleman sayısı)
+- BITDEPTH_c + ceil_log2(WINDOW_LENGTH_c) = 8 + ceil_log2(5) = 11 elde edilir.
 
 Pipeline dolduğunda (pipeline'ın ilk ve son verisi aynı anda geçerli ise) toplam değeri WINDOW_LENGTH_c parametresine bölünerek çıktı elde edilmiş ve çıktının geçerli olduğu bilgisi dışarıya aktarılmıştır. 
 
@@ -465,31 +476,41 @@ end architecture;
 Sıralı girişlere karşılık filtrenin çıktılarının incelendiği senaryo Şekil 6'da verilmiştir.
 
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_6.PNG" alt="Sıralı girişlere karşılık filtrenin çıktıları" width="1704"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_6.PNG" width="1704"/>
+  <br>
+  <em>Şekil 6 - Sıralı girişlere karşılık filtrenin çıktıları</em>
 </p>
 
 DATA_VALID_i = '0' olduğu durumda girdilere karşılık filtrenin çıktılarının incelendiği senaryo Şekil 7'de verilmiştir.
 	
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_7.PNG" alt="DATA_VALID_i = '0' olduğu durumda girdilere karşılık filtrenin çıktıları" width="1679"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_7.PNG" width="1679"/>
+  <br>
+  <em>Şekil 7 - DATA_VALID_i = '0' olduğu durumda girdilere karşılık filtrenin çıktıları</em>
 </p>
 
 DATA_VALID_i = '0' değerinden sonra tekrar '1' olduğu durumda girdilere karşılık filtrenin çıktılarının incelendiği senaryo Şekil 8'de verilmiştir. Burada pipeline'daki eski değerlerin korunduğu görülmektedir.
 	
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_8.PNG" alt="DATA_VALID_i = '0' değerinden sonra tekrar '1' olduğu durumda girdilere karşılık filtrenin çıktıları" width="1109"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_8.PNG" width="1109"/>
+  <br>
+  <em>Şekil 8 - DATA_VALID_i = '0' değerinden sonra tekrar '1' olduğu durumda girdilere karşılık filtrenin çıktıları</em>
 </p>
 
 Girdi olarak girdinin alabileceği en büyük sınıra yakın değerler verilerek overflow durumunun incelendiği senaryo Şekil 9'da verilmiştir.
 	
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_9.PNG" alt="Overflow durumunun incelenmesi" width="1594"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_9.PNG" width="1594"/>
+  <br>
+  <em>Şekil 9 - Overflow durumunun incelenmesi</em>
 </p>
 
 ROUND_TYPE_c parametresi FLOOR ve CEIL yapılarak çıktıların incelendiği senaryo Şekil 10'da verilmiştir. Görselin sol tarafında floor, sağ tarafında ise ceil yuvarlama yapısı kullanılmıştır.
 
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_10.png" alt="ROUND_TYPE_c parametresinin çıktıya etkisinin incelenmesi" width="2222"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_10.png" width="2222"/>
+  <br>
+  <em>Şekil 10 - ROUND_TYPE_c parametresinin çıktıya etkisinin incelenmesi</em>
 </p>
 
 	
