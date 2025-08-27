@@ -6,7 +6,7 @@ entity moving_average_filter_tb is
 	generic
 	(
 		BITDEPTH_c		: integer := 8;--testbench'te kullanılacak olan girdi özellikleri buradan değiştirilmedilir.
-		WINDOW_LENGHT_c	: integer := 5;
+		WINDOW_LENGTH_c	: integer := 5;
 		ROUND_TYPE_c	: string  := "CEIL"--"CEIL" veya "FLOOR" dışında girdi yapılmamalıdır.
 	);
 
@@ -21,7 +21,7 @@ architecture DUT of moving_average_filter_tb is
 		generic
 		(
 			BITDEPTH_c		: integer;
-			WINDOW_LENGHT_c	: integer;
+			WINDOW_LENGTH_c	: integer;
 			ROUND_TYPE_c	: string 
 		);
 		port
@@ -228,7 +228,7 @@ begin
 	generic map
 	(
 		BITDEPTH_c		=> BITDEPTH_c,		
-		WINDOW_LENGHT_c	=> WINDOW_LENGHT_c,
+		WINDOW_LENGTH_c	=> WINDOW_LENGTH_c,
 		ROUND_TYPE_c	=> ROUND_TYPE_c	
 	)
 	port map

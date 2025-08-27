@@ -4,7 +4,7 @@ use IEEE.numeric_std.all;
 
 --VHDLVerilog.com (VerilogVHDL.com) - 2025 
 --Hareketli ortalama filtresi (Moving average filter)
---Aşağıdaki yapı pencere boyutu tane (WINDOW_LENGHT_c) girdiyi aldıktan sonra çıktı üretmeye başlar.
+--Aşağıdaki yapı pencere boyutu tane (WINDOW_LENGTH_c) girdiyi aldıktan sonra çıktı üretmeye başlar.
 --Girdi sinyali geçerli olduğu sürece çıktı verisini eşit ağırlıkta ortalama alarak günceller.
 --Girdi sinyalinin geçersiz olduğu durumda ise ortalama alınacak penceredeki verileri ve çıktıyı güncellemeden bekler. 
 --Bu beklemeden sonra yeni veri gelmesi durumunda hali hazırda kuyrukta(pipeline'da) bulunan veriler ile gelen verilerin ortalaması alınarak başlanır.
@@ -19,7 +19,7 @@ entity moving_average_filter is
 	generic
 	(
 		BITDEPTH_c		: integer;--girdi ve çıktının bit derinliği
-		WINDOW_LENGHT_c	: integer;--ortalama alınacak pencerenin boyutu
+		WINDOW_LENGTH_c	: integer;--ortalama alınacak pencerenin boyutu
 		ROUND_TYPE_c	: string--"FLOOR" veya "CEIL" olarak ayarlanmalıdır. Başka parametre seçilmemedilir.
 	);
 	port
@@ -37,7 +37,7 @@ end entity;
 
 architecture moving_average_filter_beh of moving_average_filter is	
 
-	--Girdileri toplayıp bir signale yazarken signal'in boyutu ceil(log2(WINDOW_LENGHT_c)) kadar büyür. 
+	--Girdileri toplayıp bir signale yazarken signal'in boyutu ceil(log2(WINDOW_LENGTH_c)) kadar büyür. 
 	--Bu fonksiyon da log2 değerini küsüratlı ise bir üste yuvarlayarak hesaplar
 	function ceil_log2( depth : natural) return integer is
 		variable temp    : integer := depth;
@@ -50,16 +50,16 @@ architecture moving_average_filter_beh of moving_average_filter is
 			return ret_val;
 	end function;
 
-	type data_pipeline_type is array (0 to WINDOW_LENGHT_c-1) of std_logic_vector(BITDEPTH_c-1 downto 0);--gelen verinin pipeline type'ı
+	type data_pipeline_type is array (0 to WINDOW_LENGTH_c-1) of std_logic_vector(BITDEPTH_c-1 downto 0);--gelen verinin pipeline type'ı
 	signal data_p : data_pipeline_type := (others=>(others=>'0'));--gelen verinin pipeline'ı
 	
-	signal data_valid_p : std_logic_vector(WINDOW_LENGHT_c-1 downto 0) := (others=>'0');--gelen verinin geçerli olup olmadığının pipeline'ı
+	signal data_valid_p : std_logic_vector(WINDOW_LENGTH_c-1 downto 0) := (others=>'0');--gelen verinin geçerli olup olmadığının pipeline'ı
 	
 	--gelen verilerin girdilerinin toplanacağı signal
 	--Gelen verilerin boyutu her toplam işleminde(her seferinde en buyuk girdi geldiği senaryoda (en kotu senaryo)) kendi miktarınca artar.
 	--orneğin pencere genisligi 3, bit derinliği 8 olsun. Üç adet 8 bitlik verinin toplamı en fazla 255*3=765 olur. 765 değeri ise 10 bit ile ifade edilir.
-	--bu matematiksel olarak ifade edilmek istenirse BITDEPTH_c + ceil_log2(WINDOW_LENGHT_c) olarak ifade edilir.
-	signal sum : integer range 0 to ((2**(BITDEPTH_c+ceil_log2(WINDOW_LENGHT_c)))-1) := 0;
+	--bu matematiksel olarak ifade edilmek istenirse BITDEPTH_c + ceil_log2(WINDOW_LENGTH_c) olarak ifade edilir.
+	signal sum : integer range 0 to ((2**(BITDEPTH_c+ceil_log2(WINDOW_LENGTH_c)))-1) := 0;
 	
 begin
 	
@@ -84,11 +84,11 @@ begin
 				--pipeline 0
 				if DATA_VALID_i = '1' then--girdi geçerli ise
 					data_p(0) 		<= DATA_i;--pipeline kuyruğuna ekleniyor.					
-					sum		  		<= sum + to_integer(unsigned(DATA_i)) - to_integer(unsigned(data_p(WINDOW_LENGHT_c-1)));	
+					sum		  		<= sum + to_integer(unsigned(DATA_i)) - to_integer(unsigned(data_p(WINDOW_LENGTH_c-1)));	
 					
 					--pipeline loop
-					--generic şekilde WINDOW_LENGHT_c girdisine bağlı olarak bir önceki pipeline elemanlarını bir sonrakine aktarıyor
-					for pipeline_index in 1 to WINDOW_LENGHT_c-1 loop
+					--generic şekilde WINDOW_LENGTH_c girdisine bağlı olarak bir önceki pipeline elemanlarını bir sonrakine aktarıyor
+					for pipeline_index in 1 to WINDOW_LENGTH_c-1 loop
 						data_p(pipeline_index) <= data_p(pipeline_index-1);
 						data_valid_p(pipeline_index) <= data_valid_p(pipeline_index-1); 
 					end loop;
@@ -96,13 +96,13 @@ begin
 				data_valid_p(0) <= DATA_VALID_i;--pipeline kuyruğundaki hangi elemenların geçerli oldugunu belirten sinyal
 				
 				--last pipeline 
-				--pipeline'ların tamamı veri ile doluysa(pencere genişliği WINDOW_LENGHT_c'den az ise çıktı vermez)
-				if data_valid_p(0) = '1' and data_valid_p(WINDOW_LENGHT_c-1) = '1' then
+				--pipeline'ların tamamı veri ile doluysa(pencere genişliği WINDOW_LENGTH_c'den az ise çıktı vermez)
+				if data_valid_p(0) = '1' and data_valid_p(WINDOW_LENGTH_c-1) = '1' then
 					--generic parametre oldugundan sentez araci tarafindan asagidakilerden birisi secilerek disari aktarilir.
 					if ROUND_TYPE_c = "CEIL" then
-						DATA_o		 <= std_logic_vector(to_unsigned(((sum+(WINDOW_LENGHT_c-1))/WINDOW_LENGHT_c),BITDEPTH_c));--çıkış veriliyor.
+						DATA_o		 <= std_logic_vector(to_unsigned(((sum+(WINDOW_LENGTH_c-1))/WINDOW_LENGTH_c),BITDEPTH_c));--çıkış veriliyor.
 					else--"FLOOR"
-						DATA_o		 <= std_logic_vector(to_unsigned((sum/WINDOW_LENGHT_c),BITDEPTH_c));--çıkış veriliyor.
+						DATA_o		 <= std_logic_vector(to_unsigned((sum/WINDOW_LENGTH_c),BITDEPTH_c));--çıkış veriliyor.
 					end if;
 					DATA_VALID_o <= '1';--çıkış değeri gecerli.
 				else
