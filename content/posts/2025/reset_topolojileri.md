@@ -22,7 +22,7 @@ FPGA'lerde reset yapısı senkron ve asenkron reset olmak üzere iki ana yapıda
 
 Senkron reset clock sinyaline göre eşzamanlı şekilde registerlerin sıfırlamasını yapar. 
 Avantajları şu şekildedir: 
-•	Senkron şekilde gerçekleştiği için timing ihlallerine neden olmaz. 
+--Senkron şekilde gerçekleştiği için timing ihlallerine neden olmaz. 
 •	Timing ihlali bakımından avantajlıdır. 
 •	Clock sinyalinin dalgalanmasına (glitch) karşı bağışıklıdır. 
 Dezavantajları şu şekildedir:
@@ -39,12 +39,12 @@ Dezavantajları şu şekildedir:
 
 Asenkron reset clock sinyalindan bağımsız olarak flip flopların sıfırlamasını yapar. Flip flopların reset girişi ile sağlanır.
 Avantajları şu şekildedir: 
-•	Clock sinyali gerektirmediği için istenilen anda tetiklenebilir.
-•	Uygulanmasından sonra etki süresi düşüktür.
-•	Kullanımı için senkrona kıyasla daha az FPGA kaynağı gerekir.
+- Clock sinyali gerektirmediği için istenilen anda tetiklenebilir.
+- Uygulanmasından sonra etki süresi düşüktür.
+- Kullanımı için senkrona kıyasla daha az FPGA kaynağı gerekir.
 Dezanavtajları şu şekildedir:
-•	Sona ermesi anında timing ihlali oluşturma olasılığı yüksektir.
-•	Clock sinyalinin dalgalanmasına (glitch) karşı hassastır.
+- Sona ermesi anında timing ihlali oluşturma olasılığı yüksektir.
+- Clock sinyalinin dalgalanmasına (glitch) karşı hassastır.
 Her iki reset yapısının avantaj-dezavantajları farklıdır. Asenkron reset çoğu uygulamada ilk çalıştırma (power-on) sürecinde sıklıkla kullanılırken çalışma esnasında senkron resetin kullanılması tercih edilmektedir. 
 Senkron reset sinyali geldiğinde clock sinyaline eşzamanlı şekilde sıfırlama gerçekleşir. Böylece ilgili flip flopların çıkışı stabil çalışma için gereken timing kuralları ihlal edilmeden(doğru zamanda) değiştirilebilir. Asenkron reset sinyali ise clock sinyalinden bağımsız olarak, herhangi bir zaman diliminde gerçekleşebileceğinden dolayı timing kurallarını ihlal edebilir ve bu da metastabilite durumunu oluşturarak FPGA'yı kararsız bir durum içerisine sokabilir (3). Bu durum Şekil 2’deki görsel üzerinden incelenebilir.
 
@@ -103,19 +103,23 @@ Uzay veya havacılık projeleri gibi kritik uygulamalarda iç sinyallerin dış 
 TMR seçeneği RTL koduna eklenen bir attribute ile sağlanabilir. Ayrıca uzay uygulamaları için kullanılan Rad-hard FPGA'lerde reset yapılarında otomatik olarak kullanılır.
 
 VHDL attribute kodu aşağıda verilmiştir:
+```vhdl
 	--Xilinx
 	attribute TMR : string;
 	attribute TMR of my_ff : signal is "TRUE";
 	--Microchip
 	attribute tmr : string;
 	attribute tmr of my_ff : signal is "ENABLED";
+```
 Verilog attribute kodu aşağıda verilmiştir:
+```verilog
 	--Xilinx
 	(* TMR = "TRUE" *) reg my_ff;
 	(* TMR = "TRUE" *) wire my_reset;
 	--Microchip
 	(* tmr = "ENABLED" *) reg my_ff;
 	(* tmr = "ENABLED" *) wire rst_n;
+```
 
 Glitch filtrelenmesi:
 Hassas uygulamalarda asenkron resetin dezavantajlarından olan glitch duyarlılığının azaltılması için glitch filtre yapısının kullanılması tavsiye edilmektedir. Glitch filtresi reset girişinin çok kısa süre boyunca dalgalanmadan kaynaklı aktif hale gelmesini engeller. Bu sayede özellikle kritik tasarımlarda asenkron reset sinyaline gürültü ve çevresel etkenlere karşı bağışıklık kazandırır.
