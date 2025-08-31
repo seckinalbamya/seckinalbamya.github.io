@@ -50,7 +50,7 @@ Her iki reset yapısının avantaj-dezavantajları farklıdır. Asenkron reset �
 Senkron reset sinyali geldiğinde clock sinyaline eşzamanlı şekilde sıfırlama gerçekleşir. Böylece ilgili flip flopların çıkışı stabil çalışma için gereken timing kuralları ihlal edilmeden(doğru zamanda) değiştirilebilir. Asenkron reset sinyali ise clock sinyalinden bağımsız olarak, herhangi bir zaman diliminde gerçekleşebileceğinden dolayı timing kurallarını ihlal edebilir ve bu da metastabilite durumunu oluşturarak FPGA'yı kararsız bir durum içerisine sokabilir (3). Bu durum Şekil 2’deki görsel üzerinden incelenebilir.
 
  <p align="center">
-  <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_2.png" width="1236"/>
+  <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_2.png" width="1000"/>
   <br>
   <em>Şekil 2 - Asenkron resetin sebep olduğu timing ihlali</em>
 </p>
@@ -63,7 +63,7 @@ Asenkron reset sinyali geldiğinde herhangi bir clock sinyali beklenmeksizin sı
 Her iki yapının avantaj, dezavantajları bulunduğundan Uzay, havacılık ve kritik uygulamalarda hibrit yaklaşım kullanılmalıdır. Bu hibrit yaklaşımda açılış için (Power-on) asenkron, normal çalışmada senkronize edilmiş reset yapısının uygulamanın kritikliğine göre Triple Mod Redundancy yapısı ile çoğaltılıp kullanılması önerilmektedir. Örnek devreler ve kullanılması önerilen yapılar aşağıda verilmiştir.
 
  <p align="center">
-  <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_3.png" width="1236"/>
+  <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_3.png" width="800"/>
   <br>
   <em>Şekil 3 - Reset senkronizer devreleri</em>
 </p>
@@ -75,7 +75,7 @@ Her iki yapının avantaj, dezavantajları bulunduğundan Uzay, havacılık ve k
 Yukarıdaki yapılardan elde edilen reset çıkışlarının tüm tasarımda kullanılması özellikle büyük tasarımlar için timing ve routing bakımından sorun oluşturmaktadır. Bu sorunlardan timingin çözümü için Şekil 4'te verilen, çıkış senkronizer devresine çok sayıda ve paralel şekilde kullanılacak flip flop devresi eklenilerek timing bakımından uyumluluk sağlanabilir.
 
 <p align="center">
-  <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_4.png" width="1236"/>
+  <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_4.png" width="750"/>
   <br>
   <em>Şekil 4 - Senkronizer devresini timing bakımından uyumlu hale getiren devre</em>
 </p>
@@ -95,7 +95,7 @@ FPGA'e gücün ilk geldiği anda POR aktifleşir ve bu esnada clock sinyali gene
 POR için kullanılan timer saymaya başlaması için genellikle FPGA clock IP corelarının lock sinyali kullanılır. Bu sinyal FPGA içerisindeki clock dağıtım birimi stabil bir şekilde çıktı vermeye başladığında IP core tarafından aktifleştirilir ve stabil bir clock olduğu sürece devam eder.
 
  <p align="center">
-  <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_5.png" width="700"/>
+  <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_5.png" width="500"/>
   <br>
   <em>Şekil 5 - Zamana göre POR'un pasif hale geçmesi</em>
 </p>
