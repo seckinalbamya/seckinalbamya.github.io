@@ -45,6 +45,7 @@ Avantajları şu şekildedir:
 Dezanavtajları şu şekildedir:
 - Sona ermesi anında timing ihlali oluşturma olasılığı yüksektir.
 - Clock sinyalinin dalgalanmasına (glitch) karşı hassastır.
+
 Her iki reset yapısının avantaj-dezavantajları farklıdır. Asenkron reset çoğu uygulamada ilk çalıştırma (power-on) sürecinde sıklıkla kullanılırken çalışma esnasında senkron resetin kullanılması tercih edilmektedir. 
 Senkron reset sinyali geldiğinde clock sinyaline eşzamanlı şekilde sıfırlama gerçekleşir. Böylece ilgili flip flopların çıkışı stabil çalışma için gereken timing kuralları ihlal edilmeden(doğru zamanda) değiştirilebilir. Asenkron reset sinyali ise clock sinyalinden bağımsız olarak, herhangi bir zaman diliminde gerçekleşebileceğinden dolayı timing kurallarını ihlal edebilir ve bu da metastabilite durumunu oluşturarak FPGA'yı kararsız bir durum içerisine sokabilir (3). Bu durum Şekil 2’deki görsel üzerinden incelenebilir.
 
@@ -55,8 +56,10 @@ Senkron reset sinyali geldiğinde clock sinyaline eşzamanlı şekilde sıfırla
 </p>
 
 Şekil 2 incelendiğinde Asenkron reset sinyali geldiğinde clock sinyalinden bağımsız olarak sıfırlama gerçekleştiği görülmektedir. Asenkron reset sinyalinin kesilmesi sonrasında ise normal çalışmasına dönen registerlar clock sinyaline bağlı olarak yeni değerler ile güncellenmiştir. Bu yeni değerlerin çıkışa doğru şekilde aktarılabilmesi için (timing ihlali gerçekleşmemesi için) çıkış değerinin değişimi öncesinde Tsetup, çıkış değerinin değişimi sonrasında ise Thold süresince beklenmesi gerekmektedir. Şeklin sol tarafındaki a durumunda bu timing kurallarına uygun şekilde bir sıfırlama gerçekleşmiştir. Reset sinyalinin bu iki süre arasında gelmesi durumunda çıkış değeri reset sinyalinin etkisiyle değiştirilir ve dolayısıyla istenen aralıkta stabil kalamaz ve timing ihlali gerçekleşir. Şeklin sağ tarafındaki b durumunda ise bu kurallara uygun şekilde sıfırlama gerçekleşmemiş, timing ihlali olmuştur.
+
 Büyük tasarımlarda, reset sinyalinin dağıtılması esnasında oluşabilecek routing gecikmeleri de yukarıda bahsedilen sebep ile birleşerek timing ihlallerine sebep olabilir.
 Asenkron reset sinyali geldiğinde herhangi bir clock sinyali beklenmeksizin sıfırlama işlemi gerçekleştirilir. Özellikle sistemin hatalı bir durum içerisinde olduğu tespit edildiğinde çıkış değerlerine hızlı müdahale edebilmek için asenkron reset yapısı kullanılmalıdır. Ayrıca ilk çalıştırma zamanı gibi clock sinyalinin olmadığı durumda tüm register ve çıkış değerlerini sıfırlamak için asenkron reset yapısının kullanılması zorunludur.
+
 Her iki yapının avantaj, dezavantajları bulunduğundan Uzay, havacılık ve kritik uygulamalarda hibrit yaklaşım kullanılmalıdır. Bu hibrit yaklaşımda açılış için (Power-on) asenkron, normal çalışmada senkronize edilmiş reset yapısının uygulamanın kritikliğine göre Triple Mod Redundancy yapısı ile çoğaltılıp kullanılması önerilmektedir. Örnek devreler ve kullanılması önerilen yapılar aşağıda verilmiştir.
 
  <p align="center">
@@ -66,7 +69,9 @@ Her iki yapının avantaj, dezavantajları bulunduğundan Uzay, havacılık ve k
 </p>
 
 Şekil 3'te verilen a ve b devreleri asenkron olarak tetiklenen, senkron olarak sonlanan sırasıyla aktif '1' ve aktif '0' senkronizer devreleridir. Çıkışlarında yer alan mantık kapısı reset sinyali tarafından clocktan bağımsız şekilde aktif hale getirilir. Mantık kapısının diğer girişinde ise clocka senkron çalışan F1 flip flopunun çıkışı yer almaktadır. F1 flip flopunun girişine asenkron reset girişi tarafından sürülen F0 flip flopu bağlanmıştır. Bu flip flop clocka senkron şekilde giriş sinyalini F1 flip flopuna iletir. F1 flip flopu da aynı şekilde mantık kapısını sürer. Reset sinyalinin kesilmesi durumunda flip flop sayısı kadar clock boyunca reset sinyali aktif tutulur ve süre tamamlandığında clock ile senkron şekilde pasif hale getirilir. Böylece reset asenkron şekilde aktifleştirilip, senkron şekilde pasifleştirilebilir. Bu yapıdaki kaskat flip floplar ile metastabilite önlenmektedir. Bu devrelerin tetiklenmesinden sonra kaskat flip floplardan dolayı flip flop sayısınca clock süresi boyunca aktif reset çıkışı vereceği unutulmamalıdır.
+
 Şekil 3'te verilen c ve d devreleri ise sırasıyla aktif '1' ve aktif '0' reset sinyallerine göre tetiklenen, kaskat flip floplardan oluşan senkronizer devreleridir. Bu devreler gelen asenkron sinyalleri clocka göre senkron hale getirerek çıkışa aktarır. a ve b yapısındaki gibi asenkron şekilde tetikleme gerçekleşmez, sadece clocka bağlı, senkron şekilde çalışır. Bu yapıdaki kaskat flip floplar ile metastabilite önlenmektedir.
+
 Yukarıdaki yapılardan elde edilen reset çıkışlarının tüm tasarımda kullanılması özellikle büyük tasarımlar için timing ve routing bakımından sorun oluşturmaktadır. Bu sorunlardan timingin çözümü için Şekil 4'te verilen, çıkış senkronizer devresine çok sayıda ve paralel şekilde kullanılacak flip flop devresi eklenilerek timing bakımından uyumluluk sağlanabilir.
 
 <p align="center">
@@ -81,13 +86,16 @@ Yukarıdaki yapılardan elde edilen reset çıkışlarının tüm tasarımda kul
 Power on Reset yapısı:
 
 Özellikle flash tabanlı FPGA'lerde ilk çalışma esnasında registerlerin başlangıç değerleri doğru şekilde ayarlanmamış olabilir. Bunun önüne geçmek için ilk enerji verildiği andan itibaren belirli bir süre boyunca asenkron reset uygulanarak tasarımda yer alan tüm registerların sıfırlanması ve başlangıç değerlerinin istenen şekilde ayarlanması sağlanır. Ayrıca çalışma gerilimi ve PLL(ve benzeri) clock yapılarının stabil rejime geçmesi için bir süre beklenmesi gerekmektedir.
+
 Bunun için üreticilerin donanımsal olarak eklediği POR yapısı veya RTL seviyesinde bir tasarım ile tasarlanan POR yapısı kullanılabilir.
 POR yapısının amacı sadece ilk çalıştırmaya mahsus, belirli bir süre boyunca hiçbir koşula bağlı olmaksızın reset sinyali uygulamaktır. Böylece ilk çalıştırma esnasında tüm registerlerin istenilen değerleri alacağından emin olunur. POR süresi dolduğunda çalışma normal düzenine geçer.
+
 FPGA'e gücün ilk geldiği anda POR aktifleşir ve bu esnada clock sinyali genellikle ya yoktur ya da stabil değildir. Bundan dolayı POR asenkron bir reset çıktısı ile resetlemeyi sağlar. İstenen zaman aşımının tamamlanmasıyla birlikte clock sinyaline senkron şekilde pasife çekilir.
+
 POR için kullanılan timer saymaya başlaması için genellikle FPGA clock IP corelarının lock sinyali kullanılır. Bu sinyal FPGA içerisindeki clock dağıtım birimi stabil bir şekilde çıktı vermeye başladığında IP core tarafından aktifleştirilir ve stabil bir clock olduğu sürece devam eder.
 
  <p align="center">
-  <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_5.png" width="1236"/>
+  <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_5.png" width="700"/>
   <br>
   <em>Şekil 5 - Zamana göre POR'un pasif hale geçmesi</em>
 </p>
@@ -95,7 +103,7 @@ POR için kullanılan timer saymaya başlaması için genellikle FPGA clock IP c
 Triple Mod Redundancy (TMR) yapısı:
 Uzay veya havacılık projeleri gibi kritik uygulamalarda iç sinyallerin dış etmenlerden (SEU ve radyasyon) etkilenerek hatalı çıktılar üretmemesi için TMR yapısı kullanılabilir. Bu yapıda (TMR mimarisine göre değişmekle birlikte) TMR uygulanacak sinyal 3 tane olacak şekilde sentezlenerek istenen yapıya iletilir. Son aşamada bir kıyaslayıcı ile giriş sinyalleri kıyaslanır. Üç sinyalden en az 2 tanesinin durumu çıkış sinyali olarak belirlenir. Bu sayede üç sinyalden en az iki tanesinin değişmesi durumunda hata oluşabilir. Şekil 6'da TMR yapısının blok mimarisi verilmiştir.
  <p align="center">
-  <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_6.png" width="1236"/>
+  <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_6.png" width="700"/>
   <br>
   <em>Şekil 6 - TMR yapısı</em>
 </p>
