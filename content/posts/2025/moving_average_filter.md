@@ -11,7 +11,7 @@ tags:
   - fpga
   - vhdl
   - hareketli ortalam filtre
-  - mobving average filter
+  - moving average filter
 draft: false
 ---
 
