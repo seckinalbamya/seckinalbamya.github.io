@@ -1,7 +1,7 @@
 ---
 title: "VHDL ile Hareketli Ortalama Filtre (Moving Average Filter)"
 date: 2025-08-28
-slug: /vhdl_ile_hareketli_ortalam_filtre/
+slug: /vhdl_ile_hareketli_ortalama_filtre/
 description: FPGA'de Statik Timing Analizi
 image: images/moving_average_filter_kapak.jpg
 categories:
