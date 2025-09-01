@@ -79,6 +79,7 @@ Yukarıdaki yapılardan elde edilen reset çıkışlarının tüm tasarımda kul
 Çok sayıda clock domainine sahip bir tasarım için reset mimarisi kullanılırken tüm clock domainleri için ayrı ayrı reset yapısı kullanılmalıdır. Asenkron resetin her clock domain'ine kendi clock frekansına göre ayrı ayrı senkron edilmesi metastabilite oluşmaması için gereklidir.
 
 **Power on Reset yapısı:**
+
 Özellikle flash tabanlı FPGA'lerde ilk çalışma esnasında registerlerin başlangıç değerleri doğru şekilde ayarlanmamış olabilir. Bunun önüne geçmek için ilk enerji verildiği andan itibaren belirli bir süre boyunca asenkron reset uygulanarak tasarımda yer alan tüm registerların sıfırlanması ve başlangıç değerlerinin istenen şekilde ayarlanması sağlanır. Ayrıca çalışma gerilimi ve PLL (ve benzeri) clock yapılarının stabil rejime geçmesi için bir süre beklenmesi gerekmektedir.
 
 Bunun için üreticilerin donanımsal olarak eklediği POR yapısı veya RTL seviyesinde bir tasarım ile tasarlanan POR yapısı kullanılabilir.
@@ -94,6 +95,7 @@ POR için kullanılan timer saymaya başlaması için genellikle FPGA clock IP c
 </p>
 
 **Triple Mod Redundancy (TMR) yapısı:**
+
 Uzay veya havacılık projeleri gibi kritik uygulamalarda iç sinyallerin dış etmenlerden (SEU ve radyasyon) etkilenerek hatalı çıktılar üretmemesi için TMR yapısı kullanılabilir. Bu yapıda (TMR mimarisine göre değişmekle birlikte) TMR uygulanacak sinyal 3 tane olacak şekilde sentezlenerek istenen yapıya iletilir. Son aşamada bir kıyaslayıcı ile giriş sinyalleri kıyaslanır. Üç sinyalden en az iki tanesinin durumu çıkış sinyali olarak belirlenir. Bu sayede üç sinyalden en az iki tanesinin değişmesi durumunda hata oluşabilir. Şekil 6'da TMR yapısının blok mimarisi verilmiştir.
  <p align="center">
   <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_6.png" width="700"/>
@@ -122,6 +124,7 @@ Verilog attribute kodu aşağıda verilmiştir:
 ```
 
 **Glitch filtrelenmesi:**
+
 Hassas uygulamalarda asenkron resetin dezavantajlarından olan glitch duyarlılığının azaltılması için glitch filtre yapısının kullanılması tavsiye edilmektedir. Glitch filtresi reset girişinin çok kısa süre boyunca dalgalanmadan kaynaklı aktif hale gelmesini engeller. Bu sayede özellikle kritik tasarımlarda asenkron reset sinyaline gürültü ve çevresel etkenlere karşı bağışıklık kazandırır.
  <p align="center">
   <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_7.png" width="1236"/>
