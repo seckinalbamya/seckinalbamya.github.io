@@ -25,7 +25,6 @@ En önemli parametresi pencere genişliğidir (window length). Pencere genişli�
 	
 <p align="center">
   <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_1.svg" width="710"/>
-  <br>
   <em>Şekil 1 - Hareketli ortalama filtrenin matematiksel ifadesi</em>
 </p>
 
@@ -34,7 +33,6 @@ En önemli parametresi pencere genişliğidir (window length). Pencere genişli�
 
 <p align="center">
   <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_2.gif" width="710"/>
-  <br>
   <em>Şekil 2 - Hareketli ortalama filtrenin matematiksel ifadesi</em>
 </p>
 
@@ -45,14 +43,14 @@ Filtrenin özellikle gürültülü girdilere karşılık gösterdiği performans
 
 <p align="center">
   <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_3.png" width="710"/>
-  <br><em>Şekil 3 - Hareketli ortalama filtrenin çeşitli pencere genişliklerine göre çıktı örneği</em>
+  <em>Şekil 3 - Hareketli ortalama filtrenin çeşitli pencere genişliklerine göre çıktı örneği</em>
 </p>
 
 Mikrodenetleyici veya FPGA gibi aygıtlar üzerinde çalıştırılacak olan hareketli ortalama filtrede aynı çıktı sonuçlarını verecek sürekli hareketli ortalama filtre (continuous moving average filter) algoritması kullanılır. Bu algoritmanın yalnızca bir aşamasında toplama ve çıkarma, bir tane de bölme işlemi yapılarak yazılım ve donanımda yalınlık amaçlanır. Bahsedilen algoritma Şekil 4'te verilmiştir.
 	
 <p align="center">
   <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_4.png" width="710"/>
-  <br><em>Şekil 4 - İmplemente edilen algoritma</em>
+  <em>Şekil 4 - İmplemente edilen algoritma</em>
 </p>
 
 
@@ -60,7 +58,7 @@ Mikrodenetleyici veya FPGA gibi aygıtlar üzerinde çalıştırılacak olan har
 
 <p align="center">
   <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_5.gif" width="710"/>
-  <br><em>Şekil 5 - İmplemente edilen algoritmanın işleyişi</em>
+  <em>Şekil 5 - İmplemente edilen algoritmanın işleyişi</em>
 </p>
 	
 Şekil 5'te pencere genişliği 5 olan; sırasıyla 1,2,3,4,5,6,7,8 ve 9 değerindeki veri girişine karşılık algoritmanın işleyişi gösterilmiştir.
@@ -474,35 +472,35 @@ Sıralı girişlere karşılık filtrenin çıktılarının incelendiği senaryo
 
 <p align="center">
   <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_6.PNG" width="1704"/>
-  <br><em>Şekil 6 - Sıralı girişlere karşılık filtrenin çıktıları</em>
+  <em>Şekil 6 - Sıralı girişlere karşılık filtrenin çıktıları</em>
 </p>
 
 DATA_VALID_i = '0' olduğu durumda girdilere karşılık filtrenin çıktılarının incelendiği senaryo Şekil 7'de verilmiştir.
 	
 <p align="center">
   <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_7.PNG" width="1679"/>
-  <br><em>Şekil 7 - DATA_VALID_i = '0' olduğu durumda girdilere karşılık filtrenin çıktıları</em>
+  <em>Şekil 7 - DATA_VALID_i = '0' olduğu durumda girdilere karşılık filtrenin çıktıları</em>
 </p>
 
 DATA_VALID_i = '0' değerinden sonra tekrar '1' olduğu durumda girdilere karşılık filtrenin çıktılarının incelendiği senaryo Şekil 8'de verilmiştir. Burada pipeline'daki eski değerlerin korunduğu görülmektedir.
 	
 <p align="center">
   <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_8.PNG" width="1109"/>
-  <br><em>Şekil 8 - DATA_VALID_i = '0' değerinden sonra tekrar '1' olduğu durumda girdilere karşılık filtrenin çıktıları</em>
+  <em>Şekil 8 - DATA_VALID_i = '0' değerinden sonra tekrar '1' olduğu durumda girdilere karşılık filtrenin çıktıları</em>
 </p>
 
 Girdi olarak girdinin alabileceği en büyük sınıra yakın değerler verilerek overflow durumunun incelendiği senaryo Şekil 9'da verilmiştir.
 	
 <p align="center">
   <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_9.PNG" width="1594"/>
-  <br><em>Şekil 9 - Overflow durumunun incelenmesi</em>
+  <em>Şekil 9 - Overflow durumunun incelenmesi</em>
 </p>
 
 ROUND_TYPE_c parametresi FLOOR ve CEIL yapılarak çıktıların incelendiği senaryo Şekil 10'da verilmiştir. Görselin sol tarafında floor, sağ tarafında ise ceil yuvarlama yapısı kullanılmıştır.
 
 <p align="center">
   <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_10.png" width="2222"/>
-  <br><em>Şekil 10 - ROUND_TYPE_c parametresinin çıktıya etkisinin incelenmesi</em>
+  <em>Şekil 10 - ROUND_TYPE_c parametresinin çıktıya etkisinin incelenmesi</em>
 </p>
 
 Bu yazı hazırlanırken [Wikipedia - Moving Average](https://en.wikipedia.org/wiki/Moving_average), [Analog Devices DSP Book](https://www.analog.com/media/en/technical-documentation/dsp-book/dsp_book_ch15.pdf) ve [Surf-VHDL - How to Implement Moving Average in VHDL](https://surf-vhdl.com/how-to-implement-moving-average-in-vhdl/)   kaynaklarından faydalanılmıştır.
