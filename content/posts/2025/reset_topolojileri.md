@@ -15,8 +15,6 @@ tags:
 draft: false
 ---
 
-**FPGA'de Reset Topolojileri**
-
 FPGA uygulamalarında reset yapısı tasarımın güvenilirliği için son derece kritik öneme sahiptir. Reset yapıları, özellikle Uzay, Havacılık ve kritik öneme sahip sistemlerde olası hataların hızlı bir şekilde önlenmesi ve ilk çalışma durumundaki davranışlarının belirlenmesi için kritik rol oynamaktadır.
 
 FPGA'lerde reset yapısı senkron ve asenkron reset olmak üzere iki ana yapıdadır.
