@@ -200,7 +200,7 @@ Her clockta (DATA_VALID_i = '1' iken) yeni veri geldiğinde, sum adlı signal'e 
 Sum adlı sinyal WINDOW_LENGTH_c tane girdinin toplamından oluşur. Her bir girdi BITDEPTH_c tane bit ile ifade edilmektedir. Dolayısıyla sum adlı signalin sınırları WINDOW_LENGTH_c tane BITDEPTH_c girdisinin alabileceği en büyük toplam değeri kadar olmalıdır. Bunun matematiksel karşılığı BITDEPTH_c + ceil_log2(WINDOW_LENGTH_c) ifadesidir.
 	Bu ifadede WINDOW_LENGTH_c tane toplamın BITDEPTH_c'yi kaç bit büyüteceği hesaplanıp BITDEPTH_c değeri ile toplanmaktadır.
 
-ceil_log2 fonksiyonu girdi değerinin 2 tabanında logaritmasını alır ve küsüratlı olması halinde üste yuvarlar. Bu da girdinin kaç bit ile ifade edilebileceğini hesaplar. Pencere genişliği girdi olarak verildiğinde toplama işleminin değer aralığını kaç bit büyütmesi gerektiğini hesaplar.Örnek olarak:
+ceil_log2 fonksiyonu girdi değerinin 2 tabanında logaritmasını alır ve küsüratlı olması halinde üste yuvarlar. Bu da girdinin kaç bit ile ifade edilebileceğini hesaplar. Pencere genişliği girdi olarak verildiğinde toplama işleminin değer aralığını kaç bit büyütmesi gerektiğini hesaplar. Örnek olarak:
 - WINDOW_LENGTH_c = 5 ve BITDEPTH_c = 8 olsun.
 - Girdinin alabileceği değer aralığı 0-255 olur.
 - 5 tane girdinin toplamı ise en az 5*0 = 0, en fazla 5*255 = 1275 olur.
