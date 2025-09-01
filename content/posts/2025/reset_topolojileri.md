@@ -16,24 +16,24 @@ draft: false
 ---
 
 **FPGA'de Reset Topolojileri**
+
 FPGA uygulamalarında reset yapısı tasarımın güvenilirliği için son derece kritik öneme sahiptir. Reset yapıları, özellikle Uzay, Havacılık ve kritik öneme sahip sistemlerde olası hataların hızlı bir şekilde önlenmesi ve ilk çalışma durumundaki davranışlarının belirlenmesi için kritik rol oynamaktadır.
 
 FPGA'lerde reset yapısı senkron ve asenkron reset olmak üzere iki ana yapıdadır.
 
 Senkron reset clock sinyaline göre eşzamanlı şekilde registerlerin sıfırlamasını yapar. 
 Avantajları şu şekildedir: 
---Senkron şekilde gerçekleştiği için timing ihlallerine neden olmaz. 
-•	Timing ihlali bakımından avantajlıdır. 
-•	Clock sinyalinin dalgalanmasına (glitch) karşı bağışıklıdır. 
+- Senkron şekilde gerçekleştiği için timing ihlallerine neden olmaz. 
+- Timing ihlali bakımından avantajlıdır. 
+- Clock sinyalinin dalgalanmasına (glitch) karşı bağışıklıdır. 
 Dezavantajları şu şekildedir:
-•	Clock sinyali gerektirir. Clock olmadan çalışamaz.
-•	Uygulanmasından sonra clock periyodu kadar gecikmeye ihtiyaç duyar.
-•	Kullanımı için fazladan FPGA kaynağı gerekebilir.
-•	FPGA içerisinde geniş fanout (yayılım) oluşturur.
+- Clock sinyali gerektirir. Clock olmadan çalışamaz.
+- Uygulanmasından sonra clock periyodu kadar gecikmeye ihtiyaç duyar.
+- Kullanımı için fazladan FPGA kaynağı gerekebilir.
+- FPGA içerisinde geniş fanout (yayılım) oluşturur.
  
 <p align="center">
   <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_1.png" width="387"/>
-  <br>
   <em>Şekil 1 - Senkron reset yapısı</em>
 </p>
 
@@ -42,7 +42,7 @@ Avantajları şu şekildedir:
 - Clock sinyali gerektirmediği için istenilen anda tetiklenebilir.
 - Uygulanmasından sonra etki süresi düşüktür.
 - Kullanımı için senkrona kıyasla daha az FPGA kaynağı gerekir.
-Dezanavtajları şu şekildedir:
+Dezavantajları şu şekildedir:
 - Sona ermesi anında timing ihlali oluşturma olasılığı yüksektir.
 - Clock sinyalinin dalgalanmasına (glitch) karşı hassastır.
 
@@ -51,7 +51,6 @@ Senkron reset sinyali geldiğinde clock sinyaline eşzamanlı şekilde sıfırla
 
  <p align="center">
   <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_2.png" width="1000"/>
-  <br>
   <em>Şekil 2 - Asenkron resetin sebep olduğu timing ihlali</em>
 </p>
 
@@ -64,7 +63,6 @@ Her iki yapının avantaj, dezavantajları bulunduğundan Uzay, havacılık ve k
 
  <p align="center">
   <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_3.png" width="800"/>
-  <br>
   <em>Şekil 3 - Reset senkronizer devreleri</em>
 </p>
 
@@ -76,7 +74,6 @@ Yukarıdaki yapılardan elde edilen reset çıkışlarının tüm tasarımda kul
 
 <p align="center">
   <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_4.png" width="750"/>
-  <br>
   <em>Şekil 4 - Senkronizer devresini timing bakımından uyumlu hale getiren devre</em>
 </p>
 
@@ -96,7 +93,6 @@ POR için kullanılan timer saymaya başlaması için genellikle FPGA clock IP c
 
  <p align="center">
   <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_5.png" width="500"/>
-  <br>
   <em>Şekil 5 - Zamana göre POR'un pasif hale geçmesi</em>
 </p>
 
@@ -104,7 +100,6 @@ Triple Mod Redundancy (TMR) yapısı:
 Uzay veya havacılık projeleri gibi kritik uygulamalarda iç sinyallerin dış etmenlerden (SEU ve radyasyon) etkilenerek hatalı çıktılar üretmemesi için TMR yapısı kullanılabilir. Bu yapıda (TMR mimarisine göre değişmekle birlikte) TMR uygulanacak sinyal 3 tane olacak şekilde sentezlenerek istenen yapıya iletilir. Son aşamada bir kıyaslayıcı ile giriş sinyalleri kıyaslanır. Üç sinyalden en az 2 tanesinin durumu çıkış sinyali olarak belirlenir. Bu sayede üç sinyalden en az iki tanesinin değişmesi durumunda hata oluşabilir. Şekil 6'da TMR yapısının blok mimarisi verilmiştir.
  <p align="center">
   <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_6.png" width="700"/>
-  <br>
   <em>Şekil 6 - TMR yapısı</em>
 </p>
 
@@ -133,7 +128,6 @@ Glitch filtrelenmesi:
 Hassas uygulamalarda asenkron resetin dezavantajlarından olan glitch duyarlılığının azaltılması için glitch filtre yapısının kullanılması tavsiye edilmektedir. Glitch filtresi reset girişinin çok kısa süre boyunca dalgalanmadan kaynaklı aktif hale gelmesini engeller. Bu sayede özellikle kritik tasarımlarda asenkron reset sinyaline gürültü ve çevresel etkenlere karşı bağışıklık kazandırır.
  <p align="center">
   <img src="https://vhdlverilog.com/images/reset_topolojileri/sekil_7.png" width="1236"/>
-  <br>
   <em>Şekil 7 - Glitch filtresi</em>
 </p>
 
