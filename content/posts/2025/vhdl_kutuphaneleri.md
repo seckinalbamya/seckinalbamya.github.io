@@ -192,10 +192,10 @@ Shift (kaydırma) ve Rotate (çevirme) fonksiyonları
 
 SHIFT_LEFT,SHIFT_RIGHT,ROTATE_LEFT ve ROTATE_RIGHT fonksiyonlarını, sll,srl,rol ve ror fonksiyonları yerine tercih edilmesi önerilir.
 
-b <= a SHIFT_LEFT 	n;----a sinyalini n bit sola kaydırır ve sağdan gelen yeni değerlere '0' ataması yapar.
-b <= a SHIFT_RIGHT	n;----a sinyalini n bit sağa kaydırır ve soldan gelen yeni değerlere '0' ataması yapar.
-b <= a ROTATE_LEFT 	n;----a sinyalini n bit sola kaydırır, sola kaydılırlan bitler en sağdan sinyale geri eklenir. Sola döndürme olarak adlandırılır.
-b <= a ROTATE_RIGHT n;----a sinyalini n bit sağa kaydırır, sağa kaydılırlan bitler en soldan sinyale geri eklenir. Sağa döndürme olarak adlandırılır.
+b <= SHIFT_LEFT(a,n);----a sinyalini n bit sola kaydırır ve sağdan gelen yeni değerlere '0' ataması yapar.
+b <= SHIFT_RIGHT(a,n);----a sinyalini n bit sağa kaydırır ve soldan gelen yeni değerlere '0' ataması yapar.
+b <= ROTATE_LEFT(a,n);----a sinyalini n bit sola kaydırır, sola kaydılırlan bitler en sağdan sinyale geri eklenir. Sola döndürme olarak adlandırılır.
+b <= ROTATE_RIGHT(a,n);----a sinyalini n bit sağa kaydırır, sağa kaydılırlan bitler en soldan sinyale geri eklenir. Sağa döndürme olarak adlandırılır.
  
 b <= a sll n;----a sinyalini n bit sola kaydırır ve sağdan gelen yeni değerlere '0' ataması yapar.
 b <= a srl n;----a sinyalini n bit sağa kaydırır ve soldan gelen yeni değerlere '0' ataması yapar.
