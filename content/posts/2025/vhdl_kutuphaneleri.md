@@ -212,7 +212,9 @@ b <= a srl 3;-- a sinyali 3 bit sağa kaydırılır ve soldan gelen yeni bitlere
 Resize (yeniden boyutlandırma) fonksiyonu:
 ```
 "RESIZE"=> İlk parametresi SIGNED/UNSIGNED ikinci parametresi NATURAL türünde (VHDL 2008 için ek olarak SIGNED/UNSIGNED olarak da) girdiler için tanımlıdır, SIGNED/UNSIGNED türünde çıkış verir.
-Boyut değiştirmek için kullanılır. İlk parametrenin boyutunu ikinci parametre girdisine göre değiştirir. Boyut küçülüyorsa en az değerli bitten itibaren istenen miktarda bit alınır, boyut büyüyor ise SIGNED giriş için işaretli (sext, sign extended), UNSIGNED giriş için sıfırla genişletme (zero extended) uygulanır. VHDL 2008'de uzunluk parametresi olarak SIGNED/UNSIGNED vektör girdisi de yapılabilir. İkinci parametre olarak SIGNED/UNSIGNED giriş yapıldığında çıkış formatı ikinci parametrede tanımlanan girdi ile aynı yapıda olur.
+Boyut değiştirmek için kullanılır. İlk parametrenin boyutunu ikinci parametre girdisine göre değiştirir.
+Boyut küçülüyorsa en az değerli bitten itibaren istenen miktarda bit alınır, boyut büyüyor ise SIGNED giriş için işaretli (sext, sign extended), UNSIGNED giriş için sıfırla genişletme (zero extended) uygulanır.
+VHDL 2008'de uzunluk parametresi olarak SIGNED/UNSIGNED vektör girdisi de yapılabilir. İkinci parametre olarak SIGNED/UNSIGNED giriş yapıldığında çıkış formatı ikinci parametrede tanımlanan girdi ile aynı yapıda olur.
 
 a UNSIGNED "10011" olsun.
 b <= resize(a,3);--Son durumda b UNSIGNED "011" değerini alacaktır.
