@@ -10,7 +10,7 @@ categories:
 tags:
   - fpga
   - vhdl
-  - hareketli ortalam filtre
+  - hareketli ortalama filtre
   - moving average filter
 draft: false
 ---
