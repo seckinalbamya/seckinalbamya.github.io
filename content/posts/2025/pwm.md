@@ -36,13 +36,13 @@ Duty: Ton/T oranı olarak ifade edilmektedir.
 
 Şekil 1'de görülen PWM sinyal yapısında çıkışa aktarılan güç bir periyot için Pmax*(Ton/T)'a eşittir. Bu matematiksel olarak aşağıdaki ifade ile ifade edilebilir.
 
-<p align="center">
+<p align="left">
   <img src="https://vhdlverilog.com/images/pwm/pwm_tam_formul.png" width="256"/>
 </p>
  
 Eşitliğin sağdaki 0 ile çarpılan kısmı sıfır olacağından eşitlik aşağıdaki hale sadeleşir.
 
-<p align="center">
+<p align="left">
   <img src="https://vhdlverilog.com/images/pwm/pwm_ozet_formul.png" width="256"/>
 </p>
 
