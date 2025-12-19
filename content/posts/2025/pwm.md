@@ -3,7 +3,7 @@ title: "VHDL ve Verilog ile PWM Sinyali Üretimi"
 date: 2025-12-18
 slug: /vhdl_verilog_ile_pwm_sinyali_uretimi/
 description: VHDL ve Verilog ile PWM Sinyali Üretimi
-image: images/pwm_kapak.png
+image: images/pwm/pwm_kapak.png
 categories:
   - fpga
   - vhdl
@@ -36,13 +36,15 @@ Duty: Ton/T oranı olarak ifade edilmektedir.
 
 Şekil 1'de görülen PWM sinyal yapısında çıkışa aktarılan güç bir periyot için Pmax*(Ton/T)'a eşittir. Bu matematiksel olarak aşağıdaki ifade ile ifade edilebilir.
 
-E = $\int_{0}^{T_{o}} V_{out}(t) \cdot I_{out}(t) \,dt$ = $\int_{0}^{T_{on}} V_{out}(t) \cdot I_{out}(t) \,dt$ + $\int_{T_{on}}^{T} 0 \cdot I_{out}(t) \,dt$
-
- $\int_{T_{on}}^{T} 0 \cdot I_{out}(t) \,dt$
+<p align="center">
+  <img src="https://vhdlverilog.com/images/pwm/pwm_tam_formul.png" width="256"/>
+</p>
  
-Eşitliğin yukarıda verilen kısmı sıfır olacağından eşitlik aşağıdaki hale sadeleşir.
+Eşitliğin sağdaki 0 ile çarpılan kısmı sıfır olacağından eşitlik aşağıdaki hale sadeleşir.
 
-E = $\int_{0}^{T_{on}} V_{out}(t) \cdot I_{out}(t) \,dt$
+<p align="center">
+  <img src="https://vhdlverilog.com/images/pwm/pwm_ozet_formul.png" width="256"/>
+</p>
 
 PWM sinyal formatı, bir periyot içerisindeki Ton/T oranı değiştirilerek çıkışa aktarılan gücün değiştirilmesi esasına dayanmaktadır. Örneğin %100 gücünde çalıştırılmak istenen bir sistemde Ton/T oranı = 1 olacak şekilde ayarlanması gerekirken %10 gücünde çalışması gereken bir sistemde Ton/T oranı 0,1 olacak şekilde ayarlanmalıdır.
 
