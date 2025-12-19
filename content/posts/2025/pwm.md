@@ -38,7 +38,7 @@ Duty: Ton/T oranı olarak ifade edilmektedir.
 
 E = $\int_{0}^{T_{o}} V_{out}(t) \cdot I_{out}(t) \,dt$ = $\int_{0}^{T_{on}} V_{out}(t) \cdot I_{out}(t) \,dt$ + $\int_{T_{on}}^{T} 0 \cdot I_{out}(t) \,dt$
 
- $\int_{T_{on}}^{T} 0 \cdot I_{out}(t) \,dt$ ;
+ $\int_{T_{on}}^{T} 0 \cdot I_{out}(t) \,dt$
  
 Eşitliğin yukarıda verilen kısmı sıfır olacağından eşitlik aşağıdaki hale sadeleşir.
 
