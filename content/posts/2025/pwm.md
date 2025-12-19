@@ -18,11 +18,9 @@ draft: false
 ---
 **VHDL ve Verilog ile PWM Sinyali Üretimi**
 
-PWM (Pulse Width Modulation), dijital sinyal çıktısının aktif olduğu süreyi değiştirerek çıktının değerinin kontrol edildiği, elektronik uygulamalarda yaygın kullanılan bir çıkış formatıdır. Bu çıkış formatıyla analog çıkışa denk bir sinyalin etkisi dijital bir sinyal ile oluşturulabilmektedir. Ayrıca PWM sinyalinin oluşturan zaman bilgisi kullanılarak oluşturulmasından dolayı başka bir dijital sisteme aktarmak için veri kodlamak da mümkündür.
+PWM (Pulse Width Modulation), dijital sinyal çıktısının aktif olduğu süreyi değiştirerek çıktının değerinin kontrol edildiği, elektronik uygulamalarda yaygın kullanılan bir çıkış formatıdır. Bu çıkış formatıyla analog çıkışa denk bir sinyalin etkisi dijital bir sinyal ile oluşturulabilmektedir. Ayrıca PWM sinyalinin zaman parametreleri kullanılarak başka bir dijital sistemler arası veri aktarmak da mümkündür.
 
-PWM, dijital sistemlerin hızlı anahtarmalası prensibine dayanır. Bir periyottaki açık kalınan süre (Ton) ve kapalı kalınan sürenin (Toff) değiştirilmesiyle çıkışa aktarılan gücün değiştirilmesi prensibiyle çalışır.PWM sinyalinin yapısı Şekil 1'de verilmiştir.
-
-Şekil 1'deki görselde PWM sinyalinin yapısı verilmiştir.
+PWM, dijital sistemlerin hızlı anahtarlanması prensibine dayanır. Bir periyottaki açık kalınan süre (Ton) ve kapalı kalınan sürenin (Toff) değiştirilmesiyle çıkışa aktarılan gücün değiştirilmesi prensibiyle çalışır.PWM sinyalinin yapısı Şekil 1'de verilmiştir.
 
 T: Periyot
 Ton: Çıkışın aktif '1' olarak tutulduğu süre
@@ -48,13 +46,11 @@ Eşitliğin sağdaki 0 ile çarpılan kısmı sıfır olacağından eşitlik aş
 
 PWM sinyal formatı, bir periyot içerisindeki Ton/T oranı değiştirilerek çıkışa aktarılan gücün değiştirilmesi esasına dayanmaktadır. Örneğin %100 gücünde çalıştırılmak istenen bir sistemde Ton/T oranı = 1 olacak şekilde ayarlanması gerekirken %10 gücünde çalışması gereken bir sistemde Ton/T oranı 0,1 olacak şekilde ayarlanmalıdır.
 
-Duty (doluluk) oranının değiştirilmesiyle çıkışta kontrol edilmek istenen sistemin çıkış gücü, voltajı veya konumu gibi çıktı değerlerinin değiştirilmesi mümkün olmaktadır. Duty değerinin değiştirilmesiyle çıktının ortalama aktif kaldığı süre değiştirilerek çıkış değerinin efektif olarak ayarlanması sağlanabilmektedir. Özellikle hızlı açılıp kapatılarak çalıştırılabilen sistemlerde (ısıtıcılar, aydınlatma ürünleri, motorlar, smps gibi) bu yöntem ile çıktının gücü, hızı gibi parametreleri kontrol edilebilmektedir. Çok hızlı şekilde (insan veya ölçüm yapan sistemin algılama frekansından yüksek frekansta) yapılan bu anahtarlama sayesinde gerçek bir analog kontrol ediliyorcasına çıktı elde edilebilmektedir.
+Duty (doluluk) oranının değiştirilmesiyle çıkışta kontrol edilmek istenen sistemin çıkış gücü, voltajı veya konumu gibi çıktı değerlerinin değiştirilmesi mümkün olmaktadır. Duty değerinin değiştirilmesiyle çıktının ortalama aktif kaldığı süre değiştirilerek çıkış değerinin efektif olarak ayarlanması sağlanabilmektedir. Özellikle hızlı açılıp kapatılarak çalıştırılabilen sistemlerde (ısıtıcılar, aydınlatma ürünleri, motorlar, smps gibi) çıktının gücü, hızı gibi parametreleri bu yöntem ile kontrol edilebilmektedir. Çok hızlı şekilde (insan veya ölçüm yapan sistemin algılama frekansından yüksek frekansta) yapılan bu anahtarlama sayesinde gerçek bir analog kontrol ediliyorcasına çıktı elde edilebilmektedir.
 
-Aşağıdaki VHDL ve Verilog kodlarında generic olarak clock frekansı, PWM sinyalinin frekansı ve bu modüle giriş yapılacak PWM değerinin çözünürlüğü generic olarak belirlenebilir şekilde bir tasarım yapılmıştır. Böylece girdi ve çıktı parametreleri isteğe göre ayarlanabilmektedir.
+Aşağıda VHDL ve Verilog donanım tasarım dillerinde PWM uygulaması yer almaktadır. Bu tasarımlarda generic olarak clock frekansı, PWM sinyalinin frekansı ve bu modülü kontroledecen PWM girdi değerinin çözünürlüğü generic olarak belirlenebilir şekilde bir tasarım yapılmıştır. Böylece girdi ve çıktı parametreleri isteğe göre ayarlanabilmektedir.
 
-Sentez aracı sentezleme aşamasında, generic parametreleri kullanarak pwm_tick_counter_limit_c isimli bir sabit değere birim çözünürlük için kaç clock vuruşu sayma yapılması gerektiğini yazar.
-
-PWM_i adlı girdi her PWM periyodunun başında örneklenerek pwm_value isimli bir sinyale yazılır. pwm_tick_counter isimli sinyal ise birim çözünürlük başına bir arttırılarak PWM sinyalinin periyodu sayılır. PWM_i isimli girişten alınan değer ile pwm_tick_counter kıyaslanarak PWM sinyalinin Ton veya Toff durumlarından hangisinde olması gerektiği belirlenir. pwm_tick_counter değeri 0 ile pwm_value-1 değeri arasında ise çıktı '1' yapılarak Ton durumu gerçekleştirilirken pwm_tick_counter değerinin bu değerden büyük olması durumunda çıkış '0' yapılır.
+Birim çözünürlük için kaç clock gerektiği bilgisi pwm_tick_counter_limit_c adlı sabit değere generic parametreler kullanılarak sentezleme aşamasında hesaplanır ve yazılır. PWM_i adlı girdi her PWM periyodunun başında örneklenerek pwm_value isimli bir sinyale yazılır. pwm_tick_counter, pwm_tick_counter_limit_c-1 değerine ulaştığında yani 1 birim çözünürlük için gereken zaman tamamlandığında pwm_tick adlı sinyal 1 clock süresince '1' yapılır. pwm_tick '1' olduğunda PWM sinyalinin periyodunu birim çözünürlük biriminden saklayan pwm_duty_counter adlı bir sinyalin değeri bir arttırılır. PWM_i isimli girişten alınan değer ile pwm_duty_counter kıyaslanarak PWM sinyalinin Ton veya Toff durumlarından hangisinde olması gerektiği belirlenir. pwm_tick_counter değeri 0 ile pwm_value-1 değeri arasında ise çıktı '1' yapılarak Ton durumu gerçekleştirilirken pwm_tick_counter değerinin bu değerden büyük olması durumunda çıkış '0' yapılır.
 
 VHDL'de yazılan PWM üretici kod aşağıda verilmiştir.
 ```vhdl
