@@ -38,9 +38,11 @@ Duty: Ton/T oranı olarak ifade edilmektedir.
 
 E = $\int_{0}^{T_{o}} V_{out}(t) \cdot I_{out}(t) \,dt$ = $\int_{0}^{T_{on}} V_{out}(t) \cdot I_{out}(t) \,dt$ + $\int_{T_{on}}^{T} 0 \cdot I_{out}(t) \,dt$
 
-Eşitliğin $\int_{T_{on}}^{T} 0 \cdot I_{out}(t) \,dt$ kısmı sıfır olacağından;
+ $\int_{T_{on}}^{T} 0 \cdot I_{out}(t) \,dt$ ;
+ 
+Eşitliğin yukarıda verilen kısmı sıfır olacağından eşitlik aşağıdaki hale sadeleşir.
 
-E = $\int_{0}^{T_{on}} V_{out}(t) \cdot I_{out}(t) \,dt$ olur.
+E = $\int_{0}^{T_{on}} V_{out}(t) \cdot I_{out}(t) \,dt$
 
 PWM sinyal formatı, bir periyot içerisindeki Ton/T oranı değiştirilerek çıkışa aktarılan gücün değiştirilmesi esasına dayanmaktadır. Örneğin %100 gücünde çalıştırılmak istenen bir sistemde Ton/T oranı = 1 olacak şekilde ayarlanması gerekirken %10 gücünde çalışması gereken bir sistemde Ton/T oranı 0,1 olacak şekilde ayarlanmalıdır.
 
