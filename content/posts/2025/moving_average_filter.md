@@ -218,7 +218,7 @@ Bu işlem yukarıda ifade edilen fonksiyon ile yapılmak istenirse:
 - bit derinliği + ceil_log2(toplamdaki eleman sayısı)
 - BITDEPTH_c + ceil_log2(WINDOW_LENGTH_c) = 8 + ceil_log2(5) = 11 elde edilir.
 
-Pipeline dolduğunda (pipeline'ın son verisi geçerli ise) ve DATA_VALID_i'nin registerlandığı en sinyali 1 ise toplam değeri WINDOW_LENGTH_c parametresine bölünerek çıktı elde edilmiş ve çıktının geçerli olduğu bilgisi dışarıya aktarılmıştır. Registerlama işlemi data_p ve data_valid_p sinyali hesaplanırken 1 clk gecikileceği için bir sonraki aşama olan çıkış hesaplamasının da 1 clk gecikerek yapılması için gereklidir.
+Pipeline dolduğunda (pipeline'ın son verisi geçerli ise) ve DATA_VALID_i'nin registerlandığı en sinyali 1 ise toplam değeri WINDOW_LENGTH_c parametresine bölünerek çıktı elde edilmiş ve çıktının geçerli olduğu bilgisi dışarıya aktarılmıştır. Registerlama işlemi, data_p ve data_valid_p sinyali hesaplanırken 1 clock gecikme olacağı için bir sonraki aşama olan çıkış hesaplamasının da 1 clock gecikme ile yapılması için gereklidir.
 
 ROUND_TYPE_c adlı generic parametre ile bölme işlemi yapılırken sonucun küsüratlı çıkması halinde yukarı (CEIL) veya aşağı (FLOOR) yönde yapılıp yapılmaması seçilebilecek şekilde generic yazılmıştır. ROUND_TYPE_c, generic bir parametre, yani instantiation esnasında belirtilen sabit bir parametre olarak belirtilmiştir. Bundan dolayı seçilen parametre dışındaki diğer seçenekler asla çalışmayacağından dolayı sentez araçları tarafından sentezlenmez ve donanımda gereksiz yer işgal etmez. Buna karşılık çalışma esnasında çıkış bölmesinin floor mu ceil olacağı değiştirilemez.
 
