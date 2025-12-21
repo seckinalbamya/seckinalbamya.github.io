@@ -129,6 +129,7 @@ architecture moving_average_filter_beh of moving_average_filter is
 	signal data_p : data_pipeline_type := (others=>(others=>'0'));--gelen verinin pipeline'ı
 	
 	signal data_valid_p : std_logic_vector(WINDOW_LENGTH_c-1 downto 0) := (others=>'0');--gelen verinin geçerli olup olmadığının pipeline'ı
+	signal en : std_logic := '0';--cikisin hesaplamasinin yapilip yapilmayacaginin saklandigi signal
 	
 	--gelen verilerin girdilerinin toplanacağı signal
 	--Gelen verilerin boyutu her toplam işleminde(her seferinde en buyuk girdi geldiği senaryoda (en kotu senaryo)) kendi miktarınca artar.
@@ -168,25 +169,25 @@ begin
 						data_p(pipeline_index) <= data_p(pipeline_index-1);
 						data_valid_p(pipeline_index) <= data_valid_p(pipeline_index-1);
 					end loop;
-				
-					--last pipeline
-					--pipeline'ların tamamı veri ile doluysa(pencere genişliği WINDOW_LENGTH_c'den az ise çıktı vermez)
-					if data_valid_p(WINDOW_LENGTH_c-1) = '1' then
-					--generic parametre oldugundan sentez araci tarafindan asagidakilerden birisi secilerek disari aktarilir.
-						if ROUND_TYPE_c = "CEIL" then
-							DATA_o		 <= std_logic_vector(to_unsigned(((sum+(WINDOW_LENGTH_c-1))/WINDOW_LENGTH_c),BITDEPTH_c));--çıkış veriliyor.
-						else--"FLOOR"
-							DATA_o		 <= std_logic_vector(to_unsigned((sum/WINDOW_LENGTH_c),BITDEPTH_c));--çıkış veriliyor.
-						end if;
-						DATA_VALID_o <= '1';--çıkış değeri gecerli.
-					else
-						DATA_VALID_o <= '0';--çıkış değeri geçerli degil.
-					end if;
-				
-				else
-				
-					DATA_VALID_o <= '0';--çıkış değeri geçerli degil.
 					
+					en <= '1';--çıkış hesaplamasını yap. Bu sinyal DATA_VALID_i sinyalini registerlar yani DATA_VALID_i sinyali kesildikten sonra 
+					--cerceve icerisindeki sinyaller 1 clk daha bosaltilmaya devam edilir.
+				else
+					en <= '0';--çıkış hesaplamasını yapma
+				end if;
+				
+				--last pipeline
+				--pipeline'ların tamamı veri ile doluysa(pencere genişliği WINDOW_LENGTH_c'den az ise çıktı vermez) ve cikis hesaplamasi yapiliyor ise
+				if data_valid_p(WINDOW_LENGTH_c-1) = '1' and en = '1' then
+				--generic parametre oldugundan sentez araci tarafindan asagidakilerden birisi secilerek disari aktarilir.
+					if ROUND_TYPE_c = "CEIL" then
+						DATA_o		 <= std_logic_vector(to_unsigned(((sum+(WINDOW_LENGTH_c-1))/WINDOW_LENGTH_c),BITDEPTH_c));--çıkış veriliyor.
+					else--"FLOOR"
+						DATA_o		 <= std_logic_vector(to_unsigned((sum/WINDOW_LENGTH_c),BITDEPTH_c));--çıkış veriliyor.
+					end if;
+					DATA_VALID_o <= '1';--çıkış değeri gecerli.
+				else
+					DATA_VALID_o <= '0';--çıkış değeri geçerli degil.
 				end if;
 			
 			end if;--RESET_n_i
@@ -217,7 +218,7 @@ Bu işlem yukarıda ifade edilen fonksiyon ile yapılmak istenirse:
 - bit derinliği + ceil_log2(toplamdaki eleman sayısı)
 - BITDEPTH_c + ceil_log2(WINDOW_LENGTH_c) = 8 + ceil_log2(5) = 11 elde edilir.
 
-Pipeline dolduğunda (pipeline'ın son verisi geçerli ise) toplam değeri WINDOW_LENGTH_c parametresine bölünerek çıktı elde edilmiş ve çıktının geçerli olduğu bilgisi dışarıya aktarılmıştır. 
+Pipeline dolduğunda (pipeline'ın son verisi geçerli ise) ve DATA_VALID_i'nin registerlandığı en sinyali 1 ise toplam değeri WINDOW_LENGTH_c parametresine bölünerek çıktı elde edilmiş ve çıktının geçerli olduğu bilgisi dışarıya aktarılmıştır. Registerlama işlemi data_p ve data_valid_p sinyali hesaplanırken 1 clk gecikileceği için bir sonraki aşama olan çıkış hesaplamasının da 1 clk gecikerek yapılması için gereklidir.
 
 ROUND_TYPE_c adlı generic parametre ile bölme işlemi yapılırken sonucun küsüratlı çıkması halinde yukarı (CEIL) veya aşağı (FLOOR) yönde yapılıp yapılmaması seçilebilecek şekilde generic yazılmıştır. ROUND_TYPE_c, generic bir parametre, yani instantiation esnasında belirtilen sabit bir parametre olarak belirtilmiştir. Bundan dolayı seçilen parametre dışındaki diğer seçenekler asla çalışmayacağından dolayı sentez araçları tarafından sentezlenmez ve donanımda gereksiz yer işgal etmez. Buna karşılık çalışma esnasında çıkış bölmesinin floor mu ceil olacağı değiştirilemez.
 
@@ -228,6 +229,9 @@ Ayrıca sentez aşamasında daha az kaynak kullanılması ve çalışma frekans�
 Aşağıda verilen VHDL dilinde yazılmış testbench ile modüle çeşitli girdiler verilerek doğru çalışıp çalışmadığı test edilmiştir.
 
 ```vhdl
+--VHDLVerilog.com (VerilogVHDL.com) - 2025 
+--Hareketli ortalama filtresi (Moving average filter) testbench
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -293,7 +297,8 @@ begin
 	MOVING_AVERAGE_FILTER_TEST :
 	process
 	begin
-	
+		
+		wait for clock_period/2;--falling edge'de degisim olusturmak icin gecikme
 		reset_n <= '0';--reset aktif
 		wait for clock_period;
 		reset_n <= '1';--reset pasif
@@ -486,38 +491,38 @@ end architecture;
 Sıralı girişlere karşılık filtrenin çıktılarının incelendiği senaryo Şekil 6'da verilmiştir.
 
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_6.PNG" width="1704"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_6.PNG" width="1755"/>
   <em>Şekil 6 - Sıralı girişlere karşılık filtrenin çıktıları</em>
 </p>
 
 DATA_VALID_i = '0' olduğu durumda girdilere karşılık filtrenin çıktılarının incelendiği senaryo Şekil 7'de verilmiştir.
 	
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_7.PNG" width="1679"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_7.PNG" width="1690"/>
   <em>Şekil 7 - DATA_VALID_i = '0' olduğu durumda girdilere karşılık filtrenin çıktıları</em>
 </p>
 
 DATA_VALID_i = '0' değerinden sonra tekrar '1' olduğu durumda girdilere karşılık filtrenin çıktılarının incelendiği senaryo Şekil 8'de verilmiştir. Burada pipeline'daki eski değerlerin korunduğu görülmektedir.
 	
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_8.PNG" width="1109"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_8.PNG" width="1395"/>
   <em>Şekil 8 - DATA_VALID_i = '0' değerinden sonra tekrar '1' olduğu durumda girdilere karşılık filtrenin çıktıları</em>
 </p>
 
 Girdi olarak girdinin alabileceği en büyük sınıra yakın değerler verilerek overflow durumunun incelendiği senaryo Şekil 9'da verilmiştir.
 	
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_9.PNG" width="1594"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_9.PNG" width="1667"/>
   <em>Şekil 9 - Overflow durumunun incelenmesi</em>
 </p>
 
 ROUND_TYPE_c parametresi FLOOR ve CEIL yapılarak çıktıların incelendiği senaryo Şekil 10'da verilmiştir. Görselin sol tarafında floor, sağ tarafında ise ceil yuvarlama yapısı kullanılmıştır.
 
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_10.png" width="2222"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_10.png" width="3038"/>
   <em>Şekil 10 - ROUND_TYPE_c parametresinin çıktıya etkisinin incelenmesi</em>
 </p>
 
-Not: 21.12.2025 tarihinde kod içerisindeki ceil_log2 fonksiyonuna ve pipeline valid sinyaline hata düzeltmesi yapılmıştır.
+Not: 21.12.2025 tarihinde kod içerisindeki ceil_log2 fonksiyonuna ve pipeline valid yapısına hata düzeltmesi yapılmıştır.
 
 Bu yazı hazırlanırken [Wikipedia - Moving Average](https://en.wikipedia.org/wiki/Moving_average), [Analog Devices DSP Book](https://www.analog.com/media/en/technical-documentation/dsp-book/dsp_book_ch15.pdf) ve [Surf-VHDL - How to Implement Moving Average in VHDL](https://surf-vhdl.com/how-to-implement-moving-average-in-vhdl/) kaynaklarından faydalanılmıştır.
