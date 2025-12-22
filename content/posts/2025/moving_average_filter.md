@@ -519,7 +519,7 @@ Girdi olarak girdinin alabileceği en büyük sınıra yakın değerler verilere
 ROUND_TYPE_c parametresi FLOOR ve CEIL yapılarak çıktıların incelendiği senaryo Şekil 10'da verilmiştir. Görselin sol tarafında floor, sağ tarafında ise ceil yuvarlama yapısı kullanılmıştır.
 
 <p align="center">
-  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_10.png" width="3038"/>
+  <img src="https://vhdlverilog.com/images/moving_average_filter/sekil_10.PNG" width="3038"/>
   <em>Şekil 10 - ROUND_TYPE_c parametresinin çıktıya etkisinin incelenmesi</em>
 </p>
 
