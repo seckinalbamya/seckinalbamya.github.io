@@ -1,3 +1,6 @@
+--VHDLVerilog.com (VerilogVHDL.com) - 2025 
+--Hareketli ortalama filtresi (Moving average filter) testbench
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -63,7 +66,8 @@ begin
 	MOVING_AVERAGE_FILTER_TEST :
 	process
 	begin
-	
+		
+		wait for clock_period/2;--falling edge'de degisim olusturmak icin gecikme
 		reset_n <= '0';--reset aktif
 		wait for clock_period;
 		reset_n <= '1';--reset pasif
@@ -143,6 +147,12 @@ begin
 		data <= x"25";
 		wait for clock_period;
 		data <= x"26";
+		wait for clock_period;
+		data <= x"27";
+		wait for clock_period;
+		data <= x"28";
+		wait for clock_period;
+		data <= x"29";
 		wait for clock_period;
 		
 		reset_n <= '0';--reset aktif!
