@@ -7,7 +7,7 @@ entity axis_slave_interface is
 	port
 	(
 		--CLK/Reset interface
-		PIXEL_CLK_i		: in  std_logic;   -- 25 MHz pixel clock
+		PIXEL_CLK_i		: in  std_logic;   -- pixel clock
 		PIXEL_RESET_i	: in  std_logic;   -- PIXEL_CLK domain reset
 		
 		--HDMI Interface
