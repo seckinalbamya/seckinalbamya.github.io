@@ -26,11 +26,11 @@ AXI-S sinyallerinden temel olarak kullanılanları yakından incelenecek olursa;
 
 - ACLK: Clock sinyalidir. Tüm işlemler bu sinyalin yükselen kenarında gerçekleştirilir.
 - ARESETN: Asenkron reset sinyalidir. Aktif '0' olarak uygulanır. ACLK'a senkron şekilde serbest bırakılmalıdır.
-- TDATA: Verinin aktarıldığı arayüzdür. Master için çıkış, slave için giriş sinyalidir. Herhangi bir bit sınırlaması yoktur.
+- TDATA: Verinin aktarıldığı arayüzdür. Master için çıkış, slave için giriş sinyalidir. 8 bit ve katlarında herhangi bir tamsayı genişlikte olabilir.
 - TVALID: TDATA verisinin geçerli olduğunu belirten arayüzdür. Master için çıkış, slave için giriş sinyalidir.
 - TREADY: Slave cihazın veriyi alabileceğini belirttiği arayüzdür. Master için giriş, slave için çıkış sinyalidir.
 - TUSER: Kullanıcı tarafından belirlenen bir fonksiyon için kullanılabilen bir arayüzdür. Master için çıkış, slave için giriş sinyalidir
-- TLAST: Son verinin alındığını belirten arayüzdür. Master için çıkış, slave için giriş sinyalidir
+- TLAST: Son verinin gönderildiğini belirten arayüzdür. Master için çıkış, slave için giriş sinyalidir
 
 Bu arayüzler dışında spesifikasyonda yer alan TSTRB, TKEEP, TID ve TDEST sinyallerinin işleyişlerine [<u>buradan</u>](https://support.arm.com/documentation/ihi0051/b/) göz atabilirsiniz.
 
@@ -41,11 +41,11 @@ AXI-S, TREADY ve TVALID sinyallerinin ikisinin de '1' olması durumunda herhangi
   <em>Şekil 1 - AXI-S protokolünün çalışma prensibi</em>
 </p>
 
-Ek olarak Kilitlenmeyi engellemek için protokol kuralları gereği TVALID sinyali, TREADY sinyalinin '1' olmasını bekleyemez. Bununla
+Ek olarak Kilitlenmeyi engellemek için protokol kuralları gereği TVALID sinyali, TREADY sinyalinin '1' olmasını bekleyemez.
 
 Bu yazı içeriğinde HDMI ve VGA gibi görüntü aktarım uygulamarında doğrudan kullanılabilecek AXI-S Slave arayüzü tasarımı yapılmıştır.
 
-HDMI ve VGA arayüzlerinde kaynak tarafından üretilen görüntüler ile gönderimin yapıldığı arayüz arasındaki veri senkronizasyonu kritiktir. Farklı clock domaininde çalışan kaynak ve görüntü arayüzü arasındaki senkronizasyon bufferler ile sağlanır. Üretilen veri miktarı >= gönderilen veri miktarı ve kaynak clock frekansı <= arayüz clock frekansı koşulları sağlandığı taktirde clock domaini çevrimi yapılacak bir adet FIFO ile herhangi bir kesinti olmaksızın veri aktarımı sağlanabilir.
+HDMI ve VGA arayüzlerinde kaynak tarafından üretilen görüntüler ile gönderimin yapıldığı arayüz arasındaki veri senkronizasyonu kritiktir. Farklı clock domaininde çalışan kaynak ve görüntü arayüzü arasındaki senkronizasyon bufferler ile sağlanır. Üretilen veri miktarı >= gönderilen veri miktarı ve kaynak clock frekansı >= arayüz clock frekansı koşulları sağlandığı taktirde clock domaini çevrimi yapılacak bir adet FIFO ile herhangi bir kesinti olmaksızın veri aktarımı sağlanabilir.
 İki clock girişi destekleyen bir FIFO üzerinden sağlanan bu akışta FIFO'nun clock domain crossing özelliği kullanılmaktadır. Ayrıca AXI-S protokolüne uygun olarak FIFO'nun doluluk/boşluk durumuna göre TREADY sinyali üretilmektedir. Sistemin gecikmesini minimumda tutmak amacıyla, okuma işlemine başlamak için FIFO'da tam bir satırın birikmesi beklenmez. Kaynak frekansı (ACLK) hedef frekanstan (PIXEL_CLK) yüksek olduğu için FIFO'nun ekran modülünü kesintisiz beslemesi öngörülür.
 
 Xilinx ve çoğu diğer IP Core geliştirici video amaçlı AXI-S uygulamalarında TUSER sinyalini kare başlangıcı sinyali (Start of Frame, SoF) olarak kullanmaktadır. Bu uygulamada da TUSER sinyali SoF sinyali amacıyla kullanılmıştır. Ekrandaki görüntünün ilk satırının ilk pixel verisinde SoF sinyali '1' yapılmaktadır.
