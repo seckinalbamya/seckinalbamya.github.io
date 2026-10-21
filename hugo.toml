@@ -1,5 +1,6 @@
 baseURL = 'https://vhdlverilog.com/'
-languageCode = 'tr-tr'
+defaultContentLanguage = 'tr'
+defaultContentLanguageInSubdir = false
 title = 'VHDLVerilog'
 theme = 'pehtheme-hugo'
 buildFuture = true
@@ -25,15 +26,35 @@ disqusShortname = '' # <- Get form here : https://disqus.com
 	bio = 'FPGA ve gömülü sistemler ve insansız hava araçları üzerine çalışma yapan elektronik meraklısı'
 	avatar = '/images/seckin_pp.jpg'
 
-[menu] # Menu management
-	[[menu.main]]
-		name = 'Ana Sayfa'
-		pageRef = '/'
-		weight = 10
-	[[menu.main]]
-		name = 'Hakkında'
-		pageRef = '/hakkinda'
-		weight = 15
+[languages]
+  [languages.tr]
+    languageCode = 'tr-TR'
+    languageName = 'Türkçe'
+    weight = 1
+    [languages.tr.params]
+      description = 'vhdlverilog.com'
+    [[languages.tr.menus.main]]
+      name = 'Ana Sayfa'
+      pageRef = '/'
+      weight = 10
+    [[languages.tr.menus.main]]
+      name = 'Hakkında'
+      pageRef = '/hakkinda'
+      weight = 15
+  [languages.en]
+    languageCode = 'en-US'
+    languageName = 'English'
+    weight = 2
+    [languages.en.params]
+      description = 'FPGA, VHDL and Verilog tutorials - vhdlverilog.com'
+    [[languages.en.menus.main]]
+      name = 'Home'
+      pageRef = '/'
+      weight = 10
+    [[languages.en.menus.main]]
+      name = 'About'
+      pageRef = '/hakkinda'
+      weight = 15
 
 [module]
   [module.hugoVersion]

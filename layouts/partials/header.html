@@ -1,0 +1,45 @@
+<div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col">
+	<div class="flex items-center">
+		<div class="flex items-center">
+			<button class="flex items-center space-x-2 rounded-full border py-1 pr-[5px] pl-3 group bg-zinc-100 hover:bg-zinc-200 toggle-button" data-target="menu-bar">
+				<svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+				</svg>
+				<span class="bg-zinc-100 fill-white rounded-full p-1.5">
+					<svg width="18" height="18" viewBox="30 30 140 140" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dış çerçeve ve çıkıntılar -->
+  <g stroke="#000" stroke-width="12" fill="none" stroke-linecap="round">
+    <rect x="50" y="50" width="100" height="100" rx="12" />
+    <!-- Üst çıkıntılar -->
+    <line x1="75" y1="30" x2="75" y2="50" />
+    <line x1="100" y1="30" x2="100" y2="50" />
+    <line x1="125" y1="30" x2="125" y2="50" />
+    <!-- Alt çıkıntılar -->
+    <line x1="75" y1="150" x2="75" y2="170" />
+    <line x1="100" y1="150" x2="100" y2="170" />
+    <line x1="125" y1="150" x2="125" y2="170" />
+    <!-- Sol çıkıntılar -->
+    <line x1="30" y1="75" x2="50" y2="75" />
+    <line x1="30" y1="100" x2="50" y2="100" />
+    <line x1="30" y1="125" x2="50" y2="125" />
+    <!-- Sağ çıkıntılar -->
+    <line x1="150" y1="75" x2="170" y2="75" />
+    <line x1="150" y1="100" x2="170" y2="100" />
+    <line x1="150" y1="125" x2="170" y2="125" />
+  </g>
+
+  <!-- İçteki mavi kare -->
+  <rect x="80" y="80" width="40" height="40" rx="8" fill="#00AEEF" />
+</svg>
+
+
+				</span>
+			</button>
+			<div class="relative rounded-full py-1.5 px-6 bg-zinc-100 hover:bg-zinc-200 text-xl font-bold uppercase mx-2">
+				{{ if .IsHome}}<h1><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title }}</a></h1>
+			{{ else }}<h2><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title }}</a></h2>{{ end }}
+			</div>
+		</div>
+	</div>
+	{{- partial "menu.html" (dict "menuID" "main" "page" .) -}}
+</div>

@@ -1,0 +1,2 @@
+/* Sidebar thumbnails: show the whole cover, keep its aspect ratio. */
+.thumb-img { display: block; width: 100%; height: auto; }

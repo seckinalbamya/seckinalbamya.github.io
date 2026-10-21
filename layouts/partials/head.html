@@ -1,0 +1,28 @@
+{{- /* Language redirect: only on the Turkish home page, first visit, non-Turkish browsers -> /en/ */}}
+{{- if and .IsHome (eq site.Language.Lang "tr") }}
+<script>
+(function(){try{
+  var p=localStorage.getItem('lang');
+  if(p==='tr')return;
+  if(/bot|crawl|spider|slurp|lighthouse|preview/i.test(navigator.userAgent)||navigator.webdriver)return;
+  if(p==='en'){location.replace('/en/');return;}
+  var l=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||'tr'];
+  if(!l.some(function(x){return /^tr/i.test(x)}))location.replace('/en/');
+}catch(e){}})();
+</script>
+{{- end }}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Dynamic title for SEO -->
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+<!-- Dynamic description for SEO -->
+<meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Params.description }}{{ end }}">
+<link rel="canonical" href="{{ .Permalink }}">
+{{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">
+{{- if eq .Language.Lang "tr" }}
+<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+{{- end }}
+{{- end }}
+{{- partialCached "head/css.html" . -}}
+{{- partialCached "head/favicon.html" . -}}

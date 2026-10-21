@@ -3,7 +3,7 @@ title: "VHDL'de Kütüphaneler ve İçerdikleri Fonksiyonlar"
 date: 2025-03-12
 slug: /vhdl_kutuphaneleri/
 description: VHDL'de Kütüphaneler ve İçerdikleri Fonksiyonlar
-image: images/vhdl_kutuphaneleri.png
+image: images/vhdl_kutuphaneleri_tr.png
 categories:
   - vhdl
 tags:

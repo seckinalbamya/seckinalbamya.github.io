@@ -3,7 +3,7 @@ title: "FPGA'de Statik Timing Analizi"
 date: 2025-06-16
 slug: /fpgade_statik_timing_analizi/
 description: FPGA'de Statik Timing Analizi
-image: images/statik_timing_analiz_pp.png
+image: images/statik_timing_analiz_pp_tr.png
 categories:
   - fpga
 tags:

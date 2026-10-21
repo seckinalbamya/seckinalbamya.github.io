@@ -1,0 +1,14 @@
+[recentPosts]
+other = "Son Gönderiler"
+[minRead]
+other = "dk okuma"
+[prev]
+other = "← Önceki"
+[next]
+other = "Sonraki →"
+[footerTagline]
+other = "FPGA ve HDL üzerine çalışmalar..."
+[footerNote]
+other = "VHDLVerilog.com / VerilogVHDL.com kar amacı gütmeden çalışmalarımı paylaştığım bir web sitesidir."
+[copyright]
+other = "İçeriklerin izinsiz paylaşılmaması rica olunur. Copyright © {{ .Year }}. Tüm hakları saklıdır."
