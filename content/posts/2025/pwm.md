@@ -3,7 +3,7 @@ title: "VHDL ve Verilog ile PWM Sinyali Üretimi"
 date: 2025-12-18
 slug: /vhdl_verilog_ile_pwm_sinyali_uretimi/
 description: VHDL ve Verilog ile PWM Sinyali Üretimi
-image: images/pwm/pwm_kapak.png
+image: images/pwm/pwm_kapak_tr.png
 categories:
   - fpga
   - vhdl

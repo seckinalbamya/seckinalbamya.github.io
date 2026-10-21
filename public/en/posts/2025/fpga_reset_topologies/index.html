@@ -116,7 +116,8 @@
     </figure>
 
     <div id="content" class="mb-14">
-      <p>In FPGA applications the reset architecture is extremely critical for the reliability of the design. Reset structures play a key role, particularly in space, aviation and other mission-critical systems, in quickly preventing possible faults and in defining the behaviour of the system at start-up.</p>
+      <p>&ndash;</p>
+<p>In FPGA applications the reset architecture is extremely critical for the reliability of the design. Reset structures play a key role, particularly in space, aviation and other mission-critical systems, in quickly preventing possible faults and in defining the behaviour of the system at start-up.</p>
 <p>In FPGAs there are two main reset structures: synchronous reset and asynchronous reset.</p>
 <p>A synchronous reset clears the registers in step with the clock signal.
 Its advantages are as follows:</p>
@@ -207,7 +208,7 @@ The purpose of the POR structure is to apply a reset signal unconditionally for 
 <p>In the reset glitch filter shown in Figure 7, the input signal itself and a slightly delayed copy of it are applied to an or gate (or an and gate for an active-&lsquo;0&rsquo; reset). Delaying the input signal can be done with the hardware macros provided by the vendors or by creating a delay with simple logic. Since the gate receives both the glitched signal and the copy the glitch has not yet reached, an unaffected output is obtained; this filtered signal is then fed into the synchroniser circuit and brought into synchronism with the clock. The operation of the filter can be understood by examining the waveforms at the top left: the glitch-affected rst_n, the delayed drst_n and the filtered frst_n.</p>
 <p>In conclusion, synchronous and asynchronous reset structures are two different approaches, each with its own advantages and disadvantages. Using them together improves the reliability of the design and brings the strengths of both into the same architecture, which is particularly important in critical applications such as space and aviation.</p>
 <p>The following sources were used while preparing this article: <a href="https://vlsiverify.com/verilog/verilog-codes/dff-with-synchronous-reset/">VLSIVerify - DFF with synchronous reset</a>,<a href="https://www.embedded.com/asynchronous-reset-synchronization-and-distribution-challenges-and-solutions"> Embedded - Asynchronous reset synchronization and distribution challenges and solutions</a>, <a href="http://www.sunburst-design.com/papers/CummingsSNUG2003Boston_Resets.pdf">Asynchronous &amp; Synchronous Reset
-Design Techniques - Part Deux</a> and <a href="https://docs.amd.com/r/en-US/ug949-vivado-design-methodology">Xilinx - UG949</a>.</p>
+Design Techniques - Part Deux</a> and [Xilinx - UG949](<a href="https://docs.amd.com/r/en-US/ug949-vivado-design-methodology">https://docs.amd.com/r/en-US/ug949-vivado-design-methodology</a></p>
 
 
     <ul id="taxonomy" class="not-prose flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto">
@@ -268,7 +269,7 @@ Design Techniques - Part Deux</a> and <a href="https://docs.amd.com/r/en-US/ug94
 
 		<article class="relative group flex flex-row">
 	<a class="insert-link" href="http://localhost:1313/en/posts/2026/axis_slave_interface/"></a>
-	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/axis_slave_interface_kapak_hu9063474181042281989.png" alt="AXI-S Slave Interface Design" width="500" height="233">
+	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/axis_slave_interface_kapak_en_hu9063474181042281989.png" alt="AXI-S Slave Interface Design" width="500" height="233">
 
 	</figure>
 	<div class="basis-2/3 self-center ml-4">
@@ -295,7 +296,7 @@ Design Techniques - Part Deux</a> and <a href="https://docs.amd.com/r/en-US/ug94
 </article>
 <article class="relative group flex flex-row">
 	<a class="insert-link" href="http://localhost:1313/en/posts/2025/moving_average_filter_with_vhdl/"></a>
-	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/moving_average_filter_kapak_hu13447921106072304624.jpg" alt="Moving Average Filter with VHDL" width="500" height="281">
+	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/moving_average_filter_kapak_en_hu13447921106072304624.jpg" alt="Moving Average Filter with VHDL" width="500" height="281">
 
 	</figure>
 	<div class="basis-2/3 self-center ml-4">

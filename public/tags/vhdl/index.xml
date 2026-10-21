@@ -13,21 +13,21 @@
       <link>http://localhost:1313/posts/2025/vhdl_verilog_ile_pwm_sinyali_uretimi/</link>
       <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/2025/vhdl_verilog_ile_pwm_sinyali_uretimi/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;VHDL ve Verilog ile PWM Sinyali Üretimi&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;PWM (Pulse Width Modulation), dijital sinyal çıktısının aktif olduğu süreyi değiştirerek çıktının değerinin kontrol edildiği, elektronik uygulamalarda yaygın kullanılan bir çıkış formatıdır. Bu çıkış formatıyla analog çıkışa denk bir sinyalin etkisi dijital bir sinyal ile oluşturulabilmektedir. Ayrıca PWM sinyalinin zaman parametreleri kullanılarak başka bir dijital sistemler arası veri aktarmak da mümkündür.&lt;/p&gt;</description>
+      <description>&lt;p&gt;og ile PWM Sinyali Üretimi**&lt;/p&gt;&#xA;&lt;p&gt;PWM (Pulse Width Modulation), dijital sinyal çıktısının aktif olduğu süreyi değiştirerek çıktının değerinin kontrol edildiği, elektronik uygulamalarda yaygın kullanılan bir çıkış formatıdır. Bu çıkış formatıyla analog çıkışa denk bir sinyalin etkisi dijital bir sinyal ile oluşturulabilmektedir. Ayrıca PWM sinyalinin zaman parametreleri kullanılarak başka bir dijital sistemler arası veri aktarmak da mümkündür.&lt;/p&gt;</description>
     </item>
     <item>
       <title>VHDL ile Hareketli Ortalama Filtre (Moving Average Filter)</title>
       <link>http://localhost:1313/posts/2025/vhdl_ile_hareketli_ortalama_filtre/</link>
       <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/2025/vhdl_ile_hareketli_ortalama_filtre/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Hareketli Ortalama Filtre (Moving Average Filter)&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Hareketli ortalama filtre (moving average filter) girdilerin sıralı şekilde ortalamasını alıp çıkartan bir filtredir. Ani ve rastgele değişen girdilere karşılık stabil bir çıktı üretir. Matematiksel olarak genişliği sabit olan bir Finite Impulse Response (FIR) fonksiyonu ile konvolüsyon işlemidir. Low pass karakteristiğine sahiptir. Zaman domaininde iyi çalışan bir filtre olmasına karşın frekans domaininde iyi sonuçlar vermez.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Ortalama Filtre (Moving Average Filter)**&lt;/p&gt;&#xA;&lt;p&gt;Hareketli ortalama filtre (moving average filter) girdilerin sıralı şekilde ortalamasını alıp çıkartan bir filtredir. Ani ve rastgele değişen girdilere karşılık stabil bir çıktı üretir. Matematiksel olarak genişliği sabit olan bir Finite Impulse Response (FIR) fonksiyonu ile konvolüsyon işlemidir. Low pass karakteristiğine sahiptir. Zaman domaininde iyi çalışan bir filtre olmasına karşın frekans domaininde iyi sonuçlar vermez.&lt;/p&gt;</description>
     </item>
     <item>
       <title>VHDL&#39;de Kütüphaneler ve İçerdikleri Fonksiyonlar</title>
       <link>http://localhost:1313/posts/2025/vhdl_kutuphaneleri/</link>
       <pubDate>Wed, 12 Mar 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/2025/vhdl_kutuphaneleri/</guid>
-      <description>&lt;p&gt;VHDL kullanılarak yapılan bir tasarımda bir tanımlamaya ihtiyaç duyulmaksızın &amp;ldquo;standard&amp;rdquo; package tanımlı olarak gelmektedir. Standard package&amp;rsquo;ın&#xA;tanımladığı type çeşitleri aşağıda verilmiştir.&lt;/p&gt;</description>
+      <description>&lt;p&gt;rak yapılan bir tasarımda bir tanımlamaya ihtiyaç duyulmaksızın &amp;ldquo;standard&amp;rdquo; package tanımlı olarak gelmektedir. Standard package&amp;rsquo;ın&#xA;tanımladığı type çeşitleri aşağıda verilmiştir.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

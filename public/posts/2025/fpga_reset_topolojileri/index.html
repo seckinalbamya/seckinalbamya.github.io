@@ -116,7 +116,7 @@
     </figure>
 
     <div id="content" class="mb-14">
-      <p>FPGA uygulamalarında reset yapısı tasarımın güvenilirliği için son derece kritik öneme sahiptir. Reset yapıları, özellikle uzay, havacılık ve kritik öneme sahip sistemlerde olası hataların hızlı bir şekilde önlenmesi ve ilk çalışma durumundaki davranışlarının belirlenmesi için kritik rol oynamaktadır.</p>
+      <p>alarında reset yapısı tasarımın güvenilirliği için son derece kritik öneme sahiptir. Reset yapıları, özellikle uzay, havacılık ve kritik öneme sahip sistemlerde olası hataların hızlı bir şekilde önlenmesi ve ilk çalışma durumundaki davranışlarının belirlenmesi için kritik rol oynamaktadır.</p>
 <p>FPGA&rsquo;lerde reset yapısı senkron ve asenkron reset olmak üzere iki ana yapıdadır.</p>
 <p>Senkron reset clock sinyaline göre eşzamanlı şekilde registerlerin sıfırlamasını yapar.
 Avantajları şu şekildedir:</p>
@@ -207,7 +207,8 @@ POR yapısının amacı sadece ilk çalıştırmaya mahsus, belirli bir süre bo
 <p>Şekil 7&rsquo;de verilen reset glitch filtresindeki giriş sinyalinin kendisi ve giriş sinyalinin bir miktar geciktirilmiş hali or (veya aktif ‘0’ için and) kapısına uygulanmaktadır. Giriş sinyalinin geciktirilmesi üreticilerin sağlamış olduğu donanımsal makrolar ile veya basit logicler ile gecikme oluşturularak yapılabilmektedir. Mantık kapısına hem glitchli hem de henüz glitch&rsquo;in ulaşmadığı sinyal girilerek etkilenmeyen çıktı elde edilmiş, sonrasında elde edilen bu filtrelenmiş sinyal senkronizer devresine girilerek clock sinyaline senkron hale getirilmiştir. Sol üstte yer alan glitch&rsquo;ten etkilenmiş rst_n, geciktirilmiş drst_n ve filtrelenmiş frst_n sinyalinin zamana göre değişimleri incelendiğinde filtre yapısının çalışması anlaşılabilir.</p>
 <p>Sonuç olarak senkron ve asenkron reset yapılarının her ikisi de kendilerine has avantaj ve dezavantajlara sahip farklı yapılardır. Her iki yapının da birlikte kullanılmasıyla tasarımın güvenilirliği ve her iki yapının da avantajlı yanları ortak şekilde tasarıma entegre edilmesi özellikle uzay ve havacılık gibi kritik uygulamalarda önem arz etmektedir.</p>
 <p>Bu yazı hazırlanırken <a href="https://vlsiverify.com/verilog/verilog-codes/dff-with-synchronous-reset/">VLSIVerify - DFF with synchronous reset</a>,<a href="https://www.embedded.com/asynchronous-reset-synchronization-and-distribution-challenges-and-solutions"> Embedded - Asynchronous reset synchronization and distribution challenges and solutions</a>, <a href="http://www.sunburst-design.com/papers/CummingsSNUG2003Boston_Resets.pdf">Asynchronous &amp; Synchronous Reset
-Design Techniques - Part Deux</a> ve <a href="https://docs.amd.com/r/en-US/ug949-vivado-design-methodology">Xilinx - UG949</a> kaynaklarından faydalanılmıştır.</p>
+Design Techniques - Part Deux</a> ve <a href="https://docs.amd.com/r/en-US/ug949-vivado-design-methodology">Xilinx - UG949</a> kaynaklarından faydalanılmıştır.
+����������������������������������������������������������������������������������������������������������������������������������������</p>
 
 
     <ul id="taxonomy" class="not-prose flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto">

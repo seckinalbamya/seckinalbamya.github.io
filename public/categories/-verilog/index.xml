@@ -13,7 +13,7 @@
       <link>http://localhost:1313/posts/2025/vhdl_verilog_ile_pwm_sinyali_uretimi/</link>
       <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/2025/vhdl_verilog_ile_pwm_sinyali_uretimi/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;VHDL ve Verilog ile PWM Sinyali Üretimi&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;PWM (Pulse Width Modulation), dijital sinyal çıktısının aktif olduğu süreyi değiştirerek çıktının değerinin kontrol edildiği, elektronik uygulamalarda yaygın kullanılan bir çıkış formatıdır. Bu çıkış formatıyla analog çıkışa denk bir sinyalin etkisi dijital bir sinyal ile oluşturulabilmektedir. Ayrıca PWM sinyalinin zaman parametreleri kullanılarak başka bir dijital sistemler arası veri aktarmak da mümkündür.&lt;/p&gt;</description>
+      <description>&lt;p&gt;og ile PWM Sinyali Üretimi**&lt;/p&gt;&#xA;&lt;p&gt;PWM (Pulse Width Modulation), dijital sinyal çıktısının aktif olduğu süreyi değiştirerek çıktının değerinin kontrol edildiği, elektronik uygulamalarda yaygın kullanılan bir çıkış formatıdır. Bu çıkış formatıyla analog çıkışa denk bir sinyalin etkisi dijital bir sinyal ile oluşturulabilmektedir. Ayrıca PWM sinyalinin zaman parametreleri kullanılarak başka bir dijital sistemler arası veri aktarmak da mümkündür.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

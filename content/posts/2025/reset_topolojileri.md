@@ -3,7 +3,7 @@ title: "FPGA'de Reset Topolojileri"
 date: 2025-08-31
 slug: /fpga_reset_topolojileri/
 description: FPGA'de Reset Topolojileri
-image: images/reset_topolojileri_kapak.png
+image: images/reset_topolojileri_kapak_tr.png
 categories:
   - fpga
   - reset

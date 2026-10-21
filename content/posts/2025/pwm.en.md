@@ -3,7 +3,7 @@ title: "PWM Signal Generation with VHDL and Verilog"
 date: 2025-12-18
 slug: /pwm_signal_generation_with_vhdl_and_verilog/
 description: PWM Signal Generation with VHDL and Verilog
-image: images/pwm/pwm_kapak.png
+image: images/pwm/pwm_kapak_en.png
 categories:
   - fpga
   - vhdl

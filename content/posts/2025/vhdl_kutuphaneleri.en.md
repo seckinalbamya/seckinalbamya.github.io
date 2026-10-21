@@ -3,7 +3,7 @@ title: "Libraries in VHDL and the Functions They Contain"
 date: 2025-03-12
 slug: /vhdl_libraries/
 description: Libraries in VHDL and the Functions They Contain
-image: images/vhdl_kutuphaneleri.png
+image: images/vhdl_kutuphaneleri_en.png
 categories:
   - vhdl
 tags:

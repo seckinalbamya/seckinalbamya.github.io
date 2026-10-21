@@ -3,7 +3,7 @@ title: "AXI-S Slave Interface Design"
 date: 2026-07-29
 slug: /axis_slave_interface/
 description: AXI-S Slave Interface Design
-image: images/axis_slave_interface_kapak.png
+image: images/axis_slave_interface_kapak_en.png
 categories:
   - fpga
   - interface

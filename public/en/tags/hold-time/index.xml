@@ -13,7 +13,7 @@
       <link>http://localhost:1313/en/posts/2025/static_timing_analysis_in_fpga/</link>
       <pubDate>Mon, 16 Jun 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/en/posts/2025/static_timing_analysis_in_fpga/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Static Timing Analysis in FPGA:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;    Certain design requirements must be met for an FPGA design to operate safely and without errors. One of the most important of these requirements is timing analysis.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&amp;ndash;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Static Timing Analysis in FPGA:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;    Certain design requirements must be met for an FPGA design to operate safely and without errors. One of the most important of these requirements is timing analysis.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

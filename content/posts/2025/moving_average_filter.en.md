@@ -3,7 +3,7 @@ title: "Moving Average Filter with VHDL"
 date: 2025-08-28
 slug: /moving_average_filter_with_vhdl/
 description: Moving Average Filter with VHDL
-image: images/moving_average_filter_kapak.jpg
+image: images/moving_average_filter_kapak_en.jpg
 categories:
   - fpga
   - vhdl

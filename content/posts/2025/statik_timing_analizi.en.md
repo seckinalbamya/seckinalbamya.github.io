@@ -3,7 +3,7 @@ title: "Static Timing Analysis in FPGA"
 date: 2025-06-16
 slug: /static_timing_analysis_in_fpga/
 description: Static Timing Analysis in FPGA
-image: images/statik_timing_analiz_pp.png
+image: images/statik_timing_analiz_pp_en.png
 categories:
   - fpga
 tags:
