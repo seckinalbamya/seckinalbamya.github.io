@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reset on VHDLVerilog</title>
+    <link>http://localhost:1313/en/categories/reset/</link>
+    <description>Recent content in Reset on VHDLVerilog</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 31 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/en/categories/reset/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reset Topologies in FPGA</title>
+      <link>http://localhost:1313/en/posts/2025/fpga_reset_topologies/</link>
+      <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/2025/fpga_reset_topologies/</guid>
+      <description>&lt;p&gt;In FPGA applications the reset architecture is extremely critical for the reliability of the design. Reset structures play a key role, particularly in space, aviation and other mission-critical systems, in quickly preventing possible faults and in defining the behaviour of the system at start-up.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

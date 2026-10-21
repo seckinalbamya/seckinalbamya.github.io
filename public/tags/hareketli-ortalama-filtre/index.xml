@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hareketli Ortalama Filtre on VHDLVerilog</title>
+    <link>http://localhost:1313/tags/hareketli-ortalama-filtre/</link>
+    <description>Recent content in Hareketli Ortalama Filtre on VHDLVerilog</description>
+    <generator>Hugo</generator>
+    <language>tr-TR</language>
+    <lastBuildDate>Thu, 28 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/hareketli-ortalama-filtre/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VHDL ile Hareketli Ortalama Filtre (Moving Average Filter)</title>
+      <link>http://localhost:1313/posts/2025/vhdl_ile_hareketli_ortalama_filtre/</link>
+      <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2025/vhdl_ile_hareketli_ortalama_filtre/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Hareketli Ortalama Filtre (Moving Average Filter)&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Hareketli ortalama filtre (moving average filter) girdilerin sıralı şekilde ortalamasını alıp çıkartan bir filtredir. Ani ve rastgele değişen girdilere karşılık stabil bir çıktı üretir. Matematiksel olarak genişliği sabit olan bir Finite Impulse Response (FIR) fonksiyonu ile konvolüsyon işlemidir. Low pass karakteristiğine sahiptir. Zaman domaininde iyi çalışan bir filtre olmasına karşın frekans domaininde iyi sonuçlar vermez.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,12 @@
+{{- $main := resources.Get "css/main.css" }}
+{{- $custom := resources.Get "css/custom.css" }}
+{{- with $main }}
+  {{- $bundle := slice . $custom | resources.Concat "css/bundle.css" }}
+  {{- if eq hugo.Environment "development" }}
+    <link rel="stylesheet" href="{{ $bundle.RelPermalink }}">
+  {{- else }}
+    {{- with $bundle | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{- end }}
+  {{- end }}
+{{- end }}

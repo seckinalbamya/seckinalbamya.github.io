@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AXI-S Slave Interface Design | VHDLVerilog</title>
+
+<meta name="description" content="AXI-S Slave Interface Design">
+<link rel="canonical" href="http://localhost:1313/en/posts/2026/axis_slave_interface/">
+<link rel="alternate" hreflang="tr-TR" href="http://localhost:1313/posts/2026/axis_slave_interface/">
+<link rel="alternate" hreflang="x-default" href="http://localhost:1313/posts/2026/axis_slave_interface/">
+<link rel="alternate" hreflang="en-US" href="http://localhost:1313/en/posts/2026/axis_slave_interface/">
+    <link rel="stylesheet" href="/css/bundle.css">
+
+<link rel="icon" type="image/svg+xml" href="http://localhost:1313/favicon.svg"> 
+<link rel="icon" type="image/x-icon" href="http://localhost:1313/favicon.ico"> 
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon.png"> 
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32.png"> 
+<link rel="icon" type="image/png" sizes="64x64" href="http://localhost:1313/favicon-64.png"> 
+
+</head>
+<body>
+  <header class="py-6 border-b"><div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col">
+	<div class="flex items-center">
+		<div class="flex items-center">
+			<button class="flex items-center space-x-2 rounded-full border py-1 pr-[5px] pl-3 group bg-zinc-100 hover:bg-zinc-200 toggle-button" data-target="menu-bar">
+				<svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+				</svg>
+				<span class="bg-zinc-100 fill-white rounded-full p-1.5">
+					<svg width="18" height="18" viewBox="30 30 140 140" xmlns="http://www.w3.org/2000/svg">
+  
+  <g stroke="#000" stroke-width="12" fill="none" stroke-linecap="round">
+    <rect x="50" y="50" width="100" height="100" rx="12" />
+    
+    <line x1="75" y1="30" x2="75" y2="50" />
+    <line x1="100" y1="30" x2="100" y2="50" />
+    <line x1="125" y1="30" x2="125" y2="50" />
+    
+    <line x1="75" y1="150" x2="75" y2="170" />
+    <line x1="100" y1="150" x2="100" y2="170" />
+    <line x1="125" y1="150" x2="125" y2="170" />
+    
+    <line x1="30" y1="75" x2="50" y2="75" />
+    <line x1="30" y1="100" x2="50" y2="100" />
+    <line x1="30" y1="125" x2="50" y2="125" />
+    
+    <line x1="150" y1="75" x2="170" y2="75" />
+    <line x1="150" y1="100" x2="170" y2="100" />
+    <line x1="150" y1="125" x2="170" y2="125" />
+  </g>
+
+  
+  <rect x="80" y="80" width="40" height="40" rx="8" fill="#00AEEF" />
+</svg>
+
+
+				</span>
+			</button>
+			<div class="relative rounded-full py-1.5 px-6 bg-zinc-100 hover:bg-zinc-200 text-xl font-bold uppercase mx-2">
+				<h2><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="/en/">VHDLVerilog</a></h2>
+			</div>
+		</div>
+	</div>
+  <nav id="menu-bar" class="block mt-3 close">
+    <ul class="flex items-center flex flex-nowrap whitespace-nowrap overflow-x-auto space-x-4">
+    <li class="my-2">
+      <a class="rounded-full border px-6 py-2 bg-zinc-100 hover:bg-zinc-200" href="/en/">Home</a>
+    </li>
+    <li class="my-2">
+      <a class="rounded-full border px-6 py-2 bg-zinc-100 hover:bg-zinc-200" href="/en/about/">About</a>
+    </li>
+          <li class="my-2 ml-auto">
+            <a class="lang-switch rounded-full border px-6 py-2 bg-zinc-100 hover:bg-zinc-200" href="/posts/2026/axis_slave_interface/" hreflang="tr-TR" data-lang="tr">Tr</a>
+          </li>
+    </ul>
+  </nav>
+</div>
+</header>
+  <main class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+
+  <article class="md:col-span-2 prose lg:prose-lg">
+
+    <header class="not-prose">
+      
+      <h1 id="title" class="text-4xl font-bold leading-normal">AXI-S Slave Interface Design</h1>
+
+      <div id="lead" class="my-6">
+
+        <p class="font-bold">AXI-S Slave Interface Design </p>
+
+      </div>
+      
+      <div id="writer" class="flex items-center space-x-4"><ul class="flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto">
+          
+          <li class="font-semibold my-2"></li>
+          
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2"><time datetime="2026-07-29T00:00:00&#43;00:00">July 29, 2026</time>
+          </li>
+
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2">
+            7 min read
+          </li>
+
+        </ul>
+
+      </div>
+      
+    </header>
+
+    <figure id="featureimage" class="rounded-xl aspect-video">
+            <center><img class="rounded-lg" src="http://localhost:1313/images/axis_slave_interface_kapak_hu10931031208326422457.png" alt="" width="750" height="350"></center>
+
+    </figure>
+
+    <div id="content" class="mb-14">
+      <p>Developing a module or a design with a standard interface offers significant convenience to the RTL designer. It brings the advantages of being easy to integrate into other projects and of sharing a common structure that is compatible with designs developed by others.</p>
+<p>AXI4-Stream (AXI-S), whose standard was defined by ARM and which is used in systems requiring high-volume, unidirectional data flow, is frequently used in video transmission standards such as HDMI and VGA.</p>
+<p>AXI-S has a fairly simple structure. It consists of one-bit status signals through which the transmitting and receiving sides tell each other that they are ready, a one-bit signal used to synchronise the data, a multi-bit bus carrying the data itself, and a one-bit signal whose function can be defined by the user.</p>
+<p>Taking a closer look at the AXI-S signals that are used most commonly:</p>
+<ul>
+<li>ACLK: The clock signal. All operations are performed on the rising edge of this signal.</li>
+<li>ARESETN: The asynchronous reset signal. It is active low. It must be released synchronously with ACLK.</li>
+<li>TDATA: The interface over which the data is transferred. It is an output for the master and an input for the slave. Its width can be any integer multiple of 8 bits.</li>
+<li>TVALID: The interface indicating that the data on TDATA is valid. It is an output for the master and an input for the slave.</li>
+<li>TREADY: The interface with which the slave device indicates that it can accept data. It is an input for the master and an output for the slave.</li>
+<li>TUSER: An interface that can be used for a function defined by the user. It is an output for the master and an input for the slave</li>
+<li>TLAST: The interface indicating that the last data word has been sent. It is an output for the master and an input for the slave</li>
+</ul>
+<p>Apart from these interfaces, you can review the operation of the TSTRB, TKEEP, TID and TDEST signals defined in the specification <a href="https://support.arm.com/documentation/ihi0051/b/"><u>here</u></a>.</p>
+<p>AXI-S is a protocol that starts transferring data directly, without any additional handshake or address transaction, as soon as both the TREADY and TVALID signals are &lsquo;1&rsquo;. The operating principle of the AXI-S protocol can be examined through the interface signals in Figure 1.</p>
+<p align="center">
+  <img src="https://vhdlverilog.com/images/axis_slave_interface/sekil_1.png" width="1580"/>
+  <em>Figure 1 - Operating principle of the AXI-S protocol</em>
+</p>
+<p>In addition, to prevent deadlock, the protocol rules state that the TVALID signal may not wait for the TREADY signal to become &lsquo;1&rsquo;.</p>
+<p>In this article an AXI-S slave interface is designed that can be used directly in video transmission applications such as HDMI and VGA.</p>
+<p>In HDMI and VGA interfaces, data synchronisation between the image produced by the source and the interface performing the transmission is critical. Synchronisation between the source and the video interface, which run in different clock domains, is provided by buffers. Provided that the conditions &ldquo;amount of data produced &gt;= amount of data transmitted&rdquo; and &ldquo;source clock frequency &gt;= interface clock frequency&rdquo; are met, uninterrupted data transfer can be achieved with a single FIFO performing the clock domain crossing.
+In this flow, which is built around a FIFO supporting two clock inputs, the clock domain crossing capability of the FIFO is used. In addition, in accordance with the AXI-S protocol, the TREADY signal is generated from the full/empty status of the FIFO. In order to keep the latency of the system to a minimum, the design does not wait for a complete line to accumulate in the FIFO before starting to read. Since the source frequency (ACLK) is higher than the target frequency (PIXEL_CLK), the FIFO is expected to feed the display module without interruption.</p>
+<p>Xilinx and most other IP core developers use the TUSER signal as the Start of Frame (SoF) signal in video-oriented AXI-S applications. In this design too, the TUSER signal is used for the SoF function. The SoF signal is driven to &lsquo;1&rsquo; on the first pixel of the first line of the displayed image.</p>
+<p>In the same manner, the TLAST signal is used as the End of Line (EoL) signal. The EoL signal is driven to &lsquo;1&rsquo; on the last pixel of the line being transferred.</p>
+<p>The HDMI standard requires each of the RGB channels to be transferred as 8 bits. In this design the TDATA signal is a 24-bit bus formed by concatenating the Red (R), Green (G) and Blue (B) channels in that order. When this colour data is written into the FIFO it is concatenated with the TUSER (SoF) and TLAST (EoL) signals, giving a total of 26 bits. The TUSER (SoF) and TLAST (EoL) bits are placed at bit 25 and bit 24 respectively. This allows the destination module that reads the data out of the FIFO to handle its own synchronisation.</p>
+<p>The FIFO is configured as First Word Fall Through (FWFT), which always keeps the data ready at the output. As a result, the data flow can start immediately once TREADY and TVALID are &lsquo;1&rsquo;, as the AXI-S protocol requires, with no clock cycle of latency. Using the status signals of the FIFO, TREADY is driven to &lsquo;1&rsquo; while the FIFO is not full to indicate that incoming data can be accepted, and likewise the data is written into the FIFO whenever valid data arrives (TVALID = &lsquo;1&rsquo;) while the FIFO is not full.</p>
+<p>The SoF signal is driven out of the module concurrently from the already available FIFO data output. The reason for this is that the module generating the video synchronisation signals has to detect the start of a new frame immediately, without waiting for the data to be written into a register.</p>
+<p>Finally, while the module is enabled by the enable input coming from the module that generates the HDMI or VGA synchronisation signals, the data leaving the FIFO is driven out through a register clocked at the operating frequency of the interface module.</p>
+<p>The configuration settings of the FWFT FIFO, created with Vivado 2024.1 using FIFO Generator 13.2 (Rev. 10), are given in Figure 2.</p>
+<p align="center">
+  <img src="https://vhdlverilog.com/images/axis_slave_interface/sekil_2.png" width="3560"/>
+  <em>Figure 2 - FWFT FIFO configuration settings</em>
+</p>
+<p>The AXI-S slave interface code, written in VHDL and used in a custom-designed HDMI IP core, is given below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vhdl" data-lang="vhdl"><span style="display:flex;"><span><span style="color:#66d9ef">library</span> ieee;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> ieee.std_logic_1164.<span style="color:#66d9ef">all</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> IEEE.numeric_std.<span style="color:#66d9ef">all</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">entity</span> <span style="color:#a6e22e">axis_slave_interface</span> <span style="color:#66d9ef">is</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">port</span>
+</span></span><span style="display:flex;"><span>	(
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">--CLK/Reset interface</span>
+</span></span><span style="display:flex;"><span>		PIXEL_CLK_i		<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span>  <span style="color:#66d9ef">std_logic</span>;   <span style="color:#75715e">-- pixel clock</span>
+</span></span><span style="display:flex;"><span>		PIXEL_RESET_i	<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span>  <span style="color:#66d9ef">std_logic</span>;   <span style="color:#75715e">-- PIXEL_CLK domain reset</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">--HDMI Interface</span>
+</span></span><span style="display:flex;"><span>		DATA_o			<span style="color:#f92672">:</span> <span style="color:#66d9ef">out</span> <span style="color:#66d9ef">std_logic_vector</span>(<span style="color:#ae81ff">23</span> <span style="color:#66d9ef">downto</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>		DISPLAY_EN_i	<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span>  <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>		SOF_o			<span style="color:#f92672">:</span> <span style="color:#66d9ef">out</span> <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>		EOL_o			<span style="color:#f92672">:</span> <span style="color:#66d9ef">out</span> <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">--AXI4-Stream CLK/Reset interface</span>
+</span></span><span style="display:flex;"><span>		ACLK			<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span>  <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>		ARESETn			<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span>  <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">--AXI4-Stream slave (stream domain)</span>
+</span></span><span style="display:flex;"><span>		S_AXIS_TDATA	<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span>  <span style="color:#66d9ef">std_logic_vector</span>(<span style="color:#ae81ff">23</span> <span style="color:#66d9ef">downto</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>		S_AXIS_TVALID	<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span>  <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>		S_AXIS_TREADY	<span style="color:#f92672">:</span> <span style="color:#66d9ef">out</span> <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>		S_AXIS_TUSER	<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span>  <span style="color:#66d9ef">std_logic</span>;   <span style="color:#75715e">-- Start of Frame (first pixel of frame)</span>
+</span></span><span style="display:flex;"><span>		S_AXIS_TLAST 	<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span>  <span style="color:#66d9ef">std_logic</span>    <span style="color:#75715e">-- End of Line</span>
+</span></span><span style="display:flex;"><span>	);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span> <span style="color:#66d9ef">entity</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">architecture</span> <span style="color:#a6e22e">axis_slave_interface_beh</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">axis_slave_interface</span> <span style="color:#66d9ef">is</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">component</span> <span style="color:#a6e22e">axis_slave_line_buffer</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">port</span>
+</span></span><span style="display:flex;"><span>		(
+</span></span><span style="display:flex;"><span>			rst 	<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>			wr_clk 	<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>			rd_clk 	<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>			din 	<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">std_logic_vector</span>(<span style="color:#ae81ff">25</span> <span style="color:#66d9ef">downto</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>			wr_en 	<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>			rd_en 	<span style="color:#f92672">:</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>			dout 	<span style="color:#f92672">:</span> <span style="color:#66d9ef">out</span> <span style="color:#66d9ef">std_logic_vector</span>(<span style="color:#ae81ff">25</span> <span style="color:#66d9ef">downto</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>			full 	<span style="color:#f92672">:</span> <span style="color:#66d9ef">out</span> <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>			empty 	<span style="color:#f92672">:</span> <span style="color:#66d9ef">out</span> <span style="color:#66d9ef">std_logic</span>
+</span></span><span style="display:flex;"><span>		);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">end</span> <span style="color:#66d9ef">component</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">constant</span> DW	<span style="color:#f92672">:</span> <span style="color:#66d9ef">integer</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">26</span>;  <span style="color:#75715e">-- [25]=SOF, [24]=EOL, [23:0]=RGB888</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">-- FIFO signals</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">signal</span> wr_en		<span style="color:#f92672">:</span> <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">signal</span> rd_en		<span style="color:#f92672">:</span> <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">signal</span> fifo_full	<span style="color:#f92672">:</span> <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">signal</span> fifo_empty	<span style="color:#f92672">:</span> <span style="color:#66d9ef">std_logic</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">signal</span> din			<span style="color:#f92672">:</span> <span style="color:#66d9ef">std_logic_vector</span>(DW<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">downto</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">signal</span> dout			<span style="color:#f92672">:</span> <span style="color:#66d9ef">std_logic_vector</span>(DW<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">downto</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">----------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">-- Write side (ACLK / stream domain)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">----------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>	din           <span style="color:#f92672">&lt;=</span> S_AXIS_TUSER <span style="color:#f92672">&amp;</span> S_AXIS_TLAST <span style="color:#f92672">&amp;</span> S_AXIS_TDATA;
+</span></span><span style="display:flex;"><span>	wr_en         <span style="color:#f92672">&lt;=</span> S_AXIS_TVALID <span style="color:#66d9ef">and</span> (<span style="color:#66d9ef">not</span> fifo_full);
+</span></span><span style="display:flex;"><span>	S_AXIS_TREADY <span style="color:#f92672">&lt;=</span> (<span style="color:#66d9ef">not</span> fifo_full);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">----------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">-- Read side (PIXEL_CLK / video domain) - FWFT</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">----------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>	rd_en <span style="color:#f92672">&lt;=</span> DISPLAY_EN_i <span style="color:#66d9ef">and</span> (<span style="color:#66d9ef">not</span> fifo_empty);
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	SOF_o <span style="color:#f92672">&lt;=</span> dout(<span style="color:#ae81ff">25</span>) <span style="color:#66d9ef">and</span> (<span style="color:#66d9ef">not</span> fifo_empty);
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">READ_OUT</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">process</span>(PIXEL_CLK_i)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> rising_edge(PIXEL_CLK_i) <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> PIXEL_RESET_i <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>				DATA_o <span style="color:#f92672">&lt;=</span> (<span style="color:#66d9ef">others</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;0&#39;</span>);
+</span></span><span style="display:flex;"><span>				EOL_o  <span style="color:#f92672">&lt;=</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> DISPLAY_EN_i <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> fifo_empty <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>						DATA_o <span style="color:#f92672">&lt;=</span> dout(<span style="color:#ae81ff">23</span> <span style="color:#66d9ef">downto</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>						EOL_o  <span style="color:#f92672">&lt;=</span> dout(<span style="color:#ae81ff">24</span>);
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>						<span style="color:#75715e">-- Underflow -&gt; black, for protecting timing</span>
+</span></span><span style="display:flex;"><span>						DATA_o <span style="color:#f92672">&lt;=</span> (<span style="color:#66d9ef">others</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;0&#39;</span>);
+</span></span><span style="display:flex;"><span>						EOL_o  <span style="color:#f92672">&lt;=</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">end</span> <span style="color:#66d9ef">if</span>;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>					EOL_o <span style="color:#f92672">&lt;=</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">end</span> <span style="color:#66d9ef">if</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">end</span> <span style="color:#66d9ef">if</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">end</span> <span style="color:#66d9ef">if</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">end</span> <span style="color:#66d9ef">process</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">----------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">-- Async FIFO (CDC + buffering)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">----------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	CDC_FIFO <span style="color:#f92672">:</span> axis_slave_line_buffer
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">port</span> <span style="color:#66d9ef">map</span>
+</span></span><span style="display:flex;"><span>	(
+</span></span><span style="display:flex;"><span>		rst     <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">not</span> ARESETn,
+</span></span><span style="display:flex;"><span>		wr_clk 	<span style="color:#f92672">=&gt;</span> ACLK,
+</span></span><span style="display:flex;"><span>		rd_clk 	<span style="color:#f92672">=&gt;</span> PIXEL_CLK_i,
+</span></span><span style="display:flex;"><span>		din 	<span style="color:#f92672">=&gt;</span> din,
+</span></span><span style="display:flex;"><span>		wr_en 	<span style="color:#f92672">=&gt;</span> wr_en,
+</span></span><span style="display:flex;"><span>		rd_en 	<span style="color:#f92672">=&gt;</span> rd_en,
+</span></span><span style="display:flex;"><span>		dout 	<span style="color:#f92672">=&gt;</span> dout, 
+</span></span><span style="display:flex;"><span>		full 	<span style="color:#f92672">=&gt;</span> fifo_full,
+</span></span><span style="display:flex;"><span>		empty 	<span style="color:#f92672">=&gt;</span> fifo_empty
+</span></span><span style="display:flex;"><span>	);
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span> <span style="color:#66d9ef">architecture</span>;
+</span></span></code></pre></div>
+
+    <ul id="taxonomy" class="not-prose flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto">
+
+      <li class="font-semibold my-4">Tags:</li>
+        <li ><a class="py-2 px-6 border rounded-full hover:bg-zinc-100 active:bg-zinc-300" href="/en/tags/fpga/">Fpga</a></li>
+        <li ><a class="py-2 px-6 border rounded-full hover:bg-zinc-100 active:bg-zinc-300" href="/en/tags/axi-s/">Axi-S</a></li>
+        <li ><a class="py-2 px-6 border rounded-full hover:bg-zinc-100 active:bg-zinc-300" href="/en/tags/axi-stream/">Axi Stream</a></li>
+        <li ><a class="py-2 px-6 border rounded-full hover:bg-zinc-100 active:bg-zinc-300" href="/en/tags/hdmi/">Hdmi</a></li>
+        <li ><a class="py-2 px-6 border rounded-full hover:bg-zinc-100 active:bg-zinc-300" href="/en/tags/vga/">Vga</a></li>
+    </ul>
+</div>
+
+    <footer id="content-footer" class="not-prose">
+
+
+      <div id="author-box" class="my-8 md:my-14 border p-8 bg-zinc-100 rounded-2xl">
+
+        <img class="w-20 h-20 rounded-full" src="https://vhdlverilog.com/images/seckin_pp.jpg">
+
+        <h2 class="text-xl font-bold my-4">Seçkin Albamya</h2>
+
+        
+
+        <ul class="flex flex-wrap space-x-4">
+
+          <li>
+            <a class="flex items-center decoration-auto hover:underline" href="https://www.linkedin.com/in/seckinalbamya" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+              </svg>
+              <span class="ml-2">LinkedIn</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="flex items-center decoration-auto hover:underline" href="https://github.com/seckinalbamya" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+              </svg>
+              <span class="ml-2">GitHub</span>
+            </a>
+          </li>
+
+        </ul>
+        
+      </div>
+
+    </footer>
+
+  </article>
+
+  
+  <aside class="md:col-span-1"><div class="lg:sticky lg:top-8">
+
+	<div class="space-y-6">
+
+		<h2 class="font-bold text-xl mb-8">Recent Posts</h2>
+
+		<article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/en/posts/2026/axis_slave_interface/"></a>
+	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/axis_slave_interface_kapak_hu9063474181042281989.png" alt="AXI-S Slave Interface Design" width="500" height="233">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">AXI-S Slave Interface Design</h3>
+	</div>
+</article>
+<article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/en/posts/2025/pwm_signal_generation_with_vhdl_and_verilog/"></a>
+	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/pwm/pwm_kapak_hu8101309152498173427.png" alt="PWM Signal Generation with VHDL and Verilog" width="500" height="273">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">PWM Signal Generation with VHDL and Verilog</h3>
+	</div>
+</article>
+<article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/en/posts/2025/fpga_reset_topologies/"></a>
+	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/reset_topolojileri_kapak_hu1259685933962835089.png" alt="Reset Topologies in FPGA" width="500" height="373">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Reset Topologies in FPGA</h3>
+	</div>
+</article>
+<article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/en/posts/2025/moving_average_filter_with_vhdl/"></a>
+	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/moving_average_filter_kapak_hu13447921106072304624.jpg" alt="Moving Average Filter with VHDL" width="500" height="281">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Moving Average Filter with VHDL</h3>
+	</div>
+</article>
+<article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/en/posts/2025/static_timing_analysis_in_fpga/"></a>
+	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/statik_timing_analiz_pp_hu16692102472561937321.png" alt="Static Timing Analysis in FPGA" width="500" height="281">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Static Timing Analysis in FPGA</h3>
+	</div>
+</article>
+
+		
+	</div>
+
+</div>
+</aside>
+
+</div>
+  
+</main>
+  <footer class="bg-zinc-100 py-10 md:py-14"><div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+
+  <div class="flex flex-wrap space-y-6 mb-4">
+
+    <div class="w-full md:w-3/5 flex flex-col space-y-4 md:pr-8 lg:pr-10">
+
+      <a class="flex items-center group" href="/en/">
+        <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  						<g stroke="#000" stroke-width="12" fill="none" stroke-linecap="round">
+    						<rect x="50" y="50" width="100" height="100" rx="12" />
+  						  <line x1="75" y1="30" x2="75" y2="50" />
+  						  <line x1="100" y1="30" x2="100" y2="50" />
+  						  <line x1="125" y1="30" x2="125" y2="50" />
+ 						  <line x1="75" y1="150" x2="75" y2="170" />
+   						  <line x1="100" y1="150" x2="100" y2="170" />
+  						  <line x1="125" y1="150" x2="125" y2="170" />
+    						  <line x1="30" y1="75" x2="50" y2="75" />
+    						  <line x1="30" y1="100" x2="50" y2="100" />
+    						  <line x1="30" y1="125" x2="50" y2="125" />
+    						  <line x1="150" y1="75" x2="170" y2="75" />
+						  <line x1="150" y1="100" x2="170" y2="100" />
+    						  <line x1="150" y1="125" x2="170" y2="125" />
+  						</g>
+  						  <rect x="80" y="80" width="40" height="40" rx="8" fill="#00AEEF" />
+					</svg>
+        
+        <span class="text-2xl font-semibold uppercase">VHDLVerilog</span>
+      </a>
+
+      <p class="font-semibold">
+        Work on FPGA and HDL...
+      </p>
+
+      <p>VHDLVerilog.com / VerilogVHDL.com is a non-profit website where I share my work.</p>
+
+    </div>
+
+    <div class="self-center flex flex-col w-full md:w-2/5">
+
+
+
+    </div>
+    
+  </div>
+
+  <div class="my-8">
+    <ul class="flex items-center space-x-4">
+      
+        <li><a class="decoration-auto hover:underline font-semibold" href="/en/">Home</a></li>
+      
+        <li><a class="decoration-auto hover:underline font-semibold" href="/en/about/">About</a></li>
+      
+    </ul>
+  </div>
+
+  <div class="border-t pt-4">
+
+    <p class="text-sm">Please do not share the content without permission. Copyright © 2026. All rights reserved.</p>
+
+  </div>
+  
+</div>
+</footer>
+      <script src="/js/insertoggle.js"></script>
+<script>
+document.querySelectorAll('a.lang-switch').forEach(function(a){
+  a.addEventListener('click',function(){try{localStorage.setItem('lang',a.dataset.lang)}catch(e){}});
+});
+</script>
+
+</body>
+</html>

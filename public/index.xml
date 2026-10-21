@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VHDLVerilog</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on VHDLVerilog</description>
+    <generator>Hugo</generator>
+    <language>tr-TR</language>
+    <lastBuildDate>Wed, 29 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AXI-S Slave Arayüzü Tasarımı</title>
+      <link>http://localhost:1313/posts/2026/axis_slave_interface/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2026/axis_slave_interface/</guid>
+      <description>&lt;p&gt;RTL tasarımlarında geliştirilen modül veya tasarımın standart bir arayüz ile geliştirilmesi tasarımcıya önemli bir kolaylık sağlamaktadır. Yapılan tasarımın projelere kolaylıkla entegre edilebilmesi, başkaları tarafından geliştirilen tasarımlar ile uyumluluk açısından ortak bir yapıya sahip olması avantajları bulunmaktadır.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>VHDL ve Verilog ile PWM Sinyali Üretimi</title>
+      <link>http://localhost:1313/posts/2025/vhdl_verilog_ile_pwm_sinyali_uretimi/</link>
+      <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2025/vhdl_verilog_ile_pwm_sinyali_uretimi/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;VHDL ve Verilog ile PWM Sinyali Üretimi&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;PWM (Pulse Width Modulation), dijital sinyal çıktısının aktif olduğu süreyi değiştirerek çıktının değerinin kontrol edildiği, elektronik uygulamalarda yaygın kullanılan bir çıkış formatıdır. Bu çıkış formatıyla analog çıkışa denk bir sinyalin etkisi dijital bir sinyal ile oluşturulabilmektedir. Ayrıca PWM sinyalinin zaman parametreleri kullanılarak başka bir dijital sistemler arası veri aktarmak da mümkündür.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>FPGA&#39;de Reset Topolojileri</title>
+      <link>http://localhost:1313/posts/2025/fpga_reset_topolojileri/</link>
+      <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2025/fpga_reset_topolojileri/</guid>
+      <description>&lt;p&gt;FPGA uygulamalarında reset yapısı tasarımın güvenilirliği için son derece kritik öneme sahiptir. Reset yapıları, özellikle uzay, havacılık ve kritik öneme sahip sistemlerde olası hataların hızlı bir şekilde önlenmesi ve ilk çalışma durumundaki davranışlarının belirlenmesi için kritik rol oynamaktadır.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>VHDL ile Hareketli Ortalama Filtre (Moving Average Filter)</title>
+      <link>http://localhost:1313/posts/2025/vhdl_ile_hareketli_ortalama_filtre/</link>
+      <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2025/vhdl_ile_hareketli_ortalama_filtre/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Hareketli Ortalama Filtre (Moving Average Filter)&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Hareketli ortalama filtre (moving average filter) girdilerin sıralı şekilde ortalamasını alıp çıkartan bir filtredir. Ani ve rastgele değişen girdilere karşılık stabil bir çıktı üretir. Matematiksel olarak genişliği sabit olan bir Finite Impulse Response (FIR) fonksiyonu ile konvolüsyon işlemidir. Low pass karakteristiğine sahiptir. Zaman domaininde iyi çalışan bir filtre olmasına karşın frekans domaininde iyi sonuçlar vermez.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>FPGA&#39;de Statik Timing Analizi</title>
+      <link>http://localhost:1313/posts/2025/fpgade_statik_timing_analizi/</link>
+      <pubDate>Mon, 16 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2025/fpgade_statik_timing_analizi/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;FPGA&amp;rsquo;de Statik Timing Analizi:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;    Bir FPGA tasarımının güvenli ve hatasız çalışması için bazı tasarım gereksinimlerine uyulmalıdır. Bu tasarım gerekliliklerinin en önemlilerinden bir tanesi timing (zaman) analizidir.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>VHDL&#39;de Kütüphaneler ve İçerdikleri Fonksiyonlar</title>
+      <link>http://localhost:1313/posts/2025/vhdl_kutuphaneleri/</link>
+      <pubDate>Wed, 12 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2025/vhdl_kutuphaneleri/</guid>
+      <description>&lt;p&gt;VHDL kullanılarak yapılan bir tasarımda bir tanımlamaya ihtiyaç duyulmaksızın &amp;ldquo;standard&amp;rdquo; package tanımlı olarak gelmektedir. Standard package&amp;rsquo;ın&#xA;tanımladığı type çeşitleri aşağıda verilmiştir.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hakkında</title>
+      <link>http://localhost:1313/hakkinda/</link>
+      <pubDate>Thu, 01 Jan 1970 03:33:45 +0300</pubDate>
+      <guid>http://localhost:1313/hakkinda/</guid>
+      <description>&lt;p&gt;Hobi amacı güderek sayısal tasarım işine gönül vermiş kişiler için bilgilerin paylaşıldığı bir blogdur.&lt;/p&gt;&#xA;&lt;p&gt;Seçkin Albamya&#xA;2025&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

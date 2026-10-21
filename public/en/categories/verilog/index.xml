@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Verilog on VHDLVerilog</title>
+    <link>http://localhost:1313/en/categories/verilog/</link>
+    <description>Recent content in Verilog on VHDLVerilog</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 18 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/en/categories/verilog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PWM Signal Generation with VHDL and Verilog</title>
+      <link>http://localhost:1313/en/posts/2025/pwm_signal_generation_with_vhdl_and_verilog/</link>
+      <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/2025/pwm_signal_generation_with_vhdl_and_verilog/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;PWM Signal Generation with VHDL and Verilog&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;PWM (Pulse Width Modulation) is an output format widely used in electronic applications, in which the value of the output is controlled by varying the amount of time the digital output stays active. With this output format, the effect of an analogue output can be produced using only a digital signal. It is also possible to transfer data between digital systems by making use of the timing parameters of the PWM signal.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

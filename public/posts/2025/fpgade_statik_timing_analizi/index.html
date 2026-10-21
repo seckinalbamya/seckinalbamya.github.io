@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="tr-TR" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FPGA&#39;de Statik Timing Analizi | VHDLVerilog</title>
+
+<meta name="description" content="FPGA&#39;de Statik Timing Analizi">
+<link rel="canonical" href="http://localhost:1313/posts/2025/fpgade_statik_timing_analizi/">
+<link rel="alternate" hreflang="tr-TR" href="http://localhost:1313/posts/2025/fpgade_statik_timing_analizi/">
+<link rel="alternate" hreflang="x-default" href="http://localhost:1313/posts/2025/fpgade_statik_timing_analizi/">
+<link rel="alternate" hreflang="en-US" href="http://localhost:1313/en/posts/2025/static_timing_analysis_in_fpga/">
+    <link rel="stylesheet" href="/css/bundle.css">
+
+<link rel="icon" type="image/svg+xml" href="http://localhost:1313/favicon.svg"> 
+<link rel="icon" type="image/x-icon" href="http://localhost:1313/favicon.ico"> 
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon.png"> 
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32.png"> 
+<link rel="icon" type="image/png" sizes="64x64" href="http://localhost:1313/favicon-64.png"> 
+
+</head>
+<body>
+  <header class="py-6 border-b"><div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col">
+	<div class="flex items-center">
+		<div class="flex items-center">
+			<button class="flex items-center space-x-2 rounded-full border py-1 pr-[5px] pl-3 group bg-zinc-100 hover:bg-zinc-200 toggle-button" data-target="menu-bar">
+				<svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+				</svg>
+				<span class="bg-zinc-100 fill-white rounded-full p-1.5">
+					<svg width="18" height="18" viewBox="30 30 140 140" xmlns="http://www.w3.org/2000/svg">
+  
+  <g stroke="#000" stroke-width="12" fill="none" stroke-linecap="round">
+    <rect x="50" y="50" width="100" height="100" rx="12" />
+    
+    <line x1="75" y1="30" x2="75" y2="50" />
+    <line x1="100" y1="30" x2="100" y2="50" />
+    <line x1="125" y1="30" x2="125" y2="50" />
+    
+    <line x1="75" y1="150" x2="75" y2="170" />
+    <line x1="100" y1="150" x2="100" y2="170" />
+    <line x1="125" y1="150" x2="125" y2="170" />
+    
+    <line x1="30" y1="75" x2="50" y2="75" />
+    <line x1="30" y1="100" x2="50" y2="100" />
+    <line x1="30" y1="125" x2="50" y2="125" />
+    
+    <line x1="150" y1="75" x2="170" y2="75" />
+    <line x1="150" y1="100" x2="170" y2="100" />
+    <line x1="150" y1="125" x2="170" y2="125" />
+  </g>
+
+  
+  <rect x="80" y="80" width="40" height="40" rx="8" fill="#00AEEF" />
+</svg>
+
+
+				</span>
+			</button>
+			<div class="relative rounded-full py-1.5 px-6 bg-zinc-100 hover:bg-zinc-200 text-xl font-bold uppercase mx-2">
+				<h2><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="/">VHDLVerilog</a></h2>
+			</div>
+		</div>
+	</div>
+  <nav id="menu-bar" class="block mt-3 close">
+    <ul class="flex items-center flex flex-nowrap whitespace-nowrap overflow-x-auto space-x-4">
+    <li class="my-2">
+      <a class="rounded-full border px-6 py-2 bg-zinc-100 hover:bg-zinc-200" href="/">Ana Sayfa</a>
+    </li>
+    <li class="my-2">
+      <a class="rounded-full border px-6 py-2 bg-zinc-100 hover:bg-zinc-200" href="/hakkinda/">Hakkında</a>
+    </li>
+          <li class="my-2 ml-auto">
+            <a class="lang-switch rounded-full border px-6 py-2 bg-zinc-100 hover:bg-zinc-200" href="/en/posts/2025/static_timing_analysis_in_fpga/" hreflang="en-US" data-lang="en">En</a>
+          </li>
+    </ul>
+  </nav>
+</div>
+</header>
+  <main class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+
+  <article class="md:col-span-2 prose lg:prose-lg">
+
+    <header class="not-prose">
+      
+      <h1 id="title" class="text-4xl font-bold leading-normal">FPGA&#39;de Statik Timing Analizi</h1>
+
+      <div id="lead" class="my-6">
+
+        <p class="font-bold">FPGA&#39;de Statik Timing Analizi </p>
+
+      </div>
+      
+      <div id="writer" class="flex items-center space-x-4"><ul class="flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto">
+          
+          <li class="font-semibold my-2"></li>
+          
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2"><time datetime="2025-06-16T00:00:00&#43;00:00">16 Haziran 2025</time>
+          </li>
+
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2">
+            5 dk okuma
+          </li>
+
+        </ul>
+
+      </div>
+      
+    </header>
+
+    <figure id="featureimage" class="rounded-xl aspect-video">
+            <center><img class="rounded-lg" src="http://localhost:1313/images/statik_timing_analiz_pp_hu12514281279654401664.png" alt="" width="750" height="422"></center>
+
+    </figure>
+
+    <div id="content" class="mb-14">
+      <p><strong>FPGA&rsquo;de Statik Timing Analizi:</strong></p>
+<p>    Bir FPGA tasarımının güvenli ve hatasız çalışması için bazı tasarım gereksinimlerine uyulmalıdır. Bu tasarım gerekliliklerinin en önemlilerinden bir tanesi timing (zaman) analizidir.</p>
+<p>    FPGA içerisindeki register&rsquo;dan register&rsquo;a, FPGA içerisindeki bir register&rsquo;dan harici bir donanıma giden veya harici bir donanımdan FPGA içerisindeki bir register&rsquo;a gelen sinyallerin belirli zaman dilimleri içerisinde ulaşması gerekmektedir. Constraint dosyası ile tanımlanan çalışma frekansı ve üzerinde çalışılacak FPGA modelinin sabit parametrelerine göre analiz edilip tasarımın kararlı çalışıp çalışmayacağının belirlenmesine timing (zaman) analizi denir.</p>
+<p>    Timing analizi, tasarımın kararlı çalışmasını garantiye almak için önemli bir analizdir. Timing gereksinimlerini karşılamayan bir sistemde sinyaller kaynaktan hedef flip floplara doğru zamanda aktarılmayabilir ve beklenmedik davranışlar görülebilir.</p>
+<p>Bu yazının içeriğine başlamadan önce görseller ve metinlerde kullanılan kısaltmalar ve açıklamaları aşağıda verilmiştir.</p>
+<p>       <strong>Tclk</strong>: Clock kaynağından flip flop&rsquo;un clock girişine kadar olan yolda harcanan süredir. Tasarıma göre değişir.<br>
+       <strong>tco</strong> (clock to output) veya <strong>tcq</strong> (clock to q): Flip flop&rsquo;a gelen clock sinyalinin yükselen kenarından Q çıkışına kadar geçen süredir. Üretim teknolojisiyle alakalı, sabit bir parametredir.<br>
+       <strong>Tdata</strong>: Kaynak flip flop&rsquo;un Q çıkışından hedef flip flop&rsquo;un D girişine kadar verinin iletilmesinde geçen süredir. Tasarıma göre değişir.<br>
+       <strong>Jitter</strong>: Sinyalin özellikle değişim anlarında yaşanan dalgalanma durumudur.<br>
+       <strong>Skew</strong>: İletimden kaynaklı oluşan zaman gecikmesidir.</p>
+<p align="center">
+  <img src="https://vhdlverilog.com/images/timing_analyses/kisaltmalar.png" alt="Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi" width="500"/>
+</p>
+<p align="center"><em>Şekil 1: Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi</em></p>
+<p>    Timing analizi, FPGA içerisinde bulunan flip flop&rsquo;lara uygulanan sinyal girişinin (D girişi), clock girişine göre, izin verilen zaman aralığında değişip değişmediğini inceler. Setup ve hold time gereksinimleri olmak üzere iki farkı zaman dilimi için analiz uygulanır.</p>
+<p><strong>1. Setup time analizi:</strong></p>
+<p>Flip flop, kendisine uygulanan sinyal girişini örneklemek için clock sinyalinin yükselen kenarını (rising edge) kullanır. Bu yükselen kenar anındaki D girişini örnekleyerek Q çıkışına aktarır.</p>
+<p>Gerçek hayattaki bir flip flop&rsquo;ta yükselen kenar anında yapılacak örneklemenin sağlıklı bir şekilde yapılabilmesi için sinyalin değişmeden bir süre sabit kalması gerekmektedir. Bu süreye setup time süresi (<strong>t<sub>setup</sub></strong>) denir. Üretim teknolojisiyle alakalı, sabit bir parametredir. Clock&rsquo;un yükselen kenarının hemen öncesinde yer alan bu süre içerisinde sinyal değişime uğrarsa flip flop çıkışı metastabil duruma geçerek kararsız bir hal alır. Bu kararsız durum flip flop&rsquo;un çıkışının 0 veya 1 arasında değiştiği ancak belirli bir süre beklendiği taktirde çözülerek çıkışın sabit bir değer aldığı durumdur.</p>
+<p>İzin verilen maksimum veri yolu gecikmesi (setup time için) = <strong>T<sub>required_setup</sub></strong> = <strong>t<sub>co</sub></strong> + <strong>T<sub>data</sub></strong> + <strong>t<sub>setup</sub></strong> (flip flop&rsquo;un gerektirdiği clock öncesi bekleme süresi) + diğer etmenler (jitter, skew vs.)</p>
+<p>    <strong>T<sub>required_setup</sub></strong> ≤ <strong>T<sub>clk</sub></strong> olmalıdır.</p>
+<p>Başka bir ifadeyle eşitsizlikteki ifadeler yer değiştirildiğinde şu şekilde de ifade edilebilir:</p>
+<p>    (<strong>t<sub>co</sub></strong> + <strong>T<sub>data</sub></strong> + <strong>t<sub>setup</sub></strong>) ≤ <strong>T<sub>clk</sub></strong></p>
+<p>Burada dikkat edilmesi gereken nokta, clock frekansı arttığında <strong>T<sub>required_setup</sub></strong> azalmaktadır. Diğer bir ifadeyle tasarlanan veri yolu uzunluğu arttıkça clock frekansı azalmaktadır.</p>
+<p><strong>2. Hold time analizi:</strong></p>
+<p>Flip flop&rsquo;un sinyal girişinin clock sinyalinin yükselen kenar anındaki örneklemeden sonra bir süre sabit kalması gerekmektedir. Bu süreye hold time süresi (<strong>t<sub>hold</sub></strong>) denir. Üretim teknolojisiyle alakalı, sabit bir parametredir. Flip flop&rsquo;un D girişindeki sinyalin clock&rsquo;un yükselen kenarının hemen öncesinde yer alan bu süre içerisinde değişime uğraması durumunda flip flop çıkışı metastabil duruma geçerek kararsız bir hal alır.</p>
+<p>İzin verilen minimum veri yolu gecikmesi (hold time için) = <strong>T<sub>required_hold</sub></strong> = <strong>t<sub>hold</sub></strong> (flip flopun gerektirdiği clock sonrası bekleme süresi) + diğer etmenler (jitter, skew vs.)</p>
+<p>Diğer bir ifadeyle, verinin kaynak flip-flop’tan oluşturulup hedef flip-flop’a iletilmesinde geçen süre, minimum hold time süresinden (ve sistem belirsizliklerinden) daha uzun veya eşit olmalıdır:</p>
+<p>    (<strong>t<sub>co</sub></strong> + <strong>T<sub>data</sub></strong>) ≥ <strong>T<sub>required_hold</sub></strong></p>
+<p>Burada dikkat edilmesi gereken nokta, clock frekansının <strong>T<sub>required_hold</sub></strong>&lsquo;a herhangi bir etkisinin olmadığıdır çünkü aynı clock kenarında yapılan örnekleme ile ilgili bir parametredir.</p>
+<p>Yani setup ve hold time clock örneklemesi esnasında stabil kalınması gereken zaman kurallarının kontrolüdür. Aşağıda flip flop&rsquo;un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı gösterilmiştir.</p>
+<p align="center">
+  <img src="https://vhdlverilog.com/images/timing_analyses/setup_and_hold_gosterim.png" alt="Flip flop'un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı(1)" width="600"/>
+</p>
+<p align="center"><em>Şekil 2: Flip flop'un sinyal girişinin stabil kalması ve değişmesine izin verilen zaman aralığı(1)</em></p>
+<p>Setup ve hold time analizi hesaplamasının nasıl yapıldığı konusundan önce setup ve hold time gereksinimlerini karşılayıp karşılamadığı bakımından çeşitli örnekler aşağıda incelenmiştir.</p>
+<p>Setup time bakımından incelenen ve hatasız çalışan bir örnek aşağıda verilen Şekil 3 üzerinde gösterilmiştir.</p>
+<p align="center">
+  <img src="https://vhdlverilog.com/images/timing_analyses/setup_basarili.png" alt="Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi" width="710"/>
+</p>
+<p align="center"><em>Şekil 3: Setup time bakımından hatasız çalışan bir örnek</em></p>
+<p>Görseldeki zaman çizelgesindeki sinyaller incelendiğinde Register 1&rsquo;den çıkan REG1.Q sinyali REG2.D girişine geldiğinde bir sonraki örneklemeye <strong>T<sub>setup</sub></strong>&rsquo;tan daha uzun zaman kalmaktadır. Dolayısıyla setup time bakımından herhangi bir ihlal bulunmamaktadır.</p>
+<p>Setup time bakımından incelenen ve setup time ihlalı olan bir örnek aşağıda verilen Şekil 4 üzerinde gösterilmiştir.</p>
+<p align="center">
+  <img src="https://vhdlverilog.com/images/timing_analyses/setup_basarisiz.png" alt="Kullanılan kısaltmaların zaman çizgisi üzerinde gösterimi" width="727"/>
+</p>
+<p align="center"><em>Şekil 4: Setup time ihlali olan bir örnek</em></p>
+<p>Görseldeki zaman çizelgesindeki sinyaller incelendiğinde Register 1&rsquo;den çıkan REG1.Q sinyali REG2.D girişine geldiğinde bir sonraki örneklemeye <strong>T<sub>setup</sub></strong>&rsquo;tan daha kısa zaman kalmaktadır. Dolayısıyla örnekleme öncesinde gereken sinyal stabilliği sağlanamamış, setup time bakımından ihlal gerçekleşmiştir.</p>
+<p>Hold time bakımından incelenen ve hatasız çalışan bir örnek aşağıda verilen Şekil 5 üzerinde gösterilmiştir.</p>
+<p align="center">
+  <img src="https://vhdlverilog.com/images/timing_analyses/hold_basarili.png" alt="Hold time bakımından hatasız çalışan bir örnek" width="710"/>
+</p>
+<p align="center"><em>Şekil 5: Hold time bakımından hatasız çalışan bir örnek</em></p>
+<p>Görseldeki zaman çizelgesindeki sinyaller incelendiğinde Register 1&rsquo;den çıkan REG1.Q sinyali REG2.D girişine gelip bir sonraki clock yükselen kenarıyla birlikte örneklendiğinde, <strong>t<sub>hold</sub></strong>&rsquo;tan daha uzun bir süre boyunca sabit kalmaktadır. Dolayısıyla hold time bakımından herhangi bir ihlal bulunmamaktadır.</p>
+<p>Hold time bakımından incelenen ve hold time ihlali olan bir örnek aşağıda verilen Şekil 6 üzerinde gösterilmiştir.</p>
+<p align="center">
+  <img src="https://vhdlverilog.com/images/timing_analyses/hold_basarisiz.png" alt="Hold time ihlali olan bir örnek" width="710"/>
+</p>
+<p align="center"><em>Şekil 6: Hold time ihlali olan bir örnek</em></p>
+<p>Görseldeki zaman çizelgesindeki sinyaller incelendiğinde Register 1&rsquo;den çıkan REG1.Q sinyali REG2.D girişine gelip bir sonraki clock yükselen kenarıyla birlikte örneklendiğinde, <strong>t<sub>hold</sub></strong>&rsquo;tan daha kısa bir süre boyunca sabit kalmaktadır. Dolayısıyla örnekleme sonrasında gereken sinyal stabilliği sağlanamamış, hold time bakımından ihlal gerçekleşmiştir.</p>
+<p>Setup ve Hold time analizi yapılırken analiz araçları her bir veri yolu için slack(boşluk miktarı) hesabı yapar. Bu slack hesaplarında kullanılan parametreler ve hesaplanışları aşağıda verilmiştir.</p>
+<p>     <strong>Setup Slack</strong>: Gereken veri aktarım süresi (setup time için) - Verinin varış süresi  ===&gt; Verinin varış süresi ≤ <strong>T<sub>required_setup</sub></strong> olmalıdır.<br>
+     <strong>Hold Slack</strong>: Verinin varış süresi - Gereken veri aktarım süresi (hold time için)	 ===&gt; Verinin varış süresi ≥ <strong>T<sub>required_hold</sub></strong> olmalıdır.</p>
+<p>Setup ve hold slack değerleri pozitif olduğunda tasarım timing gereksinimlerini karşılamakta, aksi halde tasarımda timing ihlali bulunmaktadır.</p>
+<p>Pozitif setup ve hold slack değerlerinde tasarımın kararlı çalışması garanti altına alınırken negatif slack değerlerinde sistemde metastability ve kararsız durumlar gözlenebilir. Bu durum flip flop&rsquo;ların çıktılarının kararsız olmasına, kararsız flip flop&rsquo;lardan örnekleme yapan başka flip flop&rsquo;ların yanlış değerleri örneklemesine ve sistemin çökmesine kadar ilerleyen bir hataya yol açabilir. İyi bir tasarımda bu hatalara karşı analizleri dikkate almak önem arz eder.</p>
+<p>Bu yazıdaki içerik ve görseller için YouTube&rsquo;da paylaşım yapan Altera kanalının <a href="https://www.youtube.com/watch?v=6D-w8mOttnE">Understanding Timing Analysis in FPGAs</a> videosundan faydalanılmıştır.
+(1): Görsel <a href="https://www.vlsi-expert.com/2011/04/static-timing-analysis-sta-basic-part3a.html">vlsi-expert</a> adresinden alınmıştır.</p>
+
+
+    <ul id="taxonomy" class="not-prose flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto">
+
+      <li class="font-semibold my-4">Tags:</li>
+        <li ><a class="py-2 px-6 border rounded-full hover:bg-zinc-100 active:bg-zinc-300" href="/tags/fpga/">Fpga</a></li>
+        <li ><a class="py-2 px-6 border rounded-full hover:bg-zinc-100 active:bg-zinc-300" href="/tags/timing-analizi/">Timing Analizi</a></li>
+        <li ><a class="py-2 px-6 border rounded-full hover:bg-zinc-100 active:bg-zinc-300" href="/tags/setup-time/">Setup Time</a></li>
+        <li ><a class="py-2 px-6 border rounded-full hover:bg-zinc-100 active:bg-zinc-300" href="/tags/hold-time/">Hold Time</a></li>
+        <li ><a class="py-2 px-6 border rounded-full hover:bg-zinc-100 active:bg-zinc-300" href="/tags/slack/">Slack</a></li>
+    </ul>
+</div>
+
+    <footer id="content-footer" class="not-prose">
+
+
+      <div id="author-box" class="my-8 md:my-14 border p-8 bg-zinc-100 rounded-2xl">
+
+        <img class="w-20 h-20 rounded-full" src="https://vhdlverilog.com/images/seckin_pp.jpg">
+
+        <h2 class="text-xl font-bold my-4">Seçkin Albamya</h2>
+
+        
+
+        <ul class="flex flex-wrap space-x-4">
+
+          <li>
+            <a class="flex items-center decoration-auto hover:underline" href="https://www.linkedin.com/in/seckinalbamya" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+              </svg>
+              <span class="ml-2">LinkedIn</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="flex items-center decoration-auto hover:underline" href="https://github.com/seckinalbamya" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+              </svg>
+              <span class="ml-2">GitHub</span>
+            </a>
+          </li>
+
+        </ul>
+        
+      </div>
+
+    </footer>
+
+  </article>
+
+  
+  <aside class="md:col-span-1"><div class="lg:sticky lg:top-8">
+
+	<div class="space-y-6">
+
+		<h2 class="font-bold text-xl mb-8">Son Gönderiler</h2>
+
+		<article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/posts/2026/axis_slave_interface/"></a>
+	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/axis_slave_interface_kapak_hu9063474181042281989.png" alt="AXI-S Slave Arayüzü Tasarımı" width="500" height="233">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">AXI-S Slave Arayüzü Tasarımı</h3>
+	</div>
+</article>
+<article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/posts/2025/vhdl_verilog_ile_pwm_sinyali_uretimi/"></a>
+	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/pwm/pwm_kapak_hu8101309152498173427.png" alt="VHDL ve Verilog ile PWM Sinyali Üretimi" width="500" height="273">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">VHDL ve Verilog ile PWM Sinyali Üretimi</h3>
+	</div>
+</article>
+<article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/posts/2025/fpga_reset_topolojileri/"></a>
+	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/reset_topolojileri_kapak_hu1259685933962835089.png" alt="FPGA&#39;de Reset Topolojileri" width="500" height="373">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">FPGA&#39;de Reset Topolojileri</h3>
+	</div>
+</article>
+<article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/posts/2025/vhdl_ile_hareketli_ortalama_filtre/"></a>
+	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/moving_average_filter_kapak_hu13447921106072304624.jpg" alt="VHDL ile Hareketli Ortalama Filtre (Moving Average Filter)" width="500" height="281">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">VHDL ile Hareketli Ortalama Filtre (Moving Average Filter)</h3>
+	</div>
+</article>
+<article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/posts/2025/fpgade_statik_timing_analizi/"></a>
+	<figure class="thumb basis-1/3 self-center overflow-hidden rounded-2xl bg-zinc-100"><img class="thumb-img group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/images/statik_timing_analiz_pp_hu16692102472561937321.png" alt="FPGA&#39;de Statik Timing Analizi" width="500" height="281">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">FPGA&#39;de Statik Timing Analizi</h3>
+	</div>
+</article>
+
+		
+	</div>
+
+</div>
+</aside>
+
+</div>
+  
+</main>
+  <footer class="bg-zinc-100 py-10 md:py-14"><div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+
+  <div class="flex flex-wrap space-y-6 mb-4">
+
+    <div class="w-full md:w-3/5 flex flex-col space-y-4 md:pr-8 lg:pr-10">
+
+      <a class="flex items-center group" href="/">
+        <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  						<g stroke="#000" stroke-width="12" fill="none" stroke-linecap="round">
+    						<rect x="50" y="50" width="100" height="100" rx="12" />
+  						  <line x1="75" y1="30" x2="75" y2="50" />
+  						  <line x1="100" y1="30" x2="100" y2="50" />
+  						  <line x1="125" y1="30" x2="125" y2="50" />
+ 						  <line x1="75" y1="150" x2="75" y2="170" />
+   						  <line x1="100" y1="150" x2="100" y2="170" />
+  						  <line x1="125" y1="150" x2="125" y2="170" />
+    						  <line x1="30" y1="75" x2="50" y2="75" />
+    						  <line x1="30" y1="100" x2="50" y2="100" />
+    						  <line x1="30" y1="125" x2="50" y2="125" />
+    						  <line x1="150" y1="75" x2="170" y2="75" />
+						  <line x1="150" y1="100" x2="170" y2="100" />
+    						  <line x1="150" y1="125" x2="170" y2="125" />
+  						</g>
+  						  <rect x="80" y="80" width="40" height="40" rx="8" fill="#00AEEF" />
+					</svg>
+        
+        <span class="text-2xl font-semibold uppercase">VHDLVerilog</span>
+      </a>
+
+      <p class="font-semibold">
+        FPGA ve HDL üzerine çalışmalar...
+      </p>
+
+      <p>VHDLVerilog.com / VerilogVHDL.com kar amacı gütmeden çalışmalarımı paylaştığım bir web sitesidir.</p>
+
+    </div>
+
+    <div class="self-center flex flex-col w-full md:w-2/5">
+
+
+
+    </div>
+    
+  </div>
+
+  <div class="my-8">
+    <ul class="flex items-center space-x-4">
+      
+        <li><a class="decoration-auto hover:underline font-semibold" href="/">Ana Sayfa</a></li>
+      
+        <li><a class="decoration-auto hover:underline font-semibold" href="/hakkinda/">Hakkında</a></li>
+      
+    </ul>
+  </div>
+
+  <div class="border-t pt-4">
+
+    <p class="text-sm">İçeriklerin izinsiz paylaşılmaması rica olunur. Copyright © 2026. Tüm hakları saklıdır.</p>
+
+  </div>
+  
+</div>
+</footer>
+      <script src="/js/insertoggle.js"></script>
+<script>
+document.querySelectorAll('a.lang-switch').forEach(function(a){
+  a.addEventListener('click',function(){try{localStorage.setItem('lang',a.dataset.lang)}catch(e){}});
+});
+</script>
+
+</body>
+</html>

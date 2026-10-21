@@ -1,0 +1,60 @@
+<div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+
+  <div class="flex flex-wrap space-y-6 mb-4">
+
+    <div class="w-full md:w-3/5 flex flex-col space-y-4 md:pr-8 lg:pr-10">
+
+      <a class="flex items-center group" href="{{ .Site.Home.RelPermalink }}">
+        <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  						<g stroke="#000" stroke-width="12" fill="none" stroke-linecap="round">
+    						<rect x="50" y="50" width="100" height="100" rx="12" />
+  						  <line x1="75" y1="30" x2="75" y2="50" />
+  						  <line x1="100" y1="30" x2="100" y2="50" />
+  						  <line x1="125" y1="30" x2="125" y2="50" />
+ 						  <line x1="75" y1="150" x2="75" y2="170" />
+   						  <line x1="100" y1="150" x2="100" y2="170" />
+  						  <line x1="125" y1="150" x2="125" y2="170" />
+    						  <line x1="30" y1="75" x2="50" y2="75" />
+    						  <line x1="30" y1="100" x2="50" y2="100" />
+    						  <line x1="30" y1="125" x2="50" y2="125" />
+    						  <line x1="150" y1="75" x2="170" y2="75" />
+						  <line x1="150" y1="100" x2="170" y2="100" />
+    						  <line x1="150" y1="125" x2="170" y2="125" />
+  						</g>
+  						  <rect x="80" y="80" width="40" height="40" rx="8" fill="#00AEEF" />
+					</svg>
+        
+        <span class="text-2xl font-semibold uppercase">{{ .Site.Title }}</span>
+      </a>
+
+      <p class="font-semibold">
+        {{ i18n "footerTagline" }}
+      </p>
+
+      <p>{{ i18n "footerNote" }}</p>
+
+    </div>
+
+    <div class="self-center flex flex-col w-full md:w-2/5">
+
+<!-- {{ partial "content/social-media.html" . }} -->
+
+    </div>
+    
+  </div>
+
+  <div class="my-8">
+    <ul class="flex items-center space-x-4">
+      {{ range .Site.Menus.main }}
+        <li><a class="decoration-auto hover:underline font-semibold" href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+
+  <div class="border-t pt-4">
+
+    <p class="text-sm">{{ i18n "copyright" (dict "Year" now.Year) }}</p>
+
+  </div>
+  
+</div>

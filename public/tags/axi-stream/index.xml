@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Axi Stream on VHDLVerilog</title>
+    <link>http://localhost:1313/tags/axi-stream/</link>
+    <description>Recent content in Axi Stream on VHDLVerilog</description>
+    <generator>Hugo</generator>
+    <language>tr-TR</language>
+    <lastBuildDate>Wed, 29 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/axi-stream/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AXI-S Slave Arayüzü Tasarımı</title>
+      <link>http://localhost:1313/posts/2026/axis_slave_interface/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2026/axis_slave_interface/</guid>
+      <description>&lt;p&gt;RTL tasarımlarında geliştirilen modül veya tasarımın standart bir arayüz ile geliştirilmesi tasarımcıya önemli bir kolaylık sağlamaktadır. Yapılan tasarımın projelere kolaylıkla entegre edilebilmesi, başkaları tarafından geliştirilen tasarımlar ile uyumluluk açısından ortak bir yapıya sahip olması avantajları bulunmaktadır.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,14 @@
+[recentPosts]
+other = "Recent Posts"
+[minRead]
+other = "min read"
+[prev]
+other = "← Previous"
+[next]
+other = "Next →"
+[footerTagline]
+other = "Work on FPGA and HDL..."
+[footerNote]
+other = "VHDLVerilog.com / VerilogVHDL.com is a non-profit website where I share my work."
+[copyright]
+other = "Please do not share the content without permission. Copyright © {{ .Year }}. All rights reserved."

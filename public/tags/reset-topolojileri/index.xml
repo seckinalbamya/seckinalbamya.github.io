@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reset Topolojileri on VHDLVerilog</title>
+    <link>http://localhost:1313/tags/reset-topolojileri/</link>
+    <description>Recent content in Reset Topolojileri on VHDLVerilog</description>
+    <generator>Hugo</generator>
+    <language>tr-TR</language>
+    <lastBuildDate>Sun, 31 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/reset-topolojileri/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FPGA&#39;de Reset Topolojileri</title>
+      <link>http://localhost:1313/posts/2025/fpga_reset_topolojileri/</link>
+      <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2025/fpga_reset_topolojileri/</guid>
+      <description>&lt;p&gt;FPGA uygulamalarında reset yapısı tasarımın güvenilirliği için son derece kritik öneme sahiptir. Reset yapıları, özellikle uzay, havacılık ve kritik öneme sahip sistemlerde olası hataların hızlı bir şekilde önlenmesi ve ilk çalışma durumundaki davranışlarının belirlenmesi için kritik rol oynamaktadır.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

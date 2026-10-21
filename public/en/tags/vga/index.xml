@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vga on VHDLVerilog</title>
+    <link>http://localhost:1313/en/tags/vga/</link>
+    <description>Recent content in Vga on VHDLVerilog</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 29 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/en/tags/vga/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AXI-S Slave Interface Design</title>
+      <link>http://localhost:1313/en/posts/2026/axis_slave_interface/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/2026/axis_slave_interface/</guid>
+      <description>&lt;p&gt;Developing a module or a design with a standard interface offers significant convenience to the RTL designer. It brings the advantages of being easy to integrate into other projects and of sharing a common structure that is compatible with designs developed by others.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
