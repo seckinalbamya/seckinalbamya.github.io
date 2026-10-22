@@ -14,17 +14,23 @@ Renders a menu for the given menu ID.
   <nav id="menu-bar" class="block mt-3 close">
     <ul class="flex items-center flex flex-nowrap whitespace-nowrap overflow-x-auto space-x-4">
       {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-      {{- /* Language switcher: link to this page's translation, else the other language's home page */}}
-      {{- range site.Languages }}
-        {{- $lang := . }}
-        {{- if ne $lang.Lang site.Language.Lang }}
-          {{- $url := "" }}
-          {{- range $page.AllTranslations }}{{ if eq .Language.Lang $lang.Lang }}{{ $url = .RelPermalink }}{{ end }}{{ end }}
-          {{- if not $url }}{{ range site.Sites }}{{ if eq .Language.Lang $lang.Lang }}{{ $url = .Home.RelPermalink }}{{ end }}{{ end }}{{ end }}
-          <li class="my-2 ml-auto">
-            <a class="lang-switch rounded-full border px-6 py-2 bg-zinc-100 hover:bg-zinc-200" href="{{ $url }}" hreflang="{{ $lang.LanguageCode }}" data-lang="{{ $lang.Lang }}">{{ $lang.Lang | title }}</a>
-          </li>
-        {{- end }}
+      {{- /* Language dropdown: options link to this page's translation, else the other language's home page */}}
+      {{- if gt (len site.Languages) 1 }}
+      <li class="my-2 ml-auto">
+        <select class="lang-select rounded-full border px-4 py-2 bg-zinc-100 hover:bg-zinc-200" aria-label="Language" onchange="try{localStorage.setItem('lang',this.options[this.selectedIndex].dataset.lang)}catch(e){}location.href=this.value">
+          {{- range site.Languages }}
+            {{- $lang := . }}
+            {{- $url := "" }}
+            {{- if eq $lang.Lang site.Language.Lang }}
+              {{- $url = $page.RelPermalink }}
+            {{- else }}
+              {{- range $page.AllTranslations }}{{ if eq .Language.Lang $lang.Lang }}{{ $url = .RelPermalink }}{{ end }}{{ end }}
+              {{- if not $url }}{{ range site.Sites }}{{ if eq .Language.Lang $lang.Lang }}{{ $url = .Home.RelPermalink }}{{ end }}{{ end }}{{ end }}
+            {{- end }}
+          <option value="{{ $url }}" data-lang="{{ $lang.Lang }}" lang="{{ $lang.LanguageCode }}"{{ if eq $lang.Lang site.Language.Lang }} selected{{ end }}>{{ $lang.LanguageName }}</option>
+          {{- end }}
+        </select>
+      </li>
       {{- end }}
     </ul>
   </nav>

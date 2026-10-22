@@ -1,2 +1,5 @@
 /* Sidebar thumbnails: show the whole cover, keep its aspect ratio. */
 .thumb-img { display: block; width: 100%; height: auto; }
+
+/* Language dropdown matches the menu pills */
+.lang-select { font: inherit; color: inherit; cursor: pointer; }
